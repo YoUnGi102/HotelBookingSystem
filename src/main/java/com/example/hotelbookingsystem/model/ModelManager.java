@@ -3,9 +3,12 @@ package com.example.hotelbookingsystem.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class ModelManager implements Model{
 
     private ObservableList<Guest> guestList;
+    private ObservableList <Room> rooms;
 
     public ModelManager(){
         guestList = FXCollections.observableArrayList();
@@ -33,4 +36,33 @@ public class ModelManager implements Model{
         return searchedGuests;
     }
 
+    @Override
+    public ObservableList<Room> showALlBookedRooms() {
+        ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
+        for (Room room: rooms) {
+            if (room.getAvailability().equals(Room.BOOKED)) {
+                showAllRooms.add(room);
+            }
+        }
+        return showAllRooms;
+    }
+
+    public ObservableList<Room> showALlAvailableRooms() {
+        ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
+        for (Room room: rooms) {
+            if (room.getAvailability().equals(Room.AVAILABLE)) {
+                showAllRooms.add(room);
+            }
+        }
+        return showAllRooms;
+    }
+    public ObservableList<Room> showALlOutOfOrderRooms() {
+        ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
+        for (Room room: rooms) {
+            if (room.getAvailability().equals(Room.OUTOFORDER)) {
+                showAllRooms.add(room);
+            }
+        }
+        return showAllRooms;
+    }
 }
