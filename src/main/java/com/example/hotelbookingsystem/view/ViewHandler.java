@@ -23,7 +23,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView("");
+        openView(GUEST_LIST_VIEW);
     }
 
     public void openView(String id) {

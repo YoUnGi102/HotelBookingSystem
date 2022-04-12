@@ -30,4 +30,8 @@ public class Address {
         return postalCode;
     }
 
+    @Override
+    public String toString() {
+        return street + " " + houseNumber + ", " + city + " " + postalCode;
+    }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.GuestListViewController">
+   <children>
+      <HBox prefHeight="75.0" prefWidth="200.0">
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+         <children>
+            <TextField fx:id="firstName" prefHeight="35.0" prefWidth="150.0" promptText="First Name">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="lastName" prefHeight="35.0" prefWidth="150.0" promptText="Last Name">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="eMail" prefHeight="35.0" prefWidth="150.0" promptText="E-mail">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="phoneNumber" prefHeight="35.0" prefWidth="150.0" promptText="Phone Number">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="passportNumber" prefHeight="35.0" prefWidth="150.0" promptText="Passport Number">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="100.0" text="Search">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="firstNameCol" prefWidth="125.0" text="First Name" />
+          <TableColumn fx:id="lastNameCol" prefWidth="125.0" text="Last Name" />
+            <TableColumn fx:id="phoneNumberCol" prefWidth="150.0" text="Phone Number" />
+            <TableColumn fx:id="passportNumberCol" prefWidth="175.0" text="Passport Number" />
+            <TableColumn fx:id="emailCol" prefWidth="150.0" text="E-Mail" />
+            <TableColumn fx:id="addressCol" prefWidth="275.0" text="Address" />
+        </columns>
+         <VBox.margin>
+            <Insets left="40.0" right="40.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>

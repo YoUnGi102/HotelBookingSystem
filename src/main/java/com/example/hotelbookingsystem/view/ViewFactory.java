@@ -29,7 +29,7 @@ public class ViewFactory {
     public Region loadGuestListView(){
         if (guestListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/assignment1/temperature_view.fxml"));
+            loader.setLocation(ViewHandler.class.getResource("guest-list-view.fxml"));
             try {
                 Region root = loader.load();
                 guestListViewController = loader.getController();
