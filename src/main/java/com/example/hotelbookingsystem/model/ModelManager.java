@@ -19,16 +19,17 @@ public class ModelManager implements Model{
     public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) {
         ObservableList<Guest> searchedGuests = FXCollections.observableArrayList();
         for (Guest guest : guestList) {
-            if(!firstName.equals("") && guest.getFirstName().contains(firstName))
-                searchedGuests.add(guest);
-            else if(!lastName.equals("") && guest.getLastName().contains(lastName))
-                searchedGuests.add(guest);
-            else if(!phoneNumber.equals("") && guest.getPhoneNumber().contains(phoneNumber))
-                searchedGuests.add(guest);
-            else if(!passportNumber.equals("") && guest.getPassportNumber().contains(passportNumber))
-                searchedGuests.add(guest);
-            else if(!email.equals("") && guest.getEmail().contains(email))
-                searchedGuests.add(guest);
+            if(!firstName.equals("") && !guest.getFirstName().contains(firstName))
+                continue;
+            if(!lastName.equals("") && !guest.getLastName().contains(lastName))
+                continue;
+            if(!phoneNumber.equals("") && !guest.getPhoneNumber().contains(phoneNumber))
+                continue;
+            if(!passportNumber.equals("") && !guest.getPassportNumber().contains(passportNumber))
+                continue;
+            if(!email.equals("") && !guest.getEmail().contains(email))
+                continue;
+            searchedGuests.add(guest);
         }
         return searchedGuests;
     }
