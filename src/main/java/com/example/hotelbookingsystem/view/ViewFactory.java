@@ -16,12 +16,14 @@ public class ViewFactory {
     // TODO ADD Controller for each view
     // EXAMPLE
     private GuestListViewController guestListViewController;
+    private RoomListViewController roomListViewController;
 
     public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
         this.viewHandler = viewHandler;
         this.viewModelFactory = viewModelFactory;
         // EXAMPLE
         this.guestListViewController = null;
+        this.roomListViewController = null;
     }
 
     // TODO Add load method for each view
@@ -29,7 +31,7 @@ public class ViewFactory {
     public Region loadGuestListView(){
         if (guestListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewHandler.class.getResource("guest-list-view.fxml"));
+            loader.setLocation(ViewHandler.class.getResource("guest_list_view.fxml"));
             try {
                 Region root = loader.load();
                 guestListViewController = loader.getController();
@@ -39,6 +41,21 @@ public class ViewFactory {
             }
         }
         return guestListViewController.getRoot();
+    }
+
+    public Region loadRoomListView(){
+        if (roomListViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource("room_list_view.fxml"));
+            try {
+                Region root = loader.load();
+                roomListViewController = loader.getController();
+                roomListViewController.init(viewHandler, viewModelFactory.getRoomListViewModel(), root);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+        return roomListViewController.getRoot();
     }
 
 }
