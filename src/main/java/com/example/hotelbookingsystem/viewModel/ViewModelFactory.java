@@ -7,10 +7,12 @@ public class ViewModelFactory {
     // TODO (Add every View Model as you create it)
     // EXAMPLE
     private final GuestListViewModel guestListViewModel;
+    private final RoomListViewModel roomListViewModel;
 
     public ViewModelFactory(Model model) {
         // EXAMPLE
         this.guestListViewModel = new GuestListViewModel(model);
+        this.roomListViewModel = new RoomListViewModel(model);
     }
 
     // EXAMPLE
@@ -18,4 +20,7 @@ public class ViewModelFactory {
         return guestListViewModel;
     }
 
+    public RoomListViewModel getRoomListViewModel() {
+        return roomListViewModel;
+    }
 }
