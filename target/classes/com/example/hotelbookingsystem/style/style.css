@@ -1,0 +1,55 @@
+.light-blue-background {
+    -fx-background-color: #4A67B3;
+}
+
+.text-input {
+    -fx-background-color: #F2F2F2;
+    -fx-prompt-text-fill: #5C6889;
+    -fx-text-fill: #0D318F;
+    -fx-font-size: 18px;
+}
+
+.dark-button {
+    -fx-background-color: #0D318F;
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-border-radius: 20px;
+}
+
+.light-button {
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #0D318F;
+}
+
+.table-row-cell {
+    -fx-fixed-cell-size: 30px;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-text-align: center;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4A67B3;
+    -fx-text-fill: #F2F2F2;
+    -fx-fixed-cell-size: 30px;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-text-align: center;
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #4A67B3;
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Arial Rounded MT Bold'
+}
+
+
+
+.table-view .column-header .label {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-weight: bold;
+}

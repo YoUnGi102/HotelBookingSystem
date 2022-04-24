@@ -30,7 +30,7 @@ public class GuestListViewController {
         this.viewModel = viewModel;
         this.root = root;
 
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));

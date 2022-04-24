@@ -1,6 +1,7 @@
 module com.example.hotelbookingsystem {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     opens com.example.hotelbookingsystem.model to javafx.fxml;
     exports com.example.hotelbookingsystem.model;
@@ -10,4 +11,6 @@ module com.example.hotelbookingsystem {
     exports com.example.hotelbookingsystem.viewModel;
     opens com.example.hotelbookingsystem to javafx.fxml;
     exports com.example.hotelbookingsystem;
+    exports com.example.hotelbookingsystem.dao;
+    opens com.example.hotelbookingsystem.dao to javafx.fxml;
 }

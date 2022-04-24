@@ -1,8 +1,7 @@
 package com.example.hotelbookingsystem.model;
 
+import com.example.hotelbookingsystem.Room;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
 
 public interface Model {
 

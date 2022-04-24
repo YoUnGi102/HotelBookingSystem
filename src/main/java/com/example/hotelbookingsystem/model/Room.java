@@ -1,39 +1,98 @@
 package com.example.hotelbookingsystem.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Room {
-    public static final String BOOKED= "booked";
-    public static final String AVAILABLE= "available";
-    public static final String OUTOFORDER= "out of order";
-    private String room;
-    private int roomNumber;
-    private String quality;
-    private String availability;
-    private int roomSize;
+public class Room implements Serializable {
+    private int number;
+    private int size;
     private int floor;
-    private String equipment;
-    private String specialNeedsEquip;
+    private int quality;
+    private int id;
+    private String status;
+    public static final String StatusFree = "Free";
+    public static final String StatusBroken = "Broken";
+    public static final String StatusBusy = "Busy";
 
-    public Room(int roomNumber, String quality, String availability, int roomSize, int floor, String equipment, String specialNeedsEquip) {
-        this.roomNumber = roomNumber;
-        this.quality = quality;
-        this.availability = availability;
-        this.roomSize = roomSize;
+
+
+    public Room(int  id,int number,  int size, int floor, int quality, String status){
+        this.floor=floor;
+        this.number=number;
+        this.size=size;
+        this.quality=quality;
+        this.id = id;
+        this.status=status;
+    }
+
+    public Room(int number,  int size, int floor, int quality, String status){
+        this.floor=floor;
+        this.number=number;
+        this.size=size;
+        this.quality=quality;
+        this.status=status;
+    }
+
+    public int getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(int number)
+    {
+        this.number = number;
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public void setSize(int size)
+    {
+        this.size = size;
+    }
+
+    public int getFloor()
+    {
+        return floor;
+    }
+
+    public void setFloor(int floor)
+    {
         this.floor = floor;
-        this.equipment = equipment;
-        this.specialNeedsEquip = specialNeedsEquip;
     }
 
-    public String getRoom() {
-        return room;
+    public int getQuality()
+    {
+        return quality;
     }
 
-    public String getAvailability() {
-        return availability;
+    public void setQuality(int quality)
+    {
+        this.quality = quality;
     }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public String toString(){
+        return "Hotel Room {ID: "+id + ", Number: " + number + ", Floor: " + floor + ", Size: " + size + ", Quality: " + quality + ", Status: "+ status +" }";
+}
 }
