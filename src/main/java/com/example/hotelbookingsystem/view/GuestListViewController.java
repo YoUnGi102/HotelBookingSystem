@@ -47,7 +47,21 @@ public class GuestListViewController {
         viewModel.searchGuests(firstName.getText(), lastName.getText(), phoneNumber.getText(), passportNumber.getText(), eMail.getText());
     }
 
+    public void add(ActionEvent actionEvent) {
+    }
+
+    public void edit(ActionEvent actionEvent) {
+    }
+
+    public void remove(ActionEvent actionEvent) {
+    }
+
+    public void back(ActionEvent actionEvent) {
+    }
+    
     public Region getRoot() {
         return root;
     }
+
+
 }

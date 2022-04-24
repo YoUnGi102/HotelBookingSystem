@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cd32fee5-bc80-4752-b151-9393d162fa53" name="Changes" comment="Requirement 2 and 4 ready to merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/GuestListViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/GuestListViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/RoomListViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/RoomListViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/guest_list_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/guest_list_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/room_list_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/room_list_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/hotelbookingsystem/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,7 @@
       <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\src\main\java\com\example\hotelbookingsystem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\src\main\resources\com\example\hotelbookingsystem" />
       <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\target\classes\com\example\hotelbookingsystem\view" />
       <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\src\main\resources\com\example\hotelbookingsystem\view" />
     </key>

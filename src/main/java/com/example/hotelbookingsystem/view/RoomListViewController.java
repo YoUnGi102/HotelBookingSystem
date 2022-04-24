@@ -19,4 +19,22 @@ public class RoomListViewController {
     public Region getRoot() {
         return root;
     }
+
+    public void search(ActionEvent actionEvent) {
+    }
+
+    public void add(ActionEvent actionEvent) {
+    }
+
+    public void edit(ActionEvent actionEvent) {
+    }
+
+    public void remove(ActionEvent actionEvent) {
+    }
+
+    public void book(ActionEvent actionEvent) {
+    }
+
+    public void back(ActionEvent actionEvent) {
+    }
 }
