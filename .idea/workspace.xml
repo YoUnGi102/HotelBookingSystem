@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd32fee5-bc80-4752-b151-9393d162fa53" name="Changes" comment="Requirement 2 and 4 ready to merge">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/dao/RoomDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/dao/RoomDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/dao/RoomDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/dao/RoomDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/Receptionist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/Receptionist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/RoomList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/model/RoomList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/GuestListViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/GuestListViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/viewModel/RoomListViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hotelbookingsystem/viewModel/RoomListViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/guest_list_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hotelbookingsystem/view/guest_list_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/hotelbookingsystem/view/GuestListViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/hotelbookingsystem/view/GuestListViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/hotelbookingsystem/view/ViewFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/hotelbookingsystem/view/ViewFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +49,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\target\classes\com\example\hotelbookingsystem\view" />
       <recent name="D:\VIA\Semester2\SemesterProject\HotelBookingSystem\src\main\resources\com\example\hotelbookingsystem\view" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.hotelbookingsystem" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Application">
