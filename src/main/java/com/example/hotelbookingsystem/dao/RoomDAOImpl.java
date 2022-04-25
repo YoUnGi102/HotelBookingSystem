@@ -35,128 +35,162 @@ public class RoomDAOImpl implements RoomDAO
     {
         try(Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Rooms(number ,size ,quality, status,floor) VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, Integer.valueOf(room.getNumber()));
-            statement.setInt(2, room.getSize());
+            statement.setInt(1, room.getRoomNumber());
+            statement.setInt(2, room.getRoomSize());
             statement.setInt(3, room.getQuality());
-            statement.setString(4, room.getStatus());
+            statement.setString(4, room.getAvailability());
             statement.setInt(5, room.getFloor());
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             if (keys.next()) {
-                return new Room(keys.getInt(1), room.getNumber(), room.getSize(),room.getFloor(),room.getQuality(),room.getStatus());
+                return new Room(keys.getInt(1), room.getRoomNumber(), room.getRoomSize(),room.getFloor(), room.getQuality(),room.getAvailability(), room.hasSpecialNeedsEquipment());
             } else {
                 throw new SQLException("No keys generated");
             }
         }
     }
 
+
     @Override
-    public Room readById(int id) throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms WHERE id = ?");
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                int number = resultSet.getInt("number");
-                int size = resultSet.getInt("size");
-                int floor = resultSet.getInt("floor");
-                int quality = resultSet.getInt("quality");
-                int id2 = resultSet.getInt("id");
-                String status = resultSet.getString("status");
-                return new Room(id2, number,size,floor,quality,status);
-            } else {
-                return null;
-            }
-        }
+    public Room readById(int id) throws SQLException {
+        return null;
     }
 
     @Override
-    public Room readByNumber(int searchNumber) throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms WHERE number = ?");
-            statement.setInt(1,  searchNumber);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()) {
-                int number = resultSet.getInt("number");
-                int size = resultSet.getInt("size");
-                int floor = resultSet.getInt("floor");
-                int quality = resultSet.getInt("quality");
-                int id2 = resultSet.getInt("id");
-                String status = resultSet.getString("status");
-                return new Room(id2, number,size,floor,quality,status);
-            } else {
-                return null;
-            }
-        }
+    public Room readByNumber(int searchNumber) throws SQLException {
+        return null;
     }
 
     @Override
-    public List<Room> getAllRooms() throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms");
-            ResultSet resultSet = statement.executeQuery();
-            ArrayList<Room> rooms = new ArrayList<>();
-            while (resultSet.next())
-            {
-                int number = resultSet.getInt("number");
-                int size = resultSet.getInt("size");
-                int floor = resultSet.getInt("floor");
-                int quality = resultSet.getInt("quality");
-                int id2 = resultSet.getInt("id");
-                String status = resultSet.getString("status");
-                rooms.add(new Room(id2, number, size, floor, quality, status));
-            }
-            return rooms;
-        }
+    public List<Room> getAllRooms() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Room> getAllRoomsByStatus(String status) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void update(Room room) throws SQLException {
 
     }
 
     @Override
-    public List<Room> getAllRoomsByStatus(String status) throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms where status = ?");
-            statement.setString(1,  status);
-            ResultSet resultSet = statement.executeQuery();
-            ArrayList<Room> rooms = new ArrayList<>();
-            while (resultSet.next())
-            {
-                int number = resultSet.getInt("number");
-                int size = resultSet.getInt("size");
-                int floor = resultSet.getInt("floor");
-                int quality = resultSet.getInt("quality");
-                int id2 = resultSet.getInt("id");
-                String status1 = resultSet.getString("status");
-                rooms.add(new Room(id2, number, size, floor, quality, status1));
-            }
-            return rooms;
-        }
+    public void delete(Room room) throws SQLException {
+
     }
 
-    @Override
-    public void update(Room room) throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE Rooms SET number = ?,size = ?, quality = ?, status = ?  WHERE id = ?");
-            statement.setInt(1, room.getNumber());
-            statement.setInt(2, room.getSize());
-            statement.setInt(3, room.getQuality());
-            statement.setString(4, room.getStatus());
-            statement.setInt(5, room.getId());
-            statement.executeUpdate();
-        }
-    }
+    // TODO UPDATE TABLE (new columnt specialNeedsEquipment)
 
-    @Override
-    public void delete(Room room) throws SQLException
-    {
-        try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM Rooms WHERE id = ?");
-            statement.setInt(1, room.getId());
-            statement.executeUpdate();
-        }
-    }
+//
+//    @Override
+//    public Room readById(int id) throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms WHERE id = ?");
+//            statement.setInt(1, id);
+//            ResultSet resultSet = statement.executeQuery();
+//            if (resultSet.next()) {
+//                int number = resultSet.getInt("number");
+//                int size = resultSet.getInt("size");
+//                int floor = resultSet.getInt("floor");
+//                int quality = resultSet.getInt("quality");
+//                int id2 = resultSet.getInt("id");
+//                String status = resultSet.getString("status");
+//                return new Room(id2, number,size,floor,quality,status);
+//            } else {
+//                return null;
+//            }
+//        }
+//    }
+
+//    @Override
+//    public Room readByNumber(int searchNumber) throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms WHERE number = ?");
+//            statement.setInt(1,  searchNumber);
+//            ResultSet resultSet = statement.executeQuery();
+//            if(resultSet.next()) {
+//                int number = resultSet.getInt("number");
+//                int size = resultSet.getInt("size");
+//                int floor = resultSet.getInt("floor");
+//                int quality = resultSet.getInt("quality");
+//                int id2 = resultSet.getInt("id");
+//                String status = resultSet.getString("status");
+//                return new Room(id2, number,size,floor,quality,status);
+//            } else {
+//                return null;
+//            }
+//        }
+//    }
+
+//    @Override
+//    public List<Room> getAllRooms() throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms");
+//            ResultSet resultSet = statement.executeQuery();
+//            ArrayList<Room> rooms = new ArrayList<>();
+//            while (resultSet.next())
+//            {
+//                int number = resultSet.getInt("number");
+//                int size = resultSet.getInt("size");
+//                int floor = resultSet.getInt("floor");
+//                int quality = resultSet.getInt("quality");
+//                int id2 = resultSet.getInt("id");
+//                String status = resultSet.getString("status");
+//                rooms.add(new Room(id2, number, size, floor, quality, status));
+//            }
+//            return rooms;
+//        }
+//
+//    }
+
+//    @Override
+//    public List<Room> getAllRoomsByStatus(String status) throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Rooms where status = ?");
+//            statement.setString(1,  status);
+//            ResultSet resultSet = statement.executeQuery();
+//            ArrayList<Room> rooms = new ArrayList<>();
+//            while (resultSet.next())
+//            {
+//                int number = resultSet.getInt("number");
+//                int size = resultSet.getInt("size");
+//                int floor = resultSet.getInt("floor");
+//                int quality = resultSet.getInt("quality");
+//                int id2 = resultSet.getInt("id");
+//                String status1 = resultSet.getString("status");
+//                rooms.add(new Room(id2, number, size, floor, quality, status1));
+//            }
+//            return rooms;
+//        }
+//    }
+//
+//    @Override
+//    public void update(Room room) throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("UPDATE Rooms SET number = ?,size = ?, quality = ?, status = ?  WHERE id = ?");
+//            statement.setInt(1, room.getNumber());
+//            statement.setInt(2, room.getSize());
+//            statement.setInt(3, room.getQuality());
+//            statement.setString(4, room.getStatus());
+//            statement.setInt(5, room.getId());
+//            statement.executeUpdate();
+//        }
+//    }
+//
+//    @Override
+//    public void delete(Room room) throws SQLException
+//    {
+//        try(Connection connection = getConnection()) {
+//            PreparedStatement statement = connection.prepareStatement("DELETE FROM Rooms WHERE id = ?");
+//            statement.setInt(1, room.getId());
+//            statement.executeUpdate();
+//        }
+//    }
 }

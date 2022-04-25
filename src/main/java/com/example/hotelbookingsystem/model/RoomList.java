@@ -32,10 +32,9 @@ public class RoomList {
         return roomDAO.readById(ID);
     }
 
-
-    public void addRoom(int number,  int size, int floor, int quality, String status) throws SQLException
+    public void addRoom(int number,  int size, int floor, int quality, String availability, boolean hasSpecialNeedsEquipment) throws SQLException
     {
-        Room room = new Room(number,size,floor,quality,status);
+        Room room = new Room(number,size,floor,quality,availability, hasSpecialNeedsEquipment);
         rooms.add( roomDAO.create(
                 room
         ));
@@ -47,16 +46,17 @@ public class RoomList {
                 newRoom
         ));
     }
-    public String editStatus(Room room, String status) throws SQLException
+
+    public String editStatus(Room room, String availability) throws SQLException
     {
         for (Room searchRoom: rooms)
         {
             if (searchRoom.equals(room) )
             {
-                searchRoom.setStatus(status);
+                searchRoom.setAvailability(availability);
                 roomDAO.update(searchRoom);
             }
-        }return "Status Set To: "+ status;
+        }return "Status Set To: "+ availability;
     }
 
     public void removeRoom(Room room) throws SQLException
@@ -69,9 +69,9 @@ public class RoomList {
         return rooms.size();
     }
 
-    public ArrayList<Room> getRoomsByStatus(String status) throws SQLException
+    public ArrayList<Room> getRoomsByStatus(String availability) throws SQLException
     {
-        return (ArrayList<Room>) roomDAO.getAllRoomsByStatus(status);
+        return (ArrayList<Room>) roomDAO.getAllRoomsByStatus(availability);
     }
 
     public String toString()

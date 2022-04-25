@@ -8,46 +8,48 @@ public class Room implements Serializable {
     private int floor;
     private int quality;
     private int id;
-    private String status;
-    public static final String StatusFree = "Free";
-    public static final String StatusBroken = "Broken";
-    public static final String StatusBusy = "Busy";
+    private String availability;
+    private boolean specialNeedsEquipment;
+    public static final String AVAILABLE = "Available";
+    public static final String OUT_OF_ORDER = "Out_Of_Order";
+    public static final String BOOKED = "Booked";
 
 
-
-    public Room(int  id,int number,  int size, int floor, int quality, String status){
+    public Room(int  id, int number,  int size, int floor, int quality, String availability, boolean specialNeedsEquipment){
         this.floor=floor;
         this.number=number;
         this.size=size;
         this.quality=quality;
         this.id = id;
-        this.status=status;
+        this.availability=availability;
+        this.specialNeedsEquipment = specialNeedsEquipment;
     }
 
-    public Room(int number,  int size, int floor, int quality, String status){
+    public Room(int number, int size, int floor, int quality, String availability, boolean specialNeedsEquipment){
         this.floor=floor;
         this.number=number;
         this.size=size;
         this.quality=quality;
-        this.status=status;
+        this.availability=availability;
+        this.specialNeedsEquipment = specialNeedsEquipment;
     }
 
-    public int getNumber()
+    public int getRoomNumber()
     {
         return number;
     }
 
-    public void setNumber(int number)
+    public void setRoomNumber(int number)
     {
         this.number = number;
     }
 
-    public int getSize()
+    public int getRoomSize()
     {
         return size;
     }
 
-    public void setSize(int size)
+    public void setRoomSize(int size)
     {
         this.size = size;
     }
@@ -82,17 +84,25 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public String getStatus()
-    {
-        return status;
+    public boolean hasSpecialNeedsEquipment() {
+        return specialNeedsEquipment;
     }
 
-    public void setStatus(String status)
+    public void setSpecialNeedsEquipment(boolean specialNeedsEquipment) {
+        this.specialNeedsEquipment = specialNeedsEquipment;
+    }
+
+    public String getAvailability()
     {
-        this.status = status;
+        return availability;
+    }
+
+    public void setAvailability(String availability)
+    {
+        this.availability = availability;
     }
 
     public String toString(){
-        return "Hotel Room {ID: "+id + ", Number: " + number + ", Floor: " + floor + ", Size: " + size + ", Quality: " + quality + ", Status: "+ status +" }";
+        return "Hotel Room {ID: "+id + ", Number: " + number + ", Floor: " + floor + ", RoomSize: " + size + ", Quality: " + quality + ", Availability: "+ availability +" }";
 }
 }

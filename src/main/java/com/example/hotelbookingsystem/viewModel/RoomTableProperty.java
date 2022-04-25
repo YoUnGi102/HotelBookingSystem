@@ -1,22 +1,18 @@
 package com.example.hotelbookingsystem.viewModel;
 
-import com.example.hotelbookingsystem.Room;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import com.example.hotelbookingsystem.model.Room;
+import javafx.beans.property.*;
 
 public class RoomTableProperty
 {
 
     //private StringProperty room;
     private IntegerProperty number;
-    private StringProperty quality;
+    private IntegerProperty quality;
     private StringProperty availability;
     private IntegerProperty size;
     private IntegerProperty floor;
-    private StringProperty equipment;
-    private StringProperty specialNeedsEquip;
+    private SimpleBooleanProperty specialNeedsEquip;
 
     public RoomTableProperty(Room room)
     {
@@ -26,12 +22,11 @@ public class RoomTableProperty
     public void setRoom(Room room)
     {
         this.number = new SimpleIntegerProperty(room.getRoomNumber());
-        this.quality = new SimpleStringProperty(room.getQuality());
+        this.quality = new SimpleIntegerProperty(room.getQuality());
         this.availability = new SimpleStringProperty(room.getAvailability());
         this.size = new SimpleIntegerProperty(room.getRoomSize());
         this.floor = new SimpleIntegerProperty(room.getFloor());
-        this.equipment = new SimpleStringProperty(room.getEquipment());
-        this.specialNeedsEquip = new SimpleStringProperty(room.getSpecialNeedsEquip());
+        this.specialNeedsEquip = new SimpleBooleanProperty(room.hasSpecialNeedsEquipment());
     }
 
     public int getNumber()
@@ -44,12 +39,12 @@ public class RoomTableProperty
         return number;
     }
 
-    public String getQuality()
+    public int getQuality()
     {
         return quality.get();
     }
 
-    public StringProperty qualityProperty()
+    public IntegerProperty qualityProperty()
     {
         return quality;
     }
@@ -84,22 +79,13 @@ public class RoomTableProperty
         return floor;
     }
 
-    public String getEquipment()
-    {
-        return equipment.get();
-    }
 
-    public StringProperty equipmentProperty()
-    {
-        return equipment;
-    }
-
-    public String getSpecialNeedsEquip()
+    public boolean getSpecialNeedsEquip()
     {
         return specialNeedsEquip.get();
     }
 
-    public StringProperty specialNeedsEquipProperty()
+    public SimpleBooleanProperty specialNeedsEquipProperty()
     {
         return specialNeedsEquip;
     }

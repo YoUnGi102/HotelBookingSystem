@@ -1,8 +1,7 @@
 package com.example.hotelbookingsystem.viewModel;
 
-import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Model;
-import com.example.hotelbookingsystem.Room;
+import com.example.hotelbookingsystem.model.Room;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
