@@ -1,6 +1,6 @@
 module com.example.hotelbookingsystem {
-    requires javafx.controls;
-    requires javafx.fxml;
+    requires javafx.controlsEmpty;
+    requires javafx.fxmlEmpty;
     requires java.sql;
 
     opens com.example.hotelbookingsystem.model to javafx.fxml;
