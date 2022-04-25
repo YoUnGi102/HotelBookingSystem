@@ -29,14 +29,14 @@ public class RoomListViewController {
     private RoomListViewModel viewModel;
     private Region root;
 
-    public void init(ViewHandler viewHandler, RoomListViewModel viewModel, Region root){
+    public void init(ViewHandler viewHandler, RoomListViewModel viewModel, Region root) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
 
 
-
-        numberCol.setCellValueFactory(new PropertyValueFactory<>("number"){});
+        numberCol.setCellValueFactory(new PropertyValueFactory<>("number") {
+        });
         floorCol.setCellValueFactory(new PropertyValueFactory<>("floor"));
         //emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         qualityCol.setCellValueFactory(new PropertyValueFactory<>("quality"));
@@ -46,9 +46,6 @@ public class RoomListViewController {
         viewModel.bindTableItemsProperty(table.itemsProperty());
     }
 
-    public Region getRoot() {
-        return root;
-    }
 
     public void search(ActionEvent actionEvent) {
         viewModel.showAllBookedRooms();
@@ -68,4 +65,9 @@ public class RoomListViewController {
 
     public void back(ActionEvent actionEvent) {
     }
+
+    public Region getRoot() {
+        return root;
+    }
+
 }

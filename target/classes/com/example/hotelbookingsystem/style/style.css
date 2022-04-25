@@ -13,7 +13,7 @@
     -fx-background-color: #0D318F;
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 20px;
-    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-font-family: 'Arial Rounded MT Bold';
     -fx-border-radius: 20px;
 }
 
@@ -25,7 +25,7 @@
 .table-row-cell {
     -fx-fixed-cell-size: 30px;
     -fx-font-size: 15px;
-    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-font-family: 'Arial Rounded MT Bold';
     -fx-text-align: center;
 }
 
@@ -34,7 +34,7 @@
     -fx-text-fill: #F2F2F2;
     -fx-fixed-cell-size: 30px;
     -fx-font-size: 15px;
-    -fx-font-family: 'Arial Rounded MT Bold'
+    -fx-font-family: 'Arial Rounded MT Bold';
     -fx-text-align: center;
 }
 

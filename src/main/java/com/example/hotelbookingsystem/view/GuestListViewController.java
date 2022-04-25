@@ -59,10 +59,8 @@ public class GuestListViewController {
 
     public void back(ActionEvent actionEvent) {
     }
-    
+
     public Region getRoot() {
         return root;
     }
-
-
 }

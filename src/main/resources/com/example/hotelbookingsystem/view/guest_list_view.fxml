@@ -71,32 +71,32 @@
             </AnchorPane>
         </content>
          <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0">
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="20.0" />
          </VBox.margin>
       </Rectangle>
       <HBox prefHeight="83.0" prefWidth="1080.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="550.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Add">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Add">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Edit">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Edit">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Remove">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Remove">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
