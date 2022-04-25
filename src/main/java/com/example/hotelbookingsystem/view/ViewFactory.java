@@ -43,20 +43,20 @@ public class ViewFactory {
         return guestListViewController.getRoot();
     }
 
-//    public Region loadRoomListView(){
-//        if (roomListViewController == null) {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(ViewHandler.class.getResource("room_list_view.fxml"));
-//            try {
-//                Region root = loader.load();
-//                roomListViewController = loader.getController();
-//                roomListViewController.init(viewHandler, viewModelFactory.getRoomListViewModel(), root);
-//            } catch (IOException e) {
-//                throw new IOError(e);
-//            }
-//        }
-//        return roomListViewController.getRoot();
-//    }
+    public Region loadRoomListView(){
+        if (roomListViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource("room_list_view.fxml"));
+            try {
+                Region root = loader.load();
+                roomListViewController = loader.getController();
+                roomListViewController.init(viewHandler, viewModelFactory.getRoomListViewModel(), root);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+        return roomListViewController.getRoot();
+    }
 
 }
 

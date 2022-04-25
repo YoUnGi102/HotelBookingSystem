@@ -48,6 +48,7 @@ public class GuestListViewController {
     }
 
     public void add(ActionEvent actionEvent) {
+
     }
 
     public void edit(ActionEvent actionEvent) {

@@ -11,9 +11,12 @@ public class ModelManager implements Model{
 
     public ModelManager(){
         guestList = FXCollections.observableArrayList();
+        rooms = FXCollections.observableArrayList();
         // TODO REMOVE TEST CODE
         guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+44 1632 960153", "sherlock@holmes.uk", "882933" ));
         guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+44 2334 962334", "john@watson.uk", "335993" ));
+        rooms.add(new Room(1,"good",Room.AVAILABLE,2,5,"no","no"));
+        rooms.add(new Room(2,"good",Room.BOOKED,1,2,"no","no"));
 
     }
 

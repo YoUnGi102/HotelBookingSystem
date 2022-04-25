@@ -24,13 +24,13 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(GUEST_LIST_VIEW);
+        openView(ROOM_LIST_VIEW);
     }
 
     public void openView(String id) {
         Region root = switch(id) {
             case GUEST_LIST_VIEW -> viewFactory.loadGuestListView();
-            //case ROOM_LIST_VIEW -> viewFactory.loadRoomListView();
+            case ROOM_LIST_VIEW -> viewFactory.loadRoomListView();
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         };
         currentScene.setRoot(root);

@@ -19,6 +19,36 @@ public class Room {
     private String equipment;
     private String specialNeedsEquip;
 
+    public int getRoomNumber()
+    {
+        return roomNumber;
+    }
+
+    public String getQuality()
+    {
+        return quality;
+    }
+
+    public int getRoomSize()
+    {
+        return roomSize;
+    }
+
+    public int getFloor()
+    {
+        return floor;
+    }
+
+    public String getEquipment()
+    {
+        return equipment;
+    }
+
+    public String getSpecialNeedsEquip()
+    {
+        return specialNeedsEquip;
+    }
+
     public Room(int roomNumber, String quality, String availability, int roomSize, int floor, String equipment, String specialNeedsEquip) {
         this.roomNumber = roomNumber;
         this.quality = quality;
@@ -27,6 +57,7 @@ public class Room {
         this.floor = floor;
         this.equipment = equipment;
         this.specialNeedsEquip = specialNeedsEquip;
+
     }
 
     public String getRoom() {
