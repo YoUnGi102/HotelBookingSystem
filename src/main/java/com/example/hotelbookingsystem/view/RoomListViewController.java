@@ -48,7 +48,31 @@ public class RoomListViewController {
 
 
     public void search(ActionEvent actionEvent) {
-        viewModel.showAllBookedRooms();
+
+        try {
+            int floor1, size1,quality1;
+            if (floor.getText().equals("")){
+                floor1 = 0;
+            } else {
+                floor1 = Integer.parseInt(floor.getText());
+            }
+            if (size.getText().equals("")){
+                size1 = 0;
+            } else {
+                size1 = Integer.parseInt(size.getText());
+            }
+            if (quality.getText().equals("")){
+                quality1 = 0;
+            } else {
+                quality1 = Integer.parseInt(quality.getText());
+            }
+            viewModel.searchRooms(floor1, size1, quality1, dateFrom.getValue(), dateTo.getValue());
+        }catch(NumberFormatException e){
+            // TODO Show error message
+            System.out.println("");
+        }
+
+
     }
 
     public void add(ActionEvent actionEvent) {

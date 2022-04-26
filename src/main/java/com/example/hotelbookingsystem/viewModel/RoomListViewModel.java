@@ -7,6 +7,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class RoomListViewModel {
     private Model model;
 
@@ -25,6 +28,15 @@ public class RoomListViewModel {
 //    {
 //        return model.showALlAvailableRooms();
 //    }
+
+    public void searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to){
+        ObservableList<RoomTableProperty> roomsFormatted = FXCollections.observableArrayList();
+        for (Room g : model.searchRooms(floor, size, quality, from, to)) {
+            roomsFormatted.add(new RoomTableProperty(g));
+        }
+        System.out.println(roomsFormatted.size());
+        rooms.setValue(roomsFormatted);
+    }
 
     public void showAllAvailableRooms()
     {

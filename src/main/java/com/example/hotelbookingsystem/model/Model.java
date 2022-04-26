@@ -2,9 +2,14 @@ package com.example.hotelbookingsystem.model;
 
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public interface Model {
 
     ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email);
+
+    ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to);
 
 
 //    int getRoomCount();
