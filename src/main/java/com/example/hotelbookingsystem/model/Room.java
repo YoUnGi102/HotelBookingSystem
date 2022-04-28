@@ -31,7 +31,6 @@ public class Room implements Serializable {
         this.number=number;
         this.size=size;
         this.quality=quality;
-        this.id = id;
         this.availability=availability;
         this.specialNeedsEquipment = hasSpecialNeedsEquipment;
     }
