@@ -1,9 +1,7 @@
 package com.example.hotelbookingsystem.model;
 
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public interface Model {
 
@@ -25,6 +23,8 @@ public interface Model {
     public ObservableList<Room> showALlAvailableRooms();
 
     public ObservableList<Room> showALlOutOfOrderRooms();
+
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, LocalDate dateFrom, LocalDate dateTo);
 }
 
 
