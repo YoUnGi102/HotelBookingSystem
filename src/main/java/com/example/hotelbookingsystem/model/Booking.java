@@ -2,26 +2,26 @@ package com.example.hotelbookingsystem.model;
 
 import javafx.scene.control.DatePicker;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Booking {
 
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
 
     private List<Guest> guests;
     private Room room;
 
-    public Booking(Guest guest, LocalDateTime dateFrom, LocalDateTime dateTo, Room room){
+    public Booking(Guest guest, LocalDate dateFrom, LocalDate dateTo, Room room){
         guests = new ArrayList<>();
         guests.add(guest);
         this.room = room;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
-    public Booking(List<Guest> guests, LocalDateTime dateFrom, LocalDateTime dateTo, Room room){
+    public Booking(List<Guest> guests, LocalDate dateFrom, LocalDate dateTo, Room room){
         this.guests = new ArrayList<>();
         this.guests.addAll(guests);
         this.dateFrom = dateFrom;
@@ -36,11 +36,11 @@ public class Booking {
         return guests.get(0).getEmail();
     }
 
-    public LocalDateTime getDateFrom(){
+    public LocalDate getDateFrom(){
         return dateFrom;
     }
 
-    public LocalDateTime getDateTo(){
+    public LocalDate getDateTo(){
         return dateTo;
     }
 }

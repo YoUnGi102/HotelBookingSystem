@@ -19,9 +19,7 @@ public interface Model {
 //    void removePropertyChangeListener(String event, PropertyChangeListener listener);
 
     public ObservableList<Room> showALlBookedRooms();
-
     public ObservableList<Room> showALlAvailableRooms();
-
     public ObservableList<Room> showALlOutOfOrderRooms();
 
     public ObservableList<Booking> searchBookings(String phoneNumber, String email, LocalDate dateFrom, LocalDate dateTo);
