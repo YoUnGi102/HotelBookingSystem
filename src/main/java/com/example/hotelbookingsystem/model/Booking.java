@@ -29,6 +29,7 @@ public class Booking {
         this.guests.addAll(guests);
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.room = room;
     }
 
     public String getName(){

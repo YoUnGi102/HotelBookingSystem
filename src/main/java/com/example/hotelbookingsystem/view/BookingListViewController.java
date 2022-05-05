@@ -32,12 +32,12 @@ public class BookingListViewController {
         this.viewModel = viewModel;
         this.root = root;
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
-        dateFromCol.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
-        dateToCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        dateFromCol.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
+        dateToCol.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
     }
@@ -60,10 +60,17 @@ public class BookingListViewController {
     @FXML
     void search(ActionEvent event) {
         try {
-            viewModel.searchBookings(phoneNumber.getText(), email.getText(), Integer.parseInt(roomNumber.getText()), dateFrom.getValue(), dateTo.getValue());
+            if(roomNumber.getText().equals("")){
+                viewModel.searchBookings(phoneNumber.getText(), email.getText(), -1, dateFrom.getValue(), dateTo.getValue());
+            }else {
+                viewModel.searchBookings(phoneNumber.getText(), email.getText(), Integer.parseInt(roomNumber.getText()), dateFrom.getValue(), dateTo.getValue());
+            }
         }catch (IllegalArgumentException e){
             e.printStackTrace();
         }
     }
 
+    public Region getRoot() {
+        return root;
+    }
 }

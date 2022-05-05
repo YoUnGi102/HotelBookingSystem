@@ -31,5 +31,51 @@ public class BookingTableProperty {
         dateTo = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateFrom()));
     }
 
+    public String getName() {
+        return name.get();
+    }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber.get();
+    }
+
+    public StringProperty phoneNumberProperty() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public StringProperty emailProperty() {
+        return email;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber.get();
+    }
+
+    public IntegerProperty roomNumberProperty() {
+        return roomNumber;
+    }
+
+    public String getDateFrom() {
+        return dateFrom.get();
+    }
+
+    public StringProperty dateFromProperty() {
+        return dateFrom;
+    }
+
+    public String getDateTo() {
+        return dateTo.get();
+    }
+
+    public StringProperty dateToProperty() {
+        return dateTo;
+    }
 }
