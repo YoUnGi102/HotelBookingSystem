@@ -22,7 +22,7 @@ public interface Model {
     public ObservableList<Room> showALlAvailableRooms();
     public ObservableList<Room> showALlOutOfOrderRooms();
 
-    public ObservableList<Booking> searchBookings(String phoneNumber, String email, LocalDate dateFrom, LocalDate dateTo);
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo);
 }
 
 

@@ -26,9 +26,9 @@ public class BookingListViewModel {
             itemsProperty.bind(bookings);
         }
 
-        public void searchBookings(String phoneNumber, String email, LocalDate dateFrom, LocalDate dateTo){
+        public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo){
             ObservableList<BookingTableProperty> bookingsFormatted = FXCollections.observableArrayList();
-            for (Booking b: model.searchBookings(phoneNumber, email, dateFrom,dateTo)) {
+            for (Booking b: model.searchBookings(phoneNumber, email, roomNumber, dateFrom,dateTo)) {
                 bookingsFormatted.add(new BookingTableProperty(b));
             }
             bookings.setValue(bookingsFormatted);

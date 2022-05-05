@@ -98,7 +98,7 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public ObservableList<Booking> searchBookings(String phoneNumber, String email, LocalDate dateFrom, LocalDate dateTo) {
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) {
         // TODO ADD SEARCH
         return null;
     }
