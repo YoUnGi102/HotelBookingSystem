@@ -2,39 +2,45 @@ package com.example.hotelbookingsystem.model;
 
 import javafx.scene.control.DatePicker;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Booking {
-    private String phoneNumber;
-    private String email;
-    private DatePicker dateFrom;
-    private DatePicker dateTo;
-    private int roomNumber;
 
-    public Booking(String phoneNumber, String email, DatePicker dateFrom, DatePicker dateTo, int roomNumber)
-    {
-        this.phoneNumber=phoneNumber;
-        this.email=email;
-        this.dateFrom=dateFrom;
-        this.dateTo=dateTo;
-        this.roomNumber=roomNumber;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
+
+    private List<Guest> guests;
+    private Room room;
+
+    public Booking(Guest guest, LocalDateTime dateFrom, LocalDateTime dateTo, Room room){
+        guests = new ArrayList<>();
+        guests.add(guest);
+        this.room = room;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+    }
+    public Booking(List<Guest> guests, LocalDateTime dateFrom, LocalDateTime dateTo, Room room){
+        this.guests = new ArrayList<>();
+        this.guests.addAll(guests);
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNumber(){
+        return guests.get(0).getPhoneNumber();
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmail(){
+        return guests.get(0).getEmail();
     }
 
-    public DatePicker getDateFrom() {
+    public LocalDateTime getDateFrom(){
         return dateFrom;
     }
 
-    public DatePicker getDateTo() {
+    public LocalDateTime getDateTo(){
         return dateTo;
-    }
-
-    public int getRoomNumber() {
-        return roomNumber;
     }
 }

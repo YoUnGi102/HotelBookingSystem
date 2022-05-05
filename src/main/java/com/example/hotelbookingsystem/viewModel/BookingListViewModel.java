@@ -8,7 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 
+import java.time.LocalDateTime;
+
 public class BookingListViewModel {
+
         private Model model;
 
         private ObjectProperty<ObservableList<BookingTableProperty>> bookings;
@@ -22,7 +25,7 @@ public class BookingListViewModel {
             itemsProperty.bind(bookings);
         }
 
-        public void searchBookings(int phoneNumber, String email, DatePicker dateFrom, DatePicker dateTo){
+        public void searchBookings(String phoneNumber, String email, LocalDateTime dateFrom, LocalDateTime dateTo){
             ObservableList<BookingTableProperty> bookingsFormatted = FXCollections.observableArrayList();
             for (Booking b: model.searchBookings(phoneNumber, email, dateFrom,dateTo)) {
                 bookingsFormatted.add(new BookingTableProperty(b));

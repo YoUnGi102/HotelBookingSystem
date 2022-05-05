@@ -3,6 +3,8 @@ package com.example.hotelbookingsystem.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDateTime;
+
 public class ModelManager implements Model{
 
     private ObservableList<Guest> guestList;
@@ -48,7 +50,6 @@ public class ModelManager implements Model{
         }
         return showAllRooms;
     }
-
     public ObservableList<Room> showALlAvailableRooms() {
         ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
         for (Room room: rooms) {
@@ -66,5 +67,11 @@ public class ModelManager implements Model{
             }
         }
         return showAllRooms;
+    }
+
+    @Override
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, LocalDateTime dateFrom, LocalDateTime dateTo) {
+        // TODO ADD SEARCH
+        return null;
     }
 }
