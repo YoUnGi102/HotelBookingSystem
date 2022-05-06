@@ -1,9 +1,7 @@
 package com.example.hotelbookingsystem.model;
 
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public interface Model {
 
@@ -21,10 +19,10 @@ public interface Model {
 //    void removePropertyChangeListener(String event, PropertyChangeListener listener);
 
     public ObservableList<Room> showALlBookedRooms();
-
     public ObservableList<Room> showALlAvailableRooms();
-
     public ObservableList<Room> showALlOutOfOrderRooms();
+
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo);
 }
 
 

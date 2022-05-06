@@ -11,6 +11,7 @@ public class ViewHandler {
     // EXAMPLE
     public static final String GUEST_LIST_VIEW = "guest_list_view.fxml";
     public static final String ROOM_LIST_VIEW = "room_list_view.fxml";
+    public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
 
     private Scene currentScene;
     private Stage primaryStage;
@@ -24,13 +25,14 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(ROOM_LIST_VIEW);
+        openView(BOOKING_LIST_VIEW);
     }
 
     public void openView(String id) {
         Region root = switch(id) {
             case GUEST_LIST_VIEW -> viewFactory.loadGuestListView();
             case ROOM_LIST_VIEW -> viewFactory.loadRoomListView();
+            case BOOKING_LIST_VIEW -> viewFactory.loadBookingListView();
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         };
         currentScene.setRoot(root);

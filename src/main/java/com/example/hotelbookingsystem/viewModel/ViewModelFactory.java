@@ -8,19 +8,23 @@ public class ViewModelFactory {
     // EXAMPLE
     private final GuestListViewModel guestListViewModel;
     private final RoomListViewModel roomListViewModel;
+    private final BookingListViewModel bookingListViewModel;
 
     public ViewModelFactory(Model model) {
         // EXAMPLE
         this.guestListViewModel = new GuestListViewModel(model);
         this.roomListViewModel = new RoomListViewModel(model);
+        this.bookingListViewModel = new BookingListViewModel(model);
     }
 
     // EXAMPLE
     public GuestListViewModel getGuestListViewModel(){
         return guestListViewModel;
     }
-
     public RoomListViewModel getRoomListViewModel() {
         return roomListViewModel;
+    }
+    public BookingListViewModel getBookingListViewModel() {
+        return bookingListViewModel;
     }
 }

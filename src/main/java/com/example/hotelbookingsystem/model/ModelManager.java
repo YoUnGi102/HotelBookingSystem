@@ -4,19 +4,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class ModelManager implements Model{
 
     private ObservableList<Guest> guestList;
-    private ObservableList <Room> rooms;
+    private ObservableList<Room> rooms;
+    private ObservableList<Booking> bookingList;
 
     public ModelManager(){
         guestList = FXCollections.observableArrayList();
         rooms = FXCollections.observableArrayList();
+        bookingList = FXCollections.observableArrayList();
+
         // TODO REMOVE TEST CODE
         guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+44 1632 960153", "sherlock@holmes.uk", "882933" ));
         guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+44 2334 962334", "john@watson.uk", "335993" ));
+
         rooms.add(new Room(1, 101, 4, 1, 1, Room.AVAILABLE, false));
         rooms.add(new Room(2, 102, 4, 1, 2, Room.BOOKED, true));
         rooms.add(new Room(3, 103, 3, 1, 3, Room.AVAILABLE, true));
@@ -27,6 +31,13 @@ public class ModelManager implements Model{
         rooms.add(new Room(8, 301, 4, 3, 1, Room.BOOKED, false));
         rooms.add(new Room(9, 302, 3, 3, 2, Room.AVAILABLE, false));
         rooms.add(new Room(10, 303, 3, 3, 3, Room.BOOKED, false));
+
+        ArrayList<Guest> guests = new ArrayList<>();
+        guests.add(guestList.get(0));
+        guests.add(guestList.get(1));
+        Room room = rooms.get(4);
+        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room));
+        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5)));
 
     }
 
@@ -65,7 +76,6 @@ public class ModelManager implements Model{
 
             searchedRooms.add(room);
         }
-        System.out.println(searchedRooms.size());
         return searchedRooms;
     }
 
@@ -79,7 +89,6 @@ public class ModelManager implements Model{
         }
         return showAllRooms;
     }
-
     public ObservableList<Room> showALlAvailableRooms() {
         ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
         for (Room room: rooms) {
@@ -97,5 +106,24 @@ public class ModelManager implements Model{
             }
         }
         return showAllRooms;
+    }
+
+    @Override
+    public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) {
+        ObservableList<Booking> searchedBookings = FXCollections.observableArrayList();
+        for (Booking booking : bookingList) {
+            if(!phoneNumber.equals("") && !booking.getPhoneNumber().contains(phoneNumber))
+                continue;
+            if(!email.equals("") && !booking.getEmail().contains(email))
+                continue;
+            if(roomNumber != -1 && booking.getRoom().getRoomNumber() != roomNumber)
+                continue;
+            if(dateFrom != null && booking.getDateFrom().isAfter(dateFrom))
+                continue;
+            if(dateTo != null && booking.getDateTo().isBefore(dateTo))
+                continue;
+            searchedBookings.add(booking);
+        }
+        return searchedBookings;
     }
 }
