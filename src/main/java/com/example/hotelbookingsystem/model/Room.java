@@ -25,6 +25,13 @@ public class Room implements Serializable {
         this.specialNeedsEquipment = specialNeedsEquipment;
     }
 
+    public Room(int number, int size, int floor, int quality) {
+        this.number = number;
+        this.size = size;
+        this.floor = floor;
+        this.quality = quality;
+    }
+
     public Room(int number, int size, int floor, int quality, String availability, boolean hasSpecialNeedsEquipment)
     {
         this.floor=floor;

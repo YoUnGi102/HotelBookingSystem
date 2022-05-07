@@ -11,7 +11,6 @@ public class Guest {
     private String phoneNumber;
     private String email;
     private String passportNumber;
-    private ArrayList<File> personalFiles;
 
     public Guest(String firstName, String lastName, Address address, String phoneNumber, String email, String passportNumber) {
         this(firstName, lastName, address, phoneNumber, email, passportNumber, new ArrayList<>());
@@ -24,7 +23,6 @@ public class Guest {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.passportNumber = passportNumber;
-        this.personalFiles = personalFiles;
     }
 
     public String getFirstName() {
@@ -49,9 +47,5 @@ public class Guest {
 
     public String getPassportNumber() {
         return passportNumber;
-    }
-
-    public ArrayList<File> getPersonalFiles() {
-        return personalFiles;
     }
 }
