@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class ReceptionistV1 implements Serializable
 {
 
-
-
     private ArrayList<Room> rooms;
     private String room;
 
@@ -25,7 +23,7 @@ public class ReceptionistV1 implements Serializable
     {
         for (Room room : rooms)
         {
-            if (room.getId()== id) ;
+            if (room.getRoomNumber()== id) ;
         }
         return null;
     }
@@ -75,7 +73,7 @@ public class ReceptionistV1 implements Serializable
     //remove by id
     public void removeRoomByID(int id)
     {
-        rooms.removeIf(room -> room.getId() == id);
+        rooms.removeIf(room -> room.getRoomNumber() == id);
     }
 
     public int showRooms()

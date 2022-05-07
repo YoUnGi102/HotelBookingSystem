@@ -12,7 +12,6 @@ public class RoomTableProperty
     private StringProperty availability;
     private IntegerProperty size;
     private IntegerProperty floor;
-    private SimpleBooleanProperty specialNeedsEquip;
 
     public RoomTableProperty(Room room)
     {
@@ -26,7 +25,6 @@ public class RoomTableProperty
         this.availability = new SimpleStringProperty(room.getAvailability());
         this.size = new SimpleIntegerProperty(room.getRoomSize());
         this.floor = new SimpleIntegerProperty(room.getFloor());
-        this.specialNeedsEquip = new SimpleBooleanProperty(room.hasSpecialNeedsEquipment());
     }
 
     public int getNumber()
@@ -77,16 +75,5 @@ public class RoomTableProperty
     public IntegerProperty floorProperty()
     {
         return floor;
-    }
-
-
-    public boolean getSpecialNeedsEquip()
-    {
-        return specialNeedsEquip.get();
-    }
-
-    public SimpleBooleanProperty specialNeedsEquipProperty()
-    {
-        return specialNeedsEquip;
     }
 }

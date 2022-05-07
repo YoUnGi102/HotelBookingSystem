@@ -21,16 +21,16 @@ public class ModelManager implements Model{
         guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+44 1632 960153", "sherlock@holmes.uk", "882933" ));
         guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+44 2334 962334", "john@watson.uk", "335993" ));
 
-        rooms.add(new Room(1, 101, 4, 1, 1, Room.AVAILABLE, false));
-        rooms.add(new Room(2, 102, 4, 1, 2, Room.BOOKED, true));
-        rooms.add(new Room(3, 103, 3, 1, 3, Room.AVAILABLE, true));
-        rooms.add(new Room(4, 104, 3, 1, 3, Room.BOOKED, false));
-        rooms.add(new Room(5, 201, 2, 2, 2, Room.AVAILABLE, false));
-        rooms.add(new Room(6, 202, 2, 2, 2, Room.BOOKED, false));
-        rooms.add(new Room(7, 203, 4, 2, 1, Room.AVAILABLE, false));
-        rooms.add(new Room(8, 301, 4, 3, 1, Room.BOOKED, false));
-        rooms.add(new Room(9, 302, 3, 3, 2, Room.AVAILABLE, false));
-        rooms.add(new Room(10, 303, 3, 3, 3, Room.BOOKED, false));
+        rooms.add(new Room(1, 101, 4, 1));
+        rooms.add(new Room(2, 102, 4, 1));
+        rooms.add(new Room(3, 103, 3, 1));
+        rooms.add(new Room(4, 104, 3, 1));
+        rooms.add(new Room(5, 201, 2, 2));
+        rooms.add(new Room(6, 202, 2, 2));
+        rooms.add(new Room(7, 203, 4, 2));
+        rooms.add(new Room(8, 301, 4, 3));
+        rooms.add(new Room(9, 302, 3, 3));
+        rooms.add(new Room(10, 303, 3,3));
 
         ArrayList<Guest> guests = new ArrayList<>();
         guests.add(guestList.get(0));
@@ -79,31 +79,27 @@ public class ModelManager implements Model{
         return searchedRooms;
     }
 
+    // TODO REMOVE
+
     @Override
     public ObservableList<Room> showALlBookedRooms() {
         ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
         for (Room room: rooms) {
-            if (room.getAvailability().equals(Room.BOOKED)) {
-                showAllRooms.add(room);
-            }
+
         }
         return showAllRooms;
     }
     public ObservableList<Room> showALlAvailableRooms() {
         ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
         for (Room room: rooms) {
-            if (room.getAvailability().equals(Room.AVAILABLE)) {
-                showAllRooms.add(room);
-            }
+
         }
         return showAllRooms;
     }
     public ObservableList<Room> showALlOutOfOrderRooms() {
         ObservableList<Room> showAllRooms = FXCollections.observableArrayList();
         for (Room room: rooms) {
-            if (room.getAvailability().equals(Room.OUT_OF_ORDER)) {
-                showAllRooms.add(room);
-            }
+
         }
         return showAllRooms;
     }
