@@ -108,6 +108,7 @@ public class RoomTable implements RoomDAO{
             return rooms;
         }
     }
+
     // TODO DO AFTER FINISHING BOOKING DAO
     @Override
     public ArrayList<Room> selectAllAvailable() throws SQLException {

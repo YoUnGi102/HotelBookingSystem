@@ -18,8 +18,8 @@ public class ModelManager implements Model{
         bookingList = FXCollections.observableArrayList();
 
         // TODO REMOVE TEST CODE
-        guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+44 1632 960153", "sherlock@holmes.uk", "882933" ));
-        guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+44 2334 962334", "john@watson.uk", "335993" ));
+        guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+441632960153", "sherlock@holmes.uk", "882933" ));
+        guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+442334962334", "john@watson.uk", "335993" ));
 
         rooms.add(new Room(1, 101, 4, 1));
         rooms.add(new Room(2, 102, 4, 1));
