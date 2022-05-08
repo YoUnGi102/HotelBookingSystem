@@ -1,16 +1,23 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.GuestListViewModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
-public class GuestListViewController {
+import java.util.ArrayList;
+
+public class GuestListViewController implements Controller{
 
     private ViewHandler viewHandler;
     private GuestListViewModel viewModel;
@@ -18,17 +25,33 @@ public class GuestListViewController {
 
     @FXML
     private TextField firstName, lastName, eMail, phoneNumber, passportNumber;
-
     @FXML
     private TableView<GuestTableProperty> table;
-
     @FXML
     private TableColumn<GuestTableProperty, String> firstNameCol, lastNameCol, emailCol, phoneNumberCol, addressCol, passportNumberCol;
+    @FXML
+    private Button addBtn, editBtn, removeBtn;
 
-    public void init(ViewHandler viewHandler, GuestListViewModel viewModel, Region root){
+    public void init(ViewHandler viewHandler, GuestListViewModel viewModel, Region root, Controller lastController){
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+
+        if(lastController instanceof ManageBookingViewController controller){
+            addBtn.setVisible(false);
+            editBtn.setText("Add");
+            removeBtn.setText("Confirm");
+            ObservableList<GuestTableProperty> guests = FXCollections.observableArrayList();
+            editBtn.setOnAction(e->{
+                Guest g = table.getSelectionModel().getSelectedItem().getGuest();
+                if(g != null)
+                    guests.add(new GuestTableProperty(g));
+            });
+            removeBtn.setOnAction(e -> {
+                controller.setGuests(guests);
+                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
+            });
+        }
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -38,7 +61,6 @@ public class GuestListViewController {
         passportNumberCol.setCellValueFactory(new PropertyValueFactory<>("passportNumber"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
-
     }
 
     @FXML
@@ -58,6 +80,7 @@ public class GuestListViewController {
     }
 
     public void back(ActionEvent actionEvent) {
+        viewHandler.closeView();
     }
 
     public Region getRoot() {

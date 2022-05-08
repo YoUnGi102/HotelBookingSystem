@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.ManageBookingViewController">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../style/style.css">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="0.0">
+                     <children>
+                        <Label styleClass="light-label" text="Room">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="roomNotSelected" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="light-label" text="No Room Selected">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="roomSelected" prefHeight="50.0" prefWidth="1040.0">
+                     <children>
+                        <Label styleClass="light-label" text="Room Number: ">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="roomNumber" styleClass="light-label" text="000">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="90.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="light-label" text="Floor:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="floor" styleClass="light-label" text="0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="90.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="light-label" text="Size:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="size" styleClass="light-label" text="0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="90.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="light-label" text="Quality:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="quality" styleClass="light-label" text="0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#removeRoom" prefWidth="120.0" styleClass="dark-button" text="Remove">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="760.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#searchRoom" prefWidth="120.0" styleClass="dark-button" text="Search">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="0.0">
+                     <children>
+                        <Label styleClass="light-label" text="Guest">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="guestNotSelected" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="light-label" text="No Guests Selected">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="guestSelected" prefHeight="165.0" prefWidth="1040.0">
+                     <children>
+                        <TableView fx:id="guestTable" prefWidth="1040.0">
+                          <columns>
+                            <TableColumn fx:id="firstNameCol" prefWidth="195.0" text="First Name" />
+                            <TableColumn fx:id="lastNameCol" prefWidth="190.0" text="Last Name" />
+                              <TableColumn fx:id="passportNumberCol" prefWidth="200.0" text="Passport Num." />
+                              <TableColumn fx:id="phoneNumberCol" prefWidth="200.0" text="Phone Num." />
+                              <TableColumn fx:id="addressCol" prefWidth="250.0" text="Address" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addGuest" prefWidth="120.0" styleClass="dark-button" text="Add">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="625.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#removeGuest" prefWidth="120.0" styleClass="dark-button" text="Remove">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#searchGuest" prefWidth="120.0" styleClass="dark-button" text="Search">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label styleClass="light-label" text="Date From">
+                     <HBox.margin>
+                        <Insets bottom="25.0" left="50.0" right="25.0" top="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dateFrom">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <Label styleClass="light-label" text="Date To">
+                     <HBox.margin>
+                        <Insets bottom="25.0" left="100.0" right="25.0" top="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dateTo">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="dark-button" text="Confirm">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="375.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="dark-button" text="Cancel">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

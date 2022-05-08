@@ -17,6 +17,18 @@
     -fx-border-radius: 20px;
 }
 
+.light-label {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-text-fill: #0D318F;
+}
+
+.dark-label {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
 .light-button {
     -fx-background-color: #F2F2F2;
     -fx-text-fill: #0D318F;
@@ -46,8 +58,6 @@
     -fx-font-size: 20px;
     -fx-font-family: 'Arial Rounded MT Bold'
 }
-
-
 
 .table-view .column-header .label {
     -fx-text-fill: #F2F2F2;

@@ -13,6 +13,8 @@ public class RoomTableProperty
     private IntegerProperty size;
     private IntegerProperty floor;
 
+    private Room room;
+
     public RoomTableProperty(Room room)
     {
         setRoom(room);
@@ -20,6 +22,7 @@ public class RoomTableProperty
 
     public void setRoom(Room room)
     {
+        this.room = room;
         this.number = new SimpleIntegerProperty(room.getRoomNumber());
         this.quality = new SimpleIntegerProperty(room.getQuality());
         this.availability = new SimpleStringProperty(room.getAvailability());
@@ -75,5 +78,9 @@ public class RoomTableProperty
     public IntegerProperty floorProperty()
     {
         return floor;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 }

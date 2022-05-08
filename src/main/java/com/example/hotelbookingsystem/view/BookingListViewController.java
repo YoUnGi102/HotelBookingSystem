@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
-public class BookingListViewController {
+public class BookingListViewController implements Controller {
 
     @FXML
     private TextField phoneNumber, email, roomNumber;

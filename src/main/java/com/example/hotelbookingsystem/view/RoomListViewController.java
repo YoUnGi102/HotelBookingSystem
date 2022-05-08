@@ -1,17 +1,16 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomTableProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
-public class RoomListViewController {
+public class RoomListViewController implements Controller {
 
     @FXML
     private TableColumn<RoomTableProperty, String> availabilityCol, sizeCol, floorCol, numberCol, qualityCol;
@@ -25,15 +24,39 @@ public class RoomListViewController {
     @FXML
     private TableView<RoomTableProperty> table;
 
+    @FXML
+    private Button addBtn, editBtn, removeBtn, bookBtn;
+
     private ViewHandler viewHandler;
     private RoomListViewModel viewModel;
     private Region root;
 
-    public void init(ViewHandler viewHandler, RoomListViewModel viewModel, Region root) {
+    public void init(ViewHandler viewHandler, RoomListViewModel viewModel, Region root, Controller lastController) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
 
+        if (lastController instanceof ManageBookingViewController controller){
+            addBtn.setVisible(false);
+            removeBtn.setVisible(false);
+            editBtn.setVisible(false);
+            bookBtn.setText("Select");
+
+            if (controller.getDateFrom() != null)
+                dateFrom.setValue(controller.getDateFrom());
+            if (controller.getDateTo() != null)
+                dateTo.setValue(controller.getDateTo());
+
+            bookBtn.setOnAction(e -> {
+                Room room = table.getSelectionModel().getSelectedItem().getRoom();
+                if(room != null){
+                    controller.setRoom(room);
+                    viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
+                }
+            });
+        }else {
+            bookBtn.setOnAction(actionEvent -> RoomListViewController.this.book(null));
+        }
 
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number") {
         });
@@ -69,7 +92,6 @@ public class RoomListViewController {
             viewModel.searchRooms(floor1, size1, quality1, dateFrom.getValue(), dateTo.getValue());
         }catch(NumberFormatException e){
             // TODO Show error message
-            System.out.println("");
         }
 
 
@@ -85,6 +107,7 @@ public class RoomListViewController {
     }
 
     public void book(ActionEvent actionEvent) {
+        System.out.println("Hello 2");
     }
 
     public void back(ActionEvent actionEvent) {

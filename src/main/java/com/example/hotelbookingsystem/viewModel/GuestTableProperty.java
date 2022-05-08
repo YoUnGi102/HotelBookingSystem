@@ -13,11 +13,14 @@ public class GuestTableProperty {
     private StringProperty email;
     private StringProperty passportNumber;
 
+    private Guest guest;
+
     public GuestTableProperty(Guest guest) {
         setGuest(guest);
     }
 
     public void setGuest(Guest guest){
+        this.guest = guest;
         this.firstName = new SimpleStringProperty(guest.getFirstName());
         this.lastName = new SimpleStringProperty(guest.getLastName());
         this.address = new SimpleStringProperty(guest.getAddress().toString());
@@ -66,5 +69,9 @@ public class GuestTableProperty {
     }
     public StringProperty passportNumberProperty() {
         return passportNumber;
+    }
+
+    public Guest getGuest() {
+        return guest;
     }
 }

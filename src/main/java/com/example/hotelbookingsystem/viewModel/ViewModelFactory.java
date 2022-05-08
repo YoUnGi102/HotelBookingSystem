@@ -5,19 +5,19 @@ import com.example.hotelbookingsystem.model.Model;
 public class ViewModelFactory {
 
     // TODO (Add every View Model as you create it)
-    // EXAMPLE
+
     private final GuestListViewModel guestListViewModel;
     private final RoomListViewModel roomListViewModel;
     private final BookingListViewModel bookingListViewModel;
+    private final ManageBookingViewModel manageBookingViewModel;
 
     public ViewModelFactory(Model model) {
-        // EXAMPLE
         this.guestListViewModel = new GuestListViewModel(model);
         this.roomListViewModel = new RoomListViewModel(model);
         this.bookingListViewModel = new BookingListViewModel(model);
+        this.manageBookingViewModel = new ManageBookingViewModel(model);
     }
 
-    // EXAMPLE
     public GuestListViewModel getGuestListViewModel(){
         return guestListViewModel;
     }
@@ -27,4 +27,5 @@ public class ViewModelFactory {
     public BookingListViewModel getBookingListViewModel() {
         return bookingListViewModel;
     }
+    public ManageBookingViewModel getManageBookingViewModel() { return manageBookingViewModel; }
 }

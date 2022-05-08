@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -18,26 +19,27 @@ public class ViewFactory {
     private GuestListViewController guestListViewController;
     private RoomListViewController roomListViewController;
     private BookingListViewController bookingListViewController;
+    private ManageBookingViewController manageBookingViewController;
 
     public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
         this.viewHandler = viewHandler;
         this.viewModelFactory = viewModelFactory;
-        // EXAMPLE
         this.guestListViewController = null;
         this.roomListViewController = null;
         this.bookingListViewController = null;
+        this.manageBookingViewController = null;
     }
 
     // TODO Add load method for each view
-    // EXAMPLE
-    public Region loadGuestListView(){
+
+    public Region loadGuestListView(Controller lastController){
         if (guestListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewHandler.class.getResource(ViewHandler.GUEST_LIST_VIEW));
             try {
                 Region root = loader.load();
                 guestListViewController = loader.getController();
-                guestListViewController.init(viewHandler, viewModelFactory.getGuestListViewModel(), root);
+                guestListViewController.init(viewHandler, viewModelFactory.getGuestListViewModel(), root, lastController);
             } catch (IOException e) {
                 throw new IOError(e);
             }
@@ -45,7 +47,7 @@ public class ViewFactory {
         return guestListViewController.getRoot();
     }
 
-    public Region loadBookingListView(){
+    public Region loadBookingListView(Controller lastController){
         if (bookingListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewHandler.class.getResource(ViewHandler.BOOKING_LIST_VIEW));
@@ -60,20 +62,36 @@ public class ViewFactory {
         return bookingListViewController.getRoot();
     }
 
+    public Region loadRoomListView(Controller lastController){
 
-    public Region loadRoomListView(){
         if (roomListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewHandler.class.getResource("room_list_view.fxml"));
             try {
                 Region root = loader.load();
                 roomListViewController = loader.getController();
-                roomListViewController.init(viewHandler, viewModelFactory.getRoomListViewModel(), root);
+                roomListViewController.init(viewHandler, viewModelFactory.getRoomListViewModel(), root, lastController);
             } catch (IOException e) {
                 throw new IOError(e);
             }
         }
         return roomListViewController.getRoot();
+    }
+
+    public Region loadManageBookingView(Controller lastController){
+
+        if (manageBookingViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource("manage_booking_view.fxml"));
+            try {
+                Region root = loader.load();
+                manageBookingViewController = loader.getController();
+                manageBookingViewController.init(viewHandler, viewModelFactory.getManageBookingViewModel(), root, lastController);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+        return manageBookingViewController.getRoot();
     }
 
 }

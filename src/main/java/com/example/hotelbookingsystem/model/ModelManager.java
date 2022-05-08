@@ -21,16 +21,16 @@ public class ModelManager implements Model{
         guestList.add(new Guest("Sherlock","Holmes", new Address("London", "Baker Street", "221B", "NW1"), "+441632960153", "sherlock@holmes.uk", "882933" ));
         guestList.add(new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+442334962334", "john@watson.uk", "335993" ));
 
-        rooms.add(new Room(1, 101, 4, 1));
-        rooms.add(new Room(2, 102, 4, 1));
-        rooms.add(new Room(3, 103, 3, 1));
-        rooms.add(new Room(4, 104, 3, 1));
-        rooms.add(new Room(5, 201, 2, 2));
-        rooms.add(new Room(6, 202, 2, 2));
-        rooms.add(new Room(7, 203, 4, 2));
-        rooms.add(new Room(8, 301, 4, 3));
-        rooms.add(new Room(9, 302, 3, 3));
-        rooms.add(new Room(10, 303, 3,3));
+        rooms.add(new Room(101, 4, 1, 2));
+        rooms.add(new Room(102, 4, 1, 2));
+        rooms.add(new Room(103, 3, 1, 2));
+        rooms.add(new Room(104, 3, 1, 2));
+        rooms.add(new Room(201, 2, 2, 2));
+        rooms.add(new Room(202, 2, 2, 2));
+        rooms.add(new Room(203, 4, 2, 2));
+        rooms.add(new Room(301, 4, 3, 2));
+        rooms.add(new Room(302, 3, 3, 2));
+        rooms.add(new Room( 303, 3,3, 2));
 
         ArrayList<Guest> guests = new ArrayList<>();
         guests.add(guestList.get(0));
