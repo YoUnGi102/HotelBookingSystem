@@ -1,12 +1,13 @@
 package com.example.hotelbookingsystem.dao;
 
 import com.example.hotelbookingsystem.model.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static com.example.hotelbookingsystem.dao.DatabaseConnection.SCHEMA;
 
@@ -47,7 +48,7 @@ public class RoomTable implements RoomDAO{
         }
     }
     @Override
-    public void insertMany(ArrayList<Room> rooms) throws SQLException {
+    public void insertMany(ObservableList<Room> rooms) throws SQLException {
 
         StringBuilder sql = new StringBuilder("INSERT INTO " + SCHEMA + "." + TABLE_NAME +
                 "(" + ROOM_NUMBER + ", " + SIZE + ", " + FLOOR + ", " + QUALITY + ") VALUES ");
@@ -93,11 +94,11 @@ public class RoomTable implements RoomDAO{
         }
     }
     @Override
-    public ArrayList<Room> selectAll() throws SQLException {
+    public ObservableList<Room> selectAll() throws SQLException {
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME);
             ResultSet resultSet = statement.executeQuery();
-            ArrayList<Room> rooms = new ArrayList<>();
+            ObservableList<Room> rooms = FXCollections.observableArrayList();
             while (resultSet.next()) {
                 int number = resultSet.getInt(ROOM_NUMBER);
                 int size = resultSet.getInt(SIZE);
@@ -111,7 +112,7 @@ public class RoomTable implements RoomDAO{
 
     // TODO DO AFTER FINISHING BOOKING DAO
     @Override
-    public ArrayList<Room> selectAllAvailable() throws SQLException {
+    public ObservableList<Room> selectAllAvailable() throws SQLException {
         return null;
     }
 
@@ -135,7 +136,7 @@ public class RoomTable implements RoomDAO{
         }
     }
     @Override
-    public void deleteMany(ArrayList<Room> rooms) throws SQLException {
+    public void deleteMany(ObservableList<Room> rooms) throws SQLException {
 
         StringBuilder sql = new StringBuilder("DELETE FROM " + SCHEMA + "." + TABLE_NAME + " WHERE " + ROOM_NUMBER + " IN (");
         for (int i = 0; i < rooms.size(); i++) {

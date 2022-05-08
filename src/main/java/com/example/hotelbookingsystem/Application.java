@@ -7,10 +7,12 @@ import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Application extends javafx.application.Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws SQLException {
         Model model = new ModelManager();
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler viewHandler = new ViewHandler(viewModelFactory);

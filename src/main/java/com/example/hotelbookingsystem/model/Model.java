@@ -2,8 +2,11 @@ package com.example.hotelbookingsystem.model;
 
 import javafx.collections.ObservableList;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface Model {
+
+    void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo);
 
     ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email);
 

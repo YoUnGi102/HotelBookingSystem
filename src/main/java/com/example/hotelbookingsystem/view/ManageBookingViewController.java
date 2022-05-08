@@ -69,7 +69,6 @@ public class ManageBookingViewController implements Controller {
 
         viewModel.bindTableItemsProperty(guestTable.itemsProperty());
         guestTable.itemsProperty().addListener((observableValue, oldVal, newVal) -> {
-            System.out.println(observableValue.getValue());
             if(observableValue.getValue().size() > 0)
                 setGuestAdded(true);
         });
@@ -145,7 +144,7 @@ public class ManageBookingViewController implements Controller {
 
     @FXML
     void confirm(ActionEvent event) {
-
+        viewModel.addBooking();
     }
 
     public Region getRoot() {

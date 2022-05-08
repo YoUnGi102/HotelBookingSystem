@@ -91,10 +91,19 @@ public class Booking {
         return bookingId;
     }
     public void setBookingId(int bookingId) {
-        if(bookingId == -1)
+        if(this.bookingId == -1)
             this.bookingId = bookingId;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", guests=" + guests +
+                ", room=" + room +
+                ", createdBy=" + createdBy +
+                '}';
+    }
 }

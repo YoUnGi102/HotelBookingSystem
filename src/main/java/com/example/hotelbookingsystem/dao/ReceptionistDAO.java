@@ -5,14 +5,14 @@ import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Receptionist;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 public interface ReceptionistDAO {
 
     void insert(Receptionist receptionist) throws SQLException;
 
     Receptionist select(String username) throws SQLException;
-    ArrayList<Receptionist> selectAll() throws SQLException;
+    ObservableList<Receptionist> selectAll() throws SQLException;
 
     void update(Receptionist receptionist) throws SQLException;
 

@@ -5,16 +5,16 @@ import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 public interface GuestDAO {
 
     void insert(Guest guest) throws SQLException;
-    void insertMany(ArrayList<Guest> guests) throws SQLException;
+    void insertMany(ObservableList<Guest> guests) throws SQLException;
 
     Guest select(String passportNumber) throws SQLException;
-    ArrayList<Guest> selectAll() throws SQLException;
-    ArrayList<Guest> selectAllInBooking(int bookingId) throws SQLException;
+    ObservableList<Guest> selectAll() throws SQLException;
+    ObservableList<Guest> selectAllInBooking(int bookingId) throws SQLException;
 
     Address setAddress(Guest guest) throws SQLException;
 

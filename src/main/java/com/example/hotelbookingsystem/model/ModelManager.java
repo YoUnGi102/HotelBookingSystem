@@ -1,18 +1,31 @@
 package com.example.hotelbookingsystem.model;
 
+import com.example.hotelbookingsystem.dao.BookingTable;
+import com.example.hotelbookingsystem.dao.ReceptionistTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ModelManager implements Model{
 
+    RoomList roomList;
+
     private ObservableList<Guest> guestList;
     private ObservableList<Room> rooms;
     private ObservableList<Booking> bookingList;
 
-    public ModelManager(){
+    private Receptionist receptionist;
+
+    public ModelManager() throws SQLException {
+
+        roomList = RoomList.getInstance();
+
+        ReceptionistTable receptionistTable = ReceptionistTable.getInstance();
+        receptionist = receptionistTable.select("rec001");
+
         guestList = FXCollections.observableArrayList();
         rooms = FXCollections.observableArrayList();
         bookingList = FXCollections.observableArrayList();
@@ -40,6 +53,17 @@ public class ModelManager implements Model{
         bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room,receptionist));
         bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
 
+    }
+
+    @Override
+    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) {
+        Booking booking = new Booking(guests, dateFrom, dateTo, room, receptionist);
+        BookingTable bookingTable = BookingTable.getInstance();
+        try {
+            bookingTable.insert(booking);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

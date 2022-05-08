@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import static com.example.hotelbookingsystem.dao.DatabaseConnection.SCHEMA;
 
@@ -84,11 +86,11 @@ public class ReceptionistTable implements ReceptionistDAO {
         }
     }
     @Override
-    public ArrayList<Receptionist> selectAll() throws SQLException {
+    public ObservableList<Receptionist> selectAll() throws SQLException {
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME);
             ResultSet resultSet = statement.executeQuery();
-            ArrayList<Receptionist> receptionists = new ArrayList<>();
+            ObservableList<Receptionist> receptionists = FXCollections.observableArrayList();
             while (resultSet.next()) {
                 String username = resultSet.getString(USERNAME);
                 String firstName = resultSet.getString(FIRST_NAME);

@@ -2,18 +2,26 @@ package com.example.hotelbookingsystem.model;
 
 import com.example.hotelbookingsystem.dao.RoomDAO;
 import com.example.hotelbookingsystem.dao.RoomTable;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomList {
 
-    private ArrayList<Room> rooms;
+    private ObservableList<Room> rooms;
     RoomDAO roomTable;
 
-    public RoomList() throws SQLException {
+    private static RoomList instance;
+
+    private RoomList() throws SQLException {
         roomTable = RoomTable.getInstance();
         refresh();
+    }
+    public static synchronized RoomList getInstance() throws SQLException {
+        if(instance == null)
+            instance = new RoomList();
+        return instance;
     }
 
     private void refresh() throws SQLException {
@@ -35,7 +43,7 @@ public class RoomList {
         }
         return null;
     }
-    public ArrayList<Room> getAll() throws SQLException {
+    public ObservableList<Room> getAll() throws SQLException {
         return rooms;
     }
     public void update(Room room) throws SQLException {

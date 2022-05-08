@@ -2,6 +2,8 @@ package com.example.hotelbookingsystem.test;
 
 import com.example.hotelbookingsystem.dao.RoomTable;
 import com.example.hotelbookingsystem.model.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class RoomTableTest {
     }
 
     public static void testInsertMultiple() throws SQLException {
-        ArrayList<Room> rooms = new ArrayList<>();
+        ObservableList<Room> rooms = FXCollections.observableArrayList();
         rooms.add(new Room(105, 2, 1, 1));
         rooms.add(new Room(106, 2, 1, 1));
         rooms.add(new Room(107, 3, 1, 2));
@@ -63,7 +65,7 @@ public class RoomTableTest {
     }
 
     public static void testDeleteMultiple() throws SQLException {
-        ArrayList<Room> rooms = roomTable.selectAll();
+        ObservableList<Room> rooms = roomTable.selectAll();
         roomTable.deleteMany(rooms);
     }
 

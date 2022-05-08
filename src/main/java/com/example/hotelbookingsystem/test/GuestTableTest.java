@@ -4,6 +4,8 @@ import com.example.hotelbookingsystem.dao.GuestTable;
 import com.example.hotelbookingsystem.model.Address;
 import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class GuestTableTest {
     }
     public static void testInsertMany() throws SQLException {
 
-        ArrayList<Guest> guests = new ArrayList<>();
+        ObservableList<Guest> guests = FXCollections.observableArrayList();
         Guest g1 = new Guest("Adam", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "+4599191881", "tomas.gres@gmail.com", "98237");
         Guest g2 = new Guest("Boris", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "", "", "394242");
         Guest g3 = new Guest("Claire", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "", "", "9384934");

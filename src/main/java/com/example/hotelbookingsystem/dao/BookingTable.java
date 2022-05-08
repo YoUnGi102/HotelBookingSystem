@@ -4,7 +4,9 @@ import com.example.hotelbookingsystem.model.*;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import static com.example.hotelbookingsystem.dao.DatabaseConnection.SCHEMA;
 import static com.example.hotelbookingsystem.dao.GuestTable.*;
@@ -89,7 +91,7 @@ public class BookingTable implements BookingDAO{
     @Override
     public Booking select(int bookingId) throws SQLException {
 
-        ArrayList<Guest> guests = guestTable.selectAllInBooking(bookingId);
+        ObservableList<Guest> guests = guestTable.selectAllInBooking(bookingId);
 
         try(Connection connection = databaseConnection.getConnection()) {
 
@@ -110,16 +112,16 @@ public class BookingTable implements BookingDAO{
     }
 
     @Override
-    public ArrayList<Booking> selectAll() throws SQLException {
+    public ObservableList<Booking> selectAll() throws SQLException {
 
-        ArrayList<Booking> bookings = new ArrayList<>();
+        ObservableList<Booking> bookings = FXCollections.observableArrayList();
         try(Connection connection = databaseConnection.getConnection()) {
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM "  + SCHEMA + "." + TABLE_NAME);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()) {
                 int bookingId = resultSet.getInt(BOOKING_ID);
-                ArrayList<Guest> guests = guestTable.selectAllInBooking(bookingId);
+                ObservableList<Guest> guests = guestTable.selectAllInBooking(bookingId);
 
                 Room room = roomTable.select(resultSet.getInt(ROOM_NUMBER));
                 LocalDate dateFrom = LocalDate.parse(resultSet.getString(DATE_FROM), DATE_FORMATTER);

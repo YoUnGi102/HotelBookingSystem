@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.viewModel;
 
+import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Model;
 import com.example.hotelbookingsystem.model.Room;
@@ -9,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ManageBookingViewModel {
 
@@ -35,10 +37,10 @@ public class ManageBookingViewModel {
         room.bind(this.room);
     }
     public void bindDateFromProperty(ObjectProperty<LocalDate> dateFrom){
-        dateFrom.bind(this.dateFrom);
+        dateFrom.bindBidirectional(this.dateFrom);
     }
     public void bindDateToProperty(ObjectProperty<LocalDate> dateTo){
-        dateTo.bind(this.dateTo);
+        dateTo.bindBidirectional(this.dateTo);
     }
 
     public void setRoom(Room room){
@@ -65,6 +67,14 @@ public class ManageBookingViewModel {
     }
     public LocalDate getDateTo(){
         return dateTo.getValue();
+    }
+
+    public void addBooking(){
+        ArrayList<Guest> guests = new ArrayList<>();
+        this.guests.getValue().forEach((guest) -> {
+            guests.add(guest.getGuest());
+        });
+        model.addBooking(guests, room.getValue(), dateFrom.getValue(), dateTo.getValue());
     }
 
 }

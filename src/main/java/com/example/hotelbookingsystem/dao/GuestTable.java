@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import static com.example.hotelbookingsystem.dao.BookingTable.*;
 import static com.example.hotelbookingsystem.dao.DatabaseConnection.SCHEMA;
@@ -60,7 +62,7 @@ public class GuestTable implements GuestDAO {
         }
     }
     @Override
-    public void insertMany(ArrayList<Guest> guests) throws SQLException {
+    public void insertMany(ObservableList<Guest> guests) throws SQLException {
         StringBuilder sql = new StringBuilder("INSERT INTO " + SCHEMA + "." + TABLE_NAME +
                 "(" + PASSPORT_NUMBER + ", " + FIRST_NAME + ", " + LAST_NAME + ", " + EMAIL + ", " + PHONE_NUMBER + ", " + ADDRESS + ") VALUES ");
 
@@ -121,11 +123,11 @@ public class GuestTable implements GuestDAO {
         }
     }
     @Override
-    public ArrayList<Guest> selectAll() throws SQLException {
+    public ObservableList<Guest> selectAll() throws SQLException {
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME);
             ResultSet resultSet = statement.executeQuery();
-            ArrayList<Guest> guests = new ArrayList<>();
+            ObservableList<Guest> guests = FXCollections.observableArrayList();
             while (resultSet.next()) {
                 String passportNumber = resultSet.getString(PASSPORT_NUMBER);
                 String firstName = resultSet.getString(FIRST_NAME);
@@ -138,8 +140,8 @@ public class GuestTable implements GuestDAO {
             return guests;
         }
     }
-    public ArrayList<Guest> selectAllInBooking(int bookingId) throws SQLException {
-        ArrayList<Guest> guests = new ArrayList<>();
+    public ObservableList<Guest> selectAllInBooking(int bookingId) throws SQLException {
+        ObservableList<Guest> guests = FXCollections.observableArrayList();
 
         try(Connection connection = databaseConnection.getConnection()){
             String sql = "SELECT " + PASSPORT_NUMBER +","+ FIRST_NAME +","+ LAST_NAME +","+ EMAIL +","+ PHONE_NUMBER +","+ ADDRESS + " \n" +
@@ -184,11 +186,11 @@ public class GuestTable implements GuestDAO {
     @Override
     public void updateGuestsInBooking(Booking booking) throws SQLException{
 
-        ArrayList<Guest> oldGuestList = selectAllInBooking(booking.getBookingId());
+        ObservableList<Guest> oldGuestList = selectAllInBooking(booking.getBookingId());
 
         // REMOVE OLD GUESTS
 
-        ArrayList<Guest> toRemove = new ArrayList<>();
+        ObservableList<Guest> toRemove = FXCollections.observableArrayList();
         for (Guest oldGuest : oldGuestList) {
             boolean found = false;
             for (Guest newGuest : booking.getGuests()) {
@@ -227,7 +229,7 @@ public class GuestTable implements GuestDAO {
 
         // ADD NEW GUESTS
 
-        ArrayList<Guest> toAdd = new ArrayList<>();
+        ObservableList<Guest> toAdd = FXCollections.observableArrayList();
         for (Guest newGuest : booking.getGuests()) {
             boolean found = false;
             for (Guest oldGuest : oldGuestList) {

@@ -18,6 +18,7 @@ public class RoomListViewModel {
     RoomListViewModel(Model model){
         rooms = new SimpleObjectProperty<>();
         this.model = model;
+
     }
 //    public ObservableList<Room> showAllBookedRooms()
 //    {
@@ -34,7 +35,6 @@ public class RoomListViewModel {
         for (Room g : model.searchRooms(floor, size, quality, from, to)) {
             roomsFormatted.add(new RoomTableProperty(g));
         }
-        System.out.println(roomsFormatted.size());
         rooms.setValue(roomsFormatted);
     }
 
