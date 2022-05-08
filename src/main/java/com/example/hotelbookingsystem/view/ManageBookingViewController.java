@@ -4,6 +4,10 @@ import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,18 +37,30 @@ public class ManageBookingViewController implements Controller {
     @FXML
     private DatePicker dateFrom, dateTo;
 
-    private ObservableList<GuestTableProperty> guests;
-    private Room room;
+    private ObjectProperty<Room> room;
 
     public void init(ViewHandler viewHandler, ManageBookingViewModel viewModel, Region root, Controller lastController){
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
 
-        guests = FXCollections.observableArrayList();
         setRoomAdded(false);
         setGuestAdded(false);
 
+        // ROOM PROPERTY
+        room = new SimpleObjectProperty<>();
+        viewModel.bindRoomProperty(room);
+        room.addListener((observableValue, oldVal, newVal) -> {
+            if(newVal != null){
+                roomNumber.setText(String.valueOf(newVal.getRoomNumber()));
+                floor.setText(String.valueOf(newVal.getFloor()));
+                quality.setText(String.valueOf(newVal.getQuality()));
+                size.setText(String.valueOf(newVal.getRoomSize()));
+                setRoomAdded(true);
+            }
+        });
+
+        // TABLE PROPERTY
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
@@ -52,42 +68,21 @@ public class ManageBookingViewController implements Controller {
         passportNumberCol.setCellValueFactory(new PropertyValueFactory<>("passportNumber"));
 
         viewModel.bindTableItemsProperty(guestTable.itemsProperty());
+        guestTable.itemsProperty().addListener((observableValue, oldVal, newVal) -> {
+            System.out.println(observableValue.getValue());
+            if(observableValue.getValue().size() > 0)
+                setGuestAdded(true);
+        });
+
+        // DATE FROM PROPERTY
+        viewModel.bindDateFromProperty(dateFrom.valueProperty());
+
+        // DATE TO PROPERTY
+        viewModel.bindDateToProperty(dateTo.valueProperty());
     }
 
-    public void setRoom(Room room){
-        this.room = room;
-        if(room != null){
-            roomNumber.setText(String.valueOf(room.getRoomNumber()));
-            floor.setText(String.valueOf(room.getFloor()));
-            quality.setText(String.valueOf(room.getQuality()));
-            size.setText(String.valueOf(room.getRoomSize()));
-            setRoomAdded(true);
-        }
-    }
-    public void setGuests(ObservableList<GuestTableProperty> guests){
-        this.guests.addAll(guests);
-        this.guestTable.itemsProperty().setValue(this.guests);
-        if(guests.size() > 0)
-            setGuestAdded(true);
-    }
-    public void setDateFrom(LocalDate dateFrom){
-        this.dateFrom.setValue(dateFrom);
-    }
-    public void setDateTo(LocalDate dateTo){
-        this.dateTo.setValue(dateTo);
-    }
-
-    public Room getRoom(){
-        return room;
-    }
-    public ObservableList<GuestTableProperty> getGuests(){
-        return guests;
-    }
-    public LocalDate getDateFrom(){
-        return dateFrom.getValue();
-    }
-    public LocalDate getDateTo(){
-        return dateTo.getValue();
+    public ManageBookingViewModel getViewModel(){
+        return viewModel;
     }
 
     private void setRoomAdded(boolean roomAdded){
@@ -119,19 +114,24 @@ public class ManageBookingViewController implements Controller {
     }
 
     @FXML
-    void addGuest(ActionEvent event) {
+    void addGuest() {
         // TODO ADD NEW GUEST
-        System.out.println(room);
-        System.out.println(roomNumber.getText());
     }
-
     @FXML
-    void removeGuest(ActionEvent event) {
-        guests.remove(guestTable.getSelectionModel().getSelectedItem());
-        if(guests.size() == 0)
+    void searchGuest() {
+        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
+    }
+    @FXML
+    void removeGuest() {
+        guestTable.itemsProperty().getValue().remove(guestTable.getSelectionModel().getSelectedItem());
+        if(guestTable.itemsProperty().getValue().size() == 0)
             setGuestAdded(false);
     }
 
+    @FXML
+    void searchRoom() {
+        viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
+    }
     @FXML
     void removeRoom() {
         room = null;
@@ -139,26 +139,14 @@ public class ManageBookingViewController implements Controller {
     }
 
     @FXML
-    void searchGuest(ActionEvent event) {
-        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
-    }
-
-    @FXML
-    void searchRoom() {
-        System.out.println("Search ROom");
-        viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
-    }
-
-    @FXML
     void cancel(ActionEvent event) {
-        viewHandler.closeView();
+        viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
     }
 
     @FXML
     void confirm(ActionEvent event) {
 
     }
-
 
     public Region getRoot() {
         return root;

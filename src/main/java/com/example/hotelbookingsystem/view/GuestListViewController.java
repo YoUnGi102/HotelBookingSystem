@@ -4,6 +4,7 @@ import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.GuestListViewModel;
+import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +39,7 @@ public class GuestListViewController implements Controller{
         this.root = root;
 
         if(lastController instanceof ManageBookingViewController controller){
+            ManageBookingViewModel manageViewModel = controller.getViewModel();
             addBtn.setVisible(false);
             editBtn.setText("Add");
             removeBtn.setText("Confirm");
@@ -48,7 +50,7 @@ public class GuestListViewController implements Controller{
                     guests.add(new GuestTableProperty(g));
             });
             removeBtn.setOnAction(e -> {
-                controller.setGuests(guests);
+                manageViewModel.setGuests(guests);
                 viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
             });
         }

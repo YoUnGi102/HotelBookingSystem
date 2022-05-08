@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomTableProperty;
 import javafx.event.ActionEvent;
@@ -37,20 +38,21 @@ public class RoomListViewController implements Controller {
         this.root = root;
 
         if (lastController instanceof ManageBookingViewController controller){
+            ManageBookingViewModel manageViewModel = controller.getViewModel();
             addBtn.setVisible(false);
             removeBtn.setVisible(false);
             editBtn.setVisible(false);
             bookBtn.setText("Select");
 
-            if (controller.getDateFrom() != null)
-                dateFrom.setValue(controller.getDateFrom());
-            if (controller.getDateTo() != null)
-                dateTo.setValue(controller.getDateTo());
+            if (manageViewModel.getDateFrom() != null)
+                dateFrom.setValue(manageViewModel.getDateFrom());
+            if (manageViewModel.getDateTo() != null)
+                dateTo.setValue(manageViewModel.getDateTo());
 
             bookBtn.setOnAction(e -> {
                 Room room = table.getSelectionModel().getSelectedItem().getRoom();
                 if(room != null){
-                    controller.setRoom(room);
+                    manageViewModel.setRoom(room);
                     viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
                 }
             });
@@ -107,7 +109,6 @@ public class RoomListViewController implements Controller {
     }
 
     public void book(ActionEvent actionEvent) {
-        System.out.println("Hello 2");
     }
 
     public void back(ActionEvent actionEvent) {
