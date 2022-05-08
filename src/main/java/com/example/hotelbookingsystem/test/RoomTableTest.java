@@ -13,7 +13,7 @@ public class RoomTableTest {
 
     public static void main(String[] args) throws SQLException {
         roomTable = RoomTable.getInstance();
-        testDeleteMultiple();
+        testInsert();
     }
 
     public static void testSelect(int roomNumber) throws SQLException {
@@ -24,7 +24,7 @@ public class RoomTableTest {
     }
 
     public static void testInsert() throws SQLException {
-        Room room = new Room(101, 2, 1, 1);
+        Room room = new Room(102, 2, 1, 1);
         roomTable.insert(room);
     }
 

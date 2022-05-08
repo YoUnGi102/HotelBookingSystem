@@ -36,8 +36,9 @@ public class ModelManager implements Model{
         guests.add(guestList.get(0));
         guests.add(guestList.get(1));
         Room room = rooms.get(4);
-        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room));
-        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5)));
+        Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
+        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room,receptionist));
+        bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
 
     }
 

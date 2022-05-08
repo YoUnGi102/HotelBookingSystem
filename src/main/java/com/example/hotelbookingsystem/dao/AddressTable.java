@@ -38,6 +38,10 @@ public class AddressTable implements AddressDAO{
 
     @Override
     public void insert(Address address) throws SQLException {
+
+        if(select(address) != null)
+            return;
+
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO " + SCHEMA + "." + TABLE_NAME + "( "+CITY+", "+STREET+", "+HOUSE_NUMBER+", " + POSTAL_CODE + ") VALUES (?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, address.getCity());
@@ -45,6 +49,12 @@ public class AddressTable implements AddressDAO{
             statement.setString(3, address.getHouseNumber());
             statement.setString(4, address.getPostalCode());
             statement.executeUpdate();
+            ResultSet keys = statement.getGeneratedKeys();
+            if (keys.next()) {
+                address.setAddressId(keys.getInt(1));
+            } else {
+                throw new SQLException("No keys generated");
+            }
         }
     }
 
