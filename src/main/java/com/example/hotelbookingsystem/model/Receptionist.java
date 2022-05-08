@@ -6,4 +6,16 @@ public class Receptionist extends Staff {
         super(username, firstName, lastName, password, email, phoneNumber, address);
     }
 
+    @Override
+    public String toString() {
+        return "Receptionist{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.hotelbookingsystem.model;
 
-public class Staff {
+public abstract class Staff {
 
     protected String username;
     protected String firstName;
@@ -63,5 +63,7 @@ public class Staff {
     public Address getAddress() {
         return address;
     }
+
+
 
 }
