@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import static com.example.hotelbookingsystem.dao.DatabaseConnection.SCHEMA;
 
@@ -96,7 +97,27 @@ public class RoomTable implements RoomDAO{
     @Override
     public ObservableList<Room> selectAll() throws SQLException {
         try(Connection connection = databaseConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME );
+            ResultSet resultSet = statement.executeQuery();
+            ObservableList<Room> rooms = FXCollections.observableArrayList();
+            while (resultSet.next()) {
+                int number = resultSet.getInt(ROOM_NUMBER);
+                int size = resultSet.getInt(SIZE);
+                int floor = resultSet.getInt(FLOOR);
+                int quality = resultSet.getInt(QUALITY);
+                rooms.add(new Room(number, size, floor, quality));
+            }
+            return rooms;
+        }
+    }
+
+    @Override
+    public ObservableList<Room> selectAllSearched(LocalDate to) throws SQLException {
+        //if (to.equals(null)) return selectAll();
+        try(Connection connection = databaseConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME + " WHERE " + ROOM_NUMBER +" not in ( select " + ROOM_NUMBER + " from "+ SCHEMA +".booking where date_to > '"+ to.toString() + "')");
+
+            //PreparedStatement statement = connection.prepareStatement("SELECT * FROM "+SCHEMA+"."+TABLE_NAME + " WHERE " + "room_number not in (102)");
             ResultSet resultSet = statement.executeQuery();
             ObservableList<Room> rooms = FXCollections.observableArrayList();
             while (resultSet.next()) {
