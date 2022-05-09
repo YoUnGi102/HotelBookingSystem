@@ -36,6 +36,8 @@ public class GuestListViewController implements Controller{
     private Controller previousView;
 
     public void init(ViewHandler viewHandler, GuestListViewModel viewModel, Region root, Controller lastController){
+
+        table.getSelectionModel().getSelectedItem();
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
@@ -86,7 +88,14 @@ public class GuestListViewController implements Controller{
     public void edit(ActionEvent actionEvent) {
     }
 
-    public void remove(ActionEvent actionEvent) {
+    public void remove(ActionEvent actionEvent) throws SQLException {
+        ObservableList<GuestTableProperty> allGuests, singleGuest;
+        allGuests = table.getItems();
+        singleGuest = table.getSelectionModel().getSelectedItems();
+        GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
+        viewModel.removeGuest(guestTableProperty.getGuest());
+        singleGuest.forEach(allGuests :: remove);
+
     }
 
     public void back(ActionEvent actionEvent) {

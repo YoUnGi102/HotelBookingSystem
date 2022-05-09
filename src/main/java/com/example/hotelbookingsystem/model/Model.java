@@ -11,6 +11,7 @@ public interface Model {
     void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo);
     void removeBooking(Booking booking) throws SQLException;
     void editBooking(Booking booking);
+    void removeGuest(Guest guest) throws SQLException;
 
     ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException;
     ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException;

@@ -274,6 +274,13 @@ public class GuestTable implements GuestDAO {
 
     @Override
     public void delete(Guest guest) throws SQLException {
+
+        try(Connection connection = databaseConnection.getConnection()){
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM " + SCHEMA+"."+GUEST_BOOKING_TABLE + " WHERE " + GUEST_ID + " = ?");
+            statement.setString(1, guest.getPassportNumber());
+            statement.executeUpdate();
+        }
+
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM "+SCHEMA+"."+TABLE_NAME+" WHERE "+PASSPORT_NUMBER+" = ?");
             statement.setString(1, guest.getPassportNumber());

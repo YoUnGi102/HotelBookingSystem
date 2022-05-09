@@ -53,6 +53,11 @@ public class ModelManager implements Model{
     }
 
     @Override
+    public void removeGuest(Guest guest) throws SQLException {
+        guestList.remove(guest);
+    }
+
+    @Override
     public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
         ObservableList<Guest> searchedGuests = FXCollections.observableArrayList();
         for (Guest guest : guestList.getAll()) {
