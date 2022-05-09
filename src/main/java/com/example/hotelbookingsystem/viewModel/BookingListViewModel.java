@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -26,11 +27,15 @@ public class BookingListViewModel {
             itemsProperty.bind(bookings);
         }
 
-        public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo){
+        public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
             ObservableList<BookingTableProperty> bookingsFormatted = FXCollections.observableArrayList();
             for (Booking b: model.searchBookings(phoneNumber, email, roomNumber, dateFrom,dateTo)) {
                 bookingsFormatted.add(new BookingTableProperty(b));
             }
             bookings.setValue(bookingsFormatted);
+        }
+
+        public void removeBooking(Booking booking) throws SQLException {
+            model.removeBooking(booking);
         }
 }

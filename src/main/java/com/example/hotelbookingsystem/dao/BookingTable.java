@@ -158,6 +158,13 @@ public class BookingTable implements BookingDAO{
 
     @Override
     public void delete(Booking booking) throws SQLException {
+
+        try(Connection connection = databaseConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM "+SCHEMA+"."+GUEST_BOOKING_TABLE+" WHERE "+BOOKING_ID+" = ?");
+            statement.setInt(1, booking.getBookingId());
+            statement.executeUpdate();
+        }
+
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM "+SCHEMA+"."+TABLE_NAME+" WHERE "+BOOKING_ID+" = ?");
             statement.setInt(1, booking.getBookingId());

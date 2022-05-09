@@ -1,6 +1,5 @@
 package com.example.hotelbookingsystem.viewModel;
 
-import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Model;
 import com.example.hotelbookingsystem.model.Room;

@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.sql.SQLException;
+
 public class RoomListViewController implements Controller {
 
     @FXML
@@ -32,10 +34,14 @@ public class RoomListViewController implements Controller {
     private RoomListViewModel viewModel;
     private Region root;
 
+    private Controller previousView;
+
     public void init(ViewHandler viewHandler, RoomListViewModel viewModel, Region root, Controller lastController) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+
+        previousView = lastController;
 
         if (lastController instanceof ManageBookingViewController controller){
             ManageBookingViewModel manageViewModel = controller.getViewModel();
@@ -94,8 +100,9 @@ public class RoomListViewController implements Controller {
             viewModel.searchRooms(floor1, size1, quality1, dateFrom.getValue(), dateTo.getValue());
         }catch(NumberFormatException e){
             // TODO Show error message
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
 
     }
 
@@ -111,7 +118,9 @@ public class RoomListViewController implements Controller {
     public void book(ActionEvent actionEvent) {
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void back() {
+        if(previousView instanceof ManageBookingViewController)
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, null);
     }
 
     public Region getRoot() {

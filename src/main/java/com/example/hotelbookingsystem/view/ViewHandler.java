@@ -27,7 +27,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(MANAGE_BOOKING_VIEW, null);
+        openView(BOOKING_LIST_VIEW, null);
     }
 
     public void openView(String id, Controller previousView) {

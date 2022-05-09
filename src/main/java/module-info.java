@@ -14,4 +14,6 @@ module com.example.hotelbookingsystem {
     exports com.example.hotelbookingsystem;
     exports com.example.hotelbookingsystem.dao;
     opens com.example.hotelbookingsystem.dao to javafx.fxml;
+    exports com.example.hotelbookingsystem.model.list;
+    opens com.example.hotelbookingsystem.model.list to javafx.fxml;
 }

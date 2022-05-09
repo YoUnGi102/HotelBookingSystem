@@ -25,7 +25,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="roomNotSelected" prefHeight="50.0" prefWidth="200.0">
+                  <HBox fx:id="roomNotSelected" prefHeight="50.0" prefWidth="200.0" styleClass="light_background">
                      <children>
                         <Label styleClass="light-label" text="No Room Selected">
                            <HBox.margin>
@@ -37,7 +37,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox fx:id="roomSelected" prefHeight="50.0" prefWidth="1040.0">
+                  <HBox fx:id="roomSelected" prefHeight="50.0" prefWidth="1040.0" styleClass="light_background">
                      <children>
                         <Label styleClass="light-label" text="Room Number: ">
                            <HBox.margin>
@@ -117,7 +117,7 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox fx:id="guestNotSelected" prefHeight="50.0" prefWidth="200.0">
+                  <HBox fx:id="guestNotSelected" prefHeight="50.0" prefWidth="200.0" styleClass="light_background">
                      <children>
                         <Label styleClass="light-label" text="No Guests Selected">
                            <HBox.margin>

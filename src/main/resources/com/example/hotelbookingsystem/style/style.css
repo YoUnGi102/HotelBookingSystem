@@ -9,6 +9,10 @@
     -fx-font-size: 18px;
 }
 
+.light_background {
+    -fx-background-color: #E2E2E2;
+}
+
 .dark-button {
     -fx-background-color: #0D318F;
     -fx-text-fill: #F2F2F2;

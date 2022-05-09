@@ -4,7 +4,7 @@ import com.example.hotelbookingsystem.dao.BookingTable;
 import com.example.hotelbookingsystem.dao.GuestTable;
 import com.example.hotelbookingsystem.dao.RoomTable;
 import com.example.hotelbookingsystem.model.*;
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -23,7 +23,6 @@ public class BookingTableTest {
         guestTable = GuestTable.getInstance();
         roomTable = RoomTable.getInstance();
 
-        testUpdateGuestsInBooking();
     }
 
     public static void testSelect(int bookingId) throws SQLException {
@@ -35,7 +34,7 @@ public class BookingTableTest {
 
     public static void testInsert() throws SQLException {
 
-        ArrayList<Guest> guests = guestTable.selectAll();
+        ObservableList<Guest> guests = guestTable.selectAll();
         Room room = new Room(101, 2, 1, 2);
         //roomTable.insert(room);
         Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
@@ -80,7 +79,7 @@ public class BookingTableTest {
     }
 
     public static void testDelete() throws SQLException {
-        ArrayList<Guest> guests = guestTable.selectAll();
+        ObservableList<Guest> guests = guestTable.selectAll();
         Room room = new Room(101, 2, 1, 2);
         //roomTable.insert(room);
         Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245",

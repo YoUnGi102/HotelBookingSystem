@@ -82,7 +82,7 @@
       </Rectangle>
       <HBox prefHeight="83.0" prefWidth="1080.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="550.0" top="10.0" />
                </HBox.margin>

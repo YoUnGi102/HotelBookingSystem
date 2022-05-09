@@ -7,6 +7,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 public class GuestListViewModel {
 
     private Model model;
@@ -22,7 +24,7 @@ public class GuestListViewModel {
         itemsProperty.bind(guests);
     }
 
-    public void searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email){
+    public void searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
         ObservableList<GuestTableProperty> guestsFormatted = FXCollections.observableArrayList();
         for (Guest g : model.searchGuests(firstName, lastName, phoneNumber, passportNumber, email)) {
             guestsFormatted.add(new GuestTableProperty(g));

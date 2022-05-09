@@ -1,11 +1,12 @@
-package com.example.hotelbookingsystem.model;
+package com.example.hotelbookingsystem.model.list;
 
 import com.example.hotelbookingsystem.dao.RoomDAO;
 import com.example.hotelbookingsystem.dao.RoomTable;
+import com.example.hotelbookingsystem.model.Room;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class RoomList {
 
@@ -49,6 +50,9 @@ public class RoomList {
     public void update(Room room) throws SQLException {
         roomTable.update(room);
         refresh();
+    }
+    public void getAvailableRooms(LocalDate from, LocalDate to){
+
     }
 
 }

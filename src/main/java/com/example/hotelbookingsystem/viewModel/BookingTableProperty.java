@@ -17,18 +17,24 @@ public class BookingTableProperty {
     private IntegerProperty roomNumber;
     private StringProperty dateFrom;
     private StringProperty dateTo;
+    private Booking booking;
 
     public BookingTableProperty(Booking booking) {
         setBooking(booking);
     }
 
     public void setBooking(Booking booking) {
+        this.booking = booking;
         name = new SimpleStringProperty(booking.getName());
         phoneNumber = new SimpleStringProperty(booking.getPhoneNumber());
         email = new SimpleStringProperty(booking.getEmail());
         roomNumber = new SimpleIntegerProperty(booking.getRoom().getRoomNumber());
         dateFrom = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateFrom()));
         dateTo = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateFrom()));
+    }
+
+    public Booking getBooking() {
+        return booking;
     }
 
     public String getName() {

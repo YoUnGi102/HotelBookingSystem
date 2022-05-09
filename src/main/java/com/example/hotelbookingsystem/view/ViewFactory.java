@@ -54,7 +54,7 @@ public class ViewFactory {
             try {
                 Region root = loader.load();
                 bookingListViewController = loader.getController();
-                bookingListViewController.init(viewHandler, viewModelFactory.getBookingListViewModel(), root);
+                bookingListViewController.init(viewHandler, viewModelFactory.getBookingListViewModel(), root, lastController);
             } catch (IOException e) {
                 throw new IOError(e);
             }

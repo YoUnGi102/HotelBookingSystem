@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GuestListViewController implements Controller{
@@ -32,11 +33,14 @@ public class GuestListViewController implements Controller{
     private TableColumn<GuestTableProperty, String> firstNameCol, lastNameCol, emailCol, phoneNumberCol, addressCol, passportNumberCol;
     @FXML
     private Button addBtn, editBtn, removeBtn;
+    private Controller previousView;
 
     public void init(ViewHandler viewHandler, GuestListViewModel viewModel, Region root, Controller lastController){
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+        
+        this.previousView = lastController;
 
         if(lastController instanceof ManageBookingViewController controller){
             ManageBookingViewModel manageViewModel = controller.getViewModel();
@@ -68,7 +72,11 @@ public class GuestListViewController implements Controller{
     @FXML
     void search(ActionEvent event) {
         // TODO CHECK USER INPUT
-        viewModel.searchGuests(firstName.getText(), lastName.getText(), phoneNumber.getText(), passportNumber.getText(), eMail.getText());
+        try {
+            viewModel.searchGuests(firstName.getText(), lastName.getText(), phoneNumber.getText(), passportNumber.getText(), eMail.getText());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void add(ActionEvent actionEvent) {
@@ -82,7 +90,8 @@ public class GuestListViewController implements Controller{
     }
 
     public void back(ActionEvent actionEvent) {
-        viewHandler.closeView();
+        if(previousView instanceof ManageBookingViewController)
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, null);
     }
 
     public Region getRoot() {

@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.sql.SQLException;
+
 public class BookingListViewController implements Controller {
 
     @FXML
@@ -27,10 +29,14 @@ public class BookingListViewController implements Controller {
     private BookingListViewModel viewModel;
     private Region root;
 
-    public void init(ViewHandler viewHandler, BookingListViewModel viewModel, Region root) {
+    private Controller previousView;
+
+    public void init(ViewHandler viewHandler, BookingListViewModel viewModel, Region root, Controller previousView) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+
+        this.previousView = previousView;
 
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -44,7 +50,11 @@ public class BookingListViewController implements Controller {
 
     @FXML
     void add(ActionEvent event) {
+        viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
+    }
 
+    @FXML
+    void back(ActionEvent event) {
     }
 
     @FXML
@@ -54,7 +64,11 @@ public class BookingListViewController implements Controller {
 
     @FXML
     void remove(ActionEvent event) {
-
+        try {
+            viewModel.removeBooking(table.getSelectionModel().getSelectedItem().getBooking());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -65,7 +79,7 @@ public class BookingListViewController implements Controller {
             }else {
                 viewModel.searchBookings(phoneNumber.getText(), email.getText(), Integer.parseInt(roomNumber.getText()), dateFrom.getValue(), dateTo.getValue());
             }
-        }catch (IllegalArgumentException e){
+        }catch (IllegalArgumentException | SQLException e){
             e.printStackTrace();
         }
     }
