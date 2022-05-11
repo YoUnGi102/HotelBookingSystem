@@ -79,6 +79,8 @@ public class ModelManager implements Model{
     @Override
     public ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> searchedRooms = FXCollections.observableArrayList();
+        if (to != null) roomList.selectAllSearched(to);
+
         for (Room room : roomList.getAll()) {
             // TODO Add searching by date
             if (room.getFloor() != floor && floor !=0)
@@ -91,6 +93,7 @@ public class ModelManager implements Model{
 
             searchedRooms.add(room);
         }
+        roomList.refresh();
         return searchedRooms;
     }
 

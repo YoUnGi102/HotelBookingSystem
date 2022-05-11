@@ -63,13 +63,16 @@ public class Booking {
     }
 
     public String getName(){
-        return guests.get(0).getFirstName() + " " + guests.get(0).getLastName();
+        //return guests.get(0).getFirstName() + " " + guests.get(0).getLastName();
+        return "bob";
     }
     public String getPhoneNumber(){
-        return guests.get(0).getPhoneNumber();
+        //return guests.get(0).getPhoneNumber();
+        return "123";
     }
     public String getEmail(){
-        return guests.get(0).getEmail();
+        //return guests.get(0).getEmail();
+        return "123";
     }
     public LocalDate getDateFrom(){
         return dateFrom;

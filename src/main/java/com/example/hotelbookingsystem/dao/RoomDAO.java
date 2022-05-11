@@ -4,6 +4,7 @@ import com.example.hotelbookingsystem.model.Room;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public interface RoomDAO {
 
@@ -12,6 +13,7 @@ public interface RoomDAO {
 
     Room select(int roomNumber) throws SQLException;
     ObservableList<Room> selectAll() throws SQLException;
+    ObservableList<Room> selectAllSearched(LocalDate to) throws SQLException;
     ObservableList<Room> selectAllAvailable() throws SQLException;
 
     void update(Room room) throws SQLException;
