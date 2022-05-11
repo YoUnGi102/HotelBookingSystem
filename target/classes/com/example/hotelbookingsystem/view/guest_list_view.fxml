@@ -74,6 +74,27 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
+      <ScrollPane fx:id="showAddGuest" fitToWidth="true" prefHeight="300.0" prefWidth="1080.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
+               <children>
+                  <TableView fx:id="agTable" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="agFirstNameCol" prefWidth="150.0" styleClass="table-column-light" text="Name" />
+                        <TableColumn fx:id="agLastNameCol" prefWidth="150.0" styleClass="table-column-light" text="Surname" />
+                        <TableColumn fx:id="agPhoneNumberCol" prefWidth="150.0" styleClass="table-column-light" text="Phone Num." />
+                        <TableColumn fx:id="agEmailCol" prefWidth="150.0" styleClass="table-column-light" text="E-Mail" />
+                        <TableColumn fx:id="agPassportNumberCol" prefWidth="185.0" styleClass="table-column-light" text="Passport Num." />
+                        <TableColumn fx:id="agAddressCol" prefWidth="275.0" styleClass="table-column-light" text="Address" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </ScrollPane>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0">
          <VBox.margin>
             <Insets bottom="20.0" />

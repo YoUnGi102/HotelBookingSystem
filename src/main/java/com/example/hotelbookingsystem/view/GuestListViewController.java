@@ -9,13 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+import java.io.IOError;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,13 +27,20 @@ public class GuestListViewController implements Controller{
     private Region root;
 
     @FXML
+    private ScrollPane showAddGuest;
+
+    @FXML
     private TextField firstName, lastName, eMail, phoneNumber, passportNumber;
     @FXML
-    private TableView<GuestTableProperty> table;
+    private TableView<GuestTableProperty> table, agTable;
     @FXML
     private TableColumn<GuestTableProperty, String> firstNameCol, lastNameCol, emailCol, phoneNumberCol, addressCol, passportNumberCol;
     @FXML
+    private TableColumn<GuestTableProperty, String> agFirstNameCol, agLastNameCol, agPhoneNumberCol, agEmailCol, agPassportNumberCol, agAddressCol;
+
+    @FXML
     private Button addBtn, editBtn, removeBtn;
+
     private Controller previousView;
 
     public void init(ViewHandler viewHandler, GuestListViewModel viewModel, Region root, Controller lastController){
@@ -44,25 +52,6 @@ public class GuestListViewController implements Controller{
 
         this.previousView = lastController;
 
-        if(lastController instanceof ManageBookingViewController controller){
-            ManageBookingViewModel manageViewModel = controller.getViewModel();
-            addBtn.setVisible(false);
-            editBtn.setText("Add");
-            removeBtn.setText("Confirm");
-            ObservableList<GuestTableProperty> guests = FXCollections.observableArrayList();
-            editBtn.setOnAction(e->{
-                Guest g = table.getSelectionModel().getSelectedItem().getGuest();
-                if(g != null)
-                    guests.add(new GuestTableProperty(g));
-            });
-            removeBtn.setOnAction(e -> {
-                manageViewModel.setGuests(guests);
-                guests.clear();
-                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
-            });
-        }
-
-
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -71,6 +60,68 @@ public class GuestListViewController implements Controller{
         passportNumberCol.setCellValueFactory(new PropertyValueFactory<>("passportNumber"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
+
+        agFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        agLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        agEmailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        agPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        agAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        agPassportNumberCol.setCellValueFactory(new PropertyValueFactory<>("passportNumber"));
+
+        showAddGuest.setVisible(false);
+        showAddGuest.setManaged(false);
+
+        if(lastController instanceof ManageBookingViewController controller){
+
+            showAddGuest.setVisible(true);
+            showAddGuest.setManaged(true);
+
+            ManageBookingViewModel manageViewModel = controller.getViewModel();
+            addBtn.setOnAction(e->{
+
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Error");
+                alert.setContentText("Cannot add one guest twice");
+                alert.getButtonTypes().add(ButtonType.OK);
+
+                if(table.getSelectionModel().getSelectedItem() != null) {
+
+                    Guest g = table.getSelectionModel().getSelectedItem().getGuest();
+
+                    for (GuestTableProperty guest : manageViewModel.getGuests()) {
+                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())) {
+                            alert.show();
+                            return;
+                        }
+                    }
+
+                    for (GuestTableProperty guest : agTable.getItems()) {
+                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())){
+                            alert.show();
+                            return;
+                        }
+                    }
+
+                    agTable.getItems().add(new GuestTableProperty(g));
+                }
+            });
+
+            editBtn.setText("Remove");
+            editBtn.setOnAction(e->{
+                GuestTableProperty g = agTable.getSelectionModel().getSelectedItem();
+                if(g != null){
+                    agTable.getItems().remove(g);
+                    agTable.refresh();
+                }
+            });
+
+            removeBtn.setText("Confirm");
+            removeBtn.setOnAction(e -> {
+                manageViewModel.setGuests(agTable.getItems());
+                agTable.getItems().clear();
+                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
+            });
+        }
     }
 
     @FXML
