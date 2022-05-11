@@ -59,7 +59,7 @@ public class ViewHandler {
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }
         currentScene.setRoot(root);
-        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\img\\icon_full_white.png"));
+        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\img\\icon_gradient.png"));
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
         primaryStage.show();

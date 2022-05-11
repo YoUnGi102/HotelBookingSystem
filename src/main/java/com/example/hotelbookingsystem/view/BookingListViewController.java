@@ -69,7 +69,7 @@ public class BookingListViewController implements Controller {
             Booking booking = table.getSelectionModel().getSelectedItem().getBooking();
             viewModel.setCurrentBooking(booking);
             viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
-            table.getItems().removeAll();
+            table.getItems().clear();
         }
     }
 

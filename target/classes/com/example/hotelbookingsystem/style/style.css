@@ -1,14 +1,9 @@
-
+.center-col {
+    -fx-alignment: CENTER;
+}
 
 .light-blue-background {
     -fx-background-color: #4A67B3;
-}
-
-.text-input {
-    -fx-background-color: #F2F2F2;
-    -fx-prompt-text-fill: #5C6889;
-    -fx-text-fill: #0D318F;
-    -fx-font-size: 18px;
 }
 
 .light_background {
@@ -16,11 +11,17 @@
 }
 
 .dark-button {
-    -fx-background-color: #0D318F;
+    -fx-background-color: #262d96;
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 20px;
-    -fx-border-radius: 20px;
+    -fx-background-radius: 10px;
     -fx-font-family: 'Arial Rounded MT Bold';
+}
+.light-button {
+    -fx-background-color: #F2F2F2;
+    -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-text-fill: #0D318F;
 }
 
 .light-label {
@@ -34,57 +35,49 @@
     -fx-font-size: 24px;
     -fx-font-family: 'Arial Rounded MT Bold';
 }
-
 .dark-label-medium {
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 36px;
     -fx-font-family: 'Arial Rounded MT Bold';
 }
-
 .dark-label-big {
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 72px;
     -fx-font-family: 'Arial Rounded MT Bold';
 }
 
-.light-button {
-    -fx-background-color: #F2F2F2;
-    -fx-font-size: 24px;
-    -fx-font-family: 'Arial Rounded MT Bold';
-    -fx-text-fill: #0D318F;
+.gradient-background {
+    -fx-background-color: linear-gradient(to right, #ff7f5088, #6a5acd88)
 }
 
-.table-row-cell {
-    -fx-fixed-cell-size: 30px;
-    -fx-font-size: 15px;
-    -fx-font-family: 'Arial Rounded MT';
-    -fx-font-weight: normal;
-    -fx-alignment: CENTER;
+.linear-grad-to-bottom{
+    -fx-background-color: linear-gradient(to bottom, #ff7f50, #6a5acd);
 }
 
-.table-row-cell:selected {
-    -fx-background-color: #4A67B3;
-    -fx-text-fill: #F2F2F2;
-    -fx-fixed-cell-size: 30px;
-    -fx-font-size: 15px;
-    -fx-font-family: 'Arial Rounded MT Bold';
-    -fx-text-align: center;
+.linear-grad-to-top{
+    -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
 }
 
-.table-view .column-header,
-.table-view .column-header .filler,
-.table-view .column-header-background .filler {
-    -fx-background-color: #4A67B3;
-    -fx-text-fill: #F2F2F2;
-    -fx-font-size: 20px;
-    -fx-font-family: 'Arial Rounded MT Bold'
-
-}
-.table-view .column-header .label {
-    -fx-text-fill: #F2F2F2;
-    -fx-font-family: 'Arial Rounded MT Bold';
+.linear-grad-to-left{
+    -fx-background-color: linear-gradient(to left, #ff7f50, #6a5acd);
 }
 
-.center-col {
-    -fx-alignment: CENTER;
+.linear-grad-to-right{
+    -fx-background-color: linear-gradient(to right, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-bottom-left{
+    -fx-background-color: linear-gradient(to bottom left, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-bottom-right{
+    -fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-top-left{
+    -fx-background-color: linear-gradient(to top left, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-top-right{
+    -fx-background-color: linear-gradient(to top right, #ff7f50, #6a5acd);
 }

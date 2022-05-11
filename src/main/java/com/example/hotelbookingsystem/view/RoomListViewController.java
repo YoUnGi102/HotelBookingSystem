@@ -80,7 +80,9 @@ public class RoomListViewController implements Controller {
     }
 
     public void reset(){
-        
+        if(table.getItems() != null)
+            table.getItems().clear();
+        previousView = null;
     }
 
     public void search(ActionEvent actionEvent) {
@@ -124,10 +126,13 @@ public class RoomListViewController implements Controller {
     }
 
     public void back() {
-        if(previousView instanceof ManageBookingViewController)
+        if(previousView instanceof ManageBookingViewController) {
+            reset();
             viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
-        else
+        }else {
+            reset();
             viewHandler.openView(ViewHandler.MENU_VIEW, this);
+        }
     }
 
     public Region getRoot() {

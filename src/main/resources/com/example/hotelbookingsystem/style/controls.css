@@ -1,0 +1,26 @@
+/* TEXT INPUT / DATE PICKER */
+
+.text-input, .date-picker {
+    -fx-background-color: #F2F2F2;
+    -fx-prompt-text-fill: #5C6889;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #262d96;
+    -fx-font-size: 18px;
+}
+
+.date-picker > .text-field {
+    -fx-background-radius: 10 0 0 10;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-radius: 0 10 10 0;
+}
+
+.button {
+    -fx-background-color: #262d96;
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 20px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
