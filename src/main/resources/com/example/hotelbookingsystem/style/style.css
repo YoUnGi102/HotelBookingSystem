@@ -17,12 +17,6 @@
     -fx-background-radius: 10px;
     -fx-font-family: 'Arial Rounded MT Bold';
 }
-.light-button {
-    -fx-background-color: #F2F2F2;
-    -fx-font-size: 24px;
-    -fx-font-family: 'Arial Rounded MT Bold';
-    -fx-text-fill: #0D318F;
-}
 
 .light-label {
     -fx-font-size: 24px;

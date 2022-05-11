@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Label?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.BookingListViewController">
    <children>
       <HBox prefHeight="100.0" prefWidth="1080.0" stylesheets="@../style/style.css">
@@ -66,7 +65,7 @@
                <children>
                   <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <placeholder>
-                        <Label/>
+                        <Label text="" />
                      </placeholder>
                      <columns>
                       <TableColumn fx:id="nameCol" prefWidth="180.0" styleClass="table-column-light" text="Name" />

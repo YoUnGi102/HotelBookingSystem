@@ -23,12 +23,12 @@ public class ModelManager implements Model{
 
     public ModelManager() throws SQLException {
 
-        roomList = RoomList.getInstance();
-        bookingList = BookingList.getInstance();
-        guestList = GuestList.getInstance();
-
-        ReceptionistTable receptionistTable = ReceptionistTable.getInstance();
-        receptionist = receptionistTable.select("rec001");
+//        roomList = RoomList.getInstance();
+//        bookingList = BookingList.getInstance();
+//        guestList = GuestList.getInstance();
+//
+//        ReceptionistTable receptionistTable = ReceptionistTable.getInstance();
+//        receptionist = receptionistTable.select("rec001");
 
     }
 
