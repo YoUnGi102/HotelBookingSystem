@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.viewModel;
 
+import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Model;
 import com.example.hotelbookingsystem.model.Room;
@@ -8,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -20,7 +22,10 @@ public class ManageBookingViewModel {
     private ObjectProperty<LocalDate> dateFrom;
     private ObjectProperty<LocalDate> dateTo;
 
+    private Booking currentBooking;
+
     public ManageBookingViewModel(Model model){
+        this.currentBooking = null;
         guests = new SimpleObjectProperty<>();
         guests.setValue(FXCollections.observableArrayList());
         room = new SimpleObjectProperty<>();
@@ -46,7 +51,10 @@ public class ManageBookingViewModel {
         this.room.setValue(room);
     }
     public void setGuests(ObservableList<GuestTableProperty> guests){
-        this.guests.setValue(guests);
+        ObservableList<GuestTableProperty> newGuests = FXCollections.observableArrayList();
+        newGuests.addAll(guests);
+        newGuests.addAll(this.guests.getValue());
+        this.guests.setValue(newGuests);
     }
     public void setDateFrom(LocalDate dateFrom){
         this.dateFrom.setValue(dateFrom);
@@ -68,6 +76,13 @@ public class ManageBookingViewModel {
         return dateTo.getValue();
     }
 
+    public Booking getCurrentBooking() {
+        return currentBooking;
+    }
+    public void setCurrentBooking(Booking currentBooking) {
+        this.currentBooking = currentBooking;
+    }
+
     public void addBooking(){
         ArrayList<Guest> guests = new ArrayList<>();
         this.guests.getValue().forEach((guest) -> {
@@ -76,4 +91,23 @@ public class ManageBookingViewModel {
         model.addBooking(guests, room.getValue(), dateFrom.getValue(), dateTo.getValue());
     }
 
+    public void clear(){
+        guests.setValue(FXCollections.observableArrayList());
+        room.setValue(null);
+        dateFrom.setValue(null);
+        dateTo.setValue(null);
+        currentBooking = null;
+    }
+
+    public void editBooking() throws SQLException {
+        currentBooking.setRoom(room.getValue());
+        currentBooking.setDateTo(dateTo.getValue());
+        currentBooking.setDateFrom(dateFrom.getValue());
+        ArrayList<Guest> guests = new ArrayList<>();
+        this.guests.getValue().forEach((guest) -> {
+            guests.add(guest.getGuest());
+        });
+        currentBooking.setGuests(guests);
+        model.editBooking(currentBooking);
+    }
 }

@@ -1,7 +1,11 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Booking;
+import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Region;
@@ -91,8 +95,26 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+
+        if(lastController instanceof BookingListViewController controller &&
+                controller.getViewModel().getCurrentBooking() != null){
+            Booking booking = controller.getViewModel().getCurrentBooking();
+
+            ObservableList<GuestTableProperty> guests = FXCollections.observableArrayList();
+            for (Guest g : booking.getGuests()) {
+                guests.add(new GuestTableProperty(g));
+            }
+
+            ManageBookingViewModel manageBookingViewModel = manageBookingViewController.getViewModel();
+            manageBookingViewModel.setGuests(guests);
+            manageBookingViewModel.setRoom(booking.getRoom());
+            manageBookingViewModel.setDateFrom(booking.getDateFrom());
+            manageBookingViewModel.setDateTo(booking.getDateTo());
+            manageBookingViewModel.setCurrentBooking(booking);
+
+        }
+
         return manageBookingViewController.getRoot();
     }
-
 }
 

@@ -221,6 +221,7 @@ public class GuestTable implements GuestDAO {
                     statement.setString(counter++, g.getPassportNumber());
                 }
 
+                statement.executeUpdate();
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -262,7 +263,8 @@ public class GuestTable implements GuestDAO {
                     statement.setInt(counter * 2 + 2, booking.getBookingId());
                     counter++;
                 }
-                System.out.println(statement.executeUpdate());
+
+                statement.executeUpdate();
 
 
             } catch (SQLException e) {

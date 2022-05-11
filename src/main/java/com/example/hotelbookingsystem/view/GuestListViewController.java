@@ -41,7 +41,7 @@ public class GuestListViewController implements Controller{
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
-        
+
         this.previousView = lastController;
 
         if(lastController instanceof ManageBookingViewController controller){
@@ -57,9 +57,11 @@ public class GuestListViewController implements Controller{
             });
             removeBtn.setOnAction(e -> {
                 manageViewModel.setGuests(guests);
+                guests.clear();
                 viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
             });
         }
+
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -86,6 +88,7 @@ public class GuestListViewController implements Controller{
     }
 
     public void edit(ActionEvent actionEvent) {
+
     }
 
     public void remove(ActionEvent actionEvent) throws SQLException {

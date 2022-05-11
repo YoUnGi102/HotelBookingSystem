@@ -1,24 +1,18 @@
 package com.example.hotelbookingsystem.view;
 
-import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.time.LocalDate;
+import java.sql.SQLException;
 
 public class ManageBookingViewController implements Controller {
 
@@ -140,11 +134,70 @@ public class ManageBookingViewController implements Controller {
     @FXML
     void cancel(ActionEvent event) {
         viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
+        viewModel.clear();
     }
 
     @FXML
     void confirm(ActionEvent event) {
-        viewModel.addBooking();
+
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Error");
+        alert.getButtonTypes().add(ButtonType.OK);
+
+        if(guestTable.getItems().size() == 0){
+            alert.setContentText("No guests selected!");
+            alert.show();
+            return;
+        }else{
+            boolean guestInfo = false;
+            for (GuestTableProperty g : guestTable.getItems()) {
+                if (g.getGuest().getEmail() != null && g.getGuest().getPhoneNumber() != null) {
+                    guestInfo = true;
+                    break;
+                }
+            }
+            if(!guestInfo){
+                alert.setContentText("At least one guest has to have phone number and email added!");
+                alert.show();
+                return;
+            }
+        }
+
+        if(room.getValue() == null){
+            alert.setContentText("No room selected!");
+            alert.show();
+            return;
+        }else if(guestTable.getItems().size() > room.getValue().getRoomSize()){
+            alert.setContentText("Too many guests in a room!");
+            alert.show();
+            return;
+        }
+
+        if(dateFrom.getValue() == null){
+            alert.setContentText("Date of arrival not selected!");
+            alert.show();
+            return;
+        }
+
+        if(dateTo.getValue() == null){
+            alert.setContentText("Date of departure not selected!");
+            alert.show();
+            return;
+        }
+
+        try {
+            if(viewModel.getCurrentBooking() == null) {
+                viewModel.addBooking();
+                viewModel.clear();
+            }else {
+                viewModel.editBooking();
+                viewModel.clear();
+            }
+            viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Region getRoot() {
