@@ -60,6 +60,7 @@ public class BookingListViewController implements Controller {
 
     @FXML
     void back(ActionEvent event) {
+        viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
     @FXML

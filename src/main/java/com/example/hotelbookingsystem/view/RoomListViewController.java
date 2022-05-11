@@ -120,7 +120,9 @@ public class RoomListViewController implements Controller {
 
     public void back() {
         if(previousView instanceof ManageBookingViewController)
-            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, null);
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
+        else
+            viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
     public Region getRoot() {
