@@ -1,6 +1,5 @@
 package com.example.hotelbookingsystem.view;
 
-import com.example.hotelbookingsystem.view.ManageBookingViewController.ManageAction;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

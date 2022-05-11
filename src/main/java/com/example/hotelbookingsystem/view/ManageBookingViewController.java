@@ -5,8 +5,6 @@ import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class ManageBookingViewController implements Controller {
 
@@ -91,19 +88,20 @@ public class ManageBookingViewController implements Controller {
         return viewModel;
     }
 
-    private void setRoomAdded(boolean roomAdded){
-        if(roomAdded){
-            roomSelected.setVisible(true);
-            roomSelected.setManaged(true);
-            roomNotSelected.setVisible(false);
-            roomNotSelected.setManaged(false);
-        }else{
-            roomSelected.setVisible(false);
-            roomSelected.setManaged(false);
-            roomNotSelected.setVisible(true);
-            roomNotSelected.setManaged(true);
+    // TODO ADD NEW GUEST
+    @FXML
+    void addGuest() {
 
-        }
+    }
+    @FXML
+    void searchGuest() {
+        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
+    }
+    @FXML
+    void removeGuest() {
+        guestTable.itemsProperty().getValue().remove(guestTable.getSelectionModel().getSelectedItem());
+        if(guestTable.itemsProperty().getValue().size() == 0)
+            setGuestAdded(false);
     }
     private void setGuestAdded(boolean guestAdded){
         if(guestAdded){
@@ -120,21 +118,6 @@ public class ManageBookingViewController implements Controller {
     }
 
     @FXML
-    void addGuest() {
-        // TODO ADD NEW GUEST
-    }
-    @FXML
-    void searchGuest() {
-        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
-    }
-    @FXML
-    void removeGuest() {
-        guestTable.itemsProperty().getValue().remove(guestTable.getSelectionModel().getSelectedItem());
-        if(guestTable.itemsProperty().getValue().size() == 0)
-            setGuestAdded(false);
-    }
-
-    @FXML
     void searchRoom() {
         viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
     }
@@ -143,25 +126,37 @@ public class ManageBookingViewController implements Controller {
         room = null;
         setRoomAdded(false);
     }
+    private void setRoomAdded(boolean roomAdded){
+        if(roomAdded){
+            roomSelected.setVisible(true);
+            roomSelected.setManaged(true);
+            roomNotSelected.setVisible(false);
+            roomNotSelected.setManaged(false);
+        }else{
+            roomSelected.setVisible(false);
+            roomSelected.setManaged(false);
+            roomNotSelected.setVisible(true);
+            roomNotSelected.setManaged(true);
+
+        }
+    }
 
     @FXML
     void cancel(ActionEvent event) {
         viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
         viewModel.clear();
     }
-
     @FXML
     void confirm(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Error");
-        alert.getButtonTypes().add(ButtonType.OK);
+        Alert alert = new ErrorAlert();
 
         if(guestTable.getItems().size() == 0){
             alert.setContentText("No guests selected!");
             alert.show();
             return;
-        }else{
+        }
+        else{
             boolean guestInfo = false;
             for (GuestTableProperty g : guestTable.getItems()) {
                 if (g.getGuest().getEmail() != null && g.getGuest().getPhoneNumber() != null) {
@@ -180,7 +175,8 @@ public class ManageBookingViewController implements Controller {
             alert.setContentText("No room selected!");
             alert.show();
             return;
-        }else if(guestTable.getItems().size() > room.getValue().getRoomSize()){
+        }
+        else if(guestTable.getItems().size() > room.getValue().getRoomSize()){
             alert.setContentText("Too many guests in a room!");
             alert.show();
             return;
@@ -209,18 +205,12 @@ public class ManageBookingViewController implements Controller {
             viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            (new DatabaseErrorAlert()).show();
         }
     }
 
     public Region getRoot() {
         return root;
-    }
-
-    public enum ManageAction{
-        ADD,
-        EDIT,
-        REMOVE,
     }
 
 }

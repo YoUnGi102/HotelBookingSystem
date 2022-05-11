@@ -74,7 +74,7 @@ public class BookingListViewController implements Controller {
     }
 
     @FXML
-    void remove(ActionEvent event) {
+    void remove() {
         try {
             BookingTableProperty property = table.getSelectionModel().getSelectedItem();
             table.getItems().remove(property);

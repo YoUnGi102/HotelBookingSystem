@@ -50,6 +50,8 @@ public class RoomListViewController implements Controller {
             editBtn.setVisible(false);
             bookBtn.setText("Select");
 
+            if (manageViewModel.getGuests().size() > 0)
+                size.setText(String.valueOf(manageViewModel.getGuests().size()));
             if (manageViewModel.getDateFrom() != null)
                 dateFrom.setValue(manageViewModel.getDateFrom());
             if (manageViewModel.getDateTo() != null)
@@ -77,6 +79,9 @@ public class RoomListViewController implements Controller {
         viewModel.bindTableItemsProperty(table.itemsProperty());
     }
 
+    public void reset(){
+        
+    }
 
     public void search(ActionEvent actionEvent) {
 

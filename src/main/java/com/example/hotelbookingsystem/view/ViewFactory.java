@@ -109,9 +109,9 @@ public class ViewFactory {
 
             ManageBookingViewModel manageBookingViewModel = manageBookingViewController.getViewModel();
             manageBookingViewModel.setGuests(guests);
-            manageBookingViewModel.setRoom(booking.getRoom());
             manageBookingViewModel.setDateFrom(booking.getDateFrom());
             manageBookingViewModel.setDateTo(booking.getDateTo());
+            manageBookingViewModel.setRoom(booking.getRoom());
             manageBookingViewModel.setCurrentBooking(booking);
 
         }

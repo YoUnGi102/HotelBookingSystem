@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 
 public class ModelManager implements Model{
@@ -97,13 +98,15 @@ public class ModelManager implements Model{
     private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> roomsSelected = roomList.getAll();
 
+        if (from == null)
+            from = LocalDate.now();
+        if (to == null)
+            to = LocalDate.now().plusYears(1);
+
         for (Booking booking : bookingList.getAll()) {
             // start1 <= end2 and start2 <= end1
             if(booking.getDateFrom().isBefore(to) && from.isBefore(booking.getDateTo())){
-                roomsSelected.forEach((room) -> {
-                    if(room.getRoomNumber() == booking.getRoom().getRoomNumber())
-                        roomsSelected.remove(room);
-                });
+                roomsSelected.removeIf(room -> room.getRoomNumber() == booking.getRoom().getRoomNumber());
             }
         }
 

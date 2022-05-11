@@ -1,3 +1,5 @@
+
+
 .light-blue-background {
     -fx-background-color: #4A67B3;
 }
@@ -17,8 +19,8 @@
     -fx-background-color: #0D318F;
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 20px;
-    -fx-font-family: 'Arial Rounded MT Bold';
     -fx-border-radius: 20px;
+    -fx-font-family: 'Arial Rounded MT Bold';
 }
 
 .light-label {
@@ -30,6 +32,12 @@
 .dark-label {
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
+.dark-label-medium {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 36px;
     -fx-font-family: 'Arial Rounded MT Bold';
 }
 
@@ -49,8 +57,9 @@
 .table-row-cell {
     -fx-fixed-cell-size: 30px;
     -fx-font-size: 15px;
-    -fx-font-family: 'Arial Rounded MT Bold';
-    -fx-text-align: center;
+    -fx-font-family: 'Arial Rounded MT';
+    -fx-font-weight: normal;
+    -fx-alignment: CENTER;
 }
 
 .table-row-cell:selected {
@@ -69,9 +78,13 @@
     -fx-text-fill: #F2F2F2;
     -fx-font-size: 20px;
     -fx-font-family: 'Arial Rounded MT Bold'
-}
 
+}
 .table-view .column-header .label {
     -fx-text-fill: #F2F2F2;
-    -fx-font-weight: bold;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
+.center-col {
+    -fx-alignment: CENTER;
 }
