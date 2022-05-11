@@ -5,6 +5,8 @@ import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ManageBookingViewController implements Controller {
 
@@ -51,6 +54,8 @@ public class ManageBookingViewController implements Controller {
                 quality.setText(String.valueOf(newVal.getQuality()));
                 size.setText(String.valueOf(newVal.getRoomSize()));
                 setRoomAdded(true);
+            }else{
+                setRoomAdded(false);
             }
         });
 
@@ -69,9 +74,17 @@ public class ManageBookingViewController implements Controller {
 
         // DATE FROM PROPERTY
         viewModel.bindDateFromProperty(dateFrom.valueProperty());
+        dateFrom.valueProperty().addListener((observableValue, oldVal, newVal) -> {
+            setRoomAdded(false);
+            viewModel.setRoom(null);
+        });
 
         // DATE TO PROPERTY
         viewModel.bindDateToProperty(dateTo.valueProperty());
+        dateTo.valueProperty().addListener((observableValue, oldVal, newVal) -> {
+            setRoomAdded(false);
+            viewModel.setRoom(null);
+        });
     }
 
     public ManageBookingViewModel getViewModel(){

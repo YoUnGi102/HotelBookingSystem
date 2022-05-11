@@ -3,9 +3,12 @@ package com.example.hotelbookingsystem.model.list;
 import com.example.hotelbookingsystem.dao.BookingDAO;
 import com.example.hotelbookingsystem.dao.BookingTable;
 import com.example.hotelbookingsystem.model.Booking;
+import com.example.hotelbookingsystem.model.Room;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class BookingList {
 

@@ -39,23 +39,23 @@ public class ViewHandler {
         switch (id) {
             case GUEST_LIST_VIEW -> {
                 root = viewFactory.loadGuestListView(previousView);
-                primaryStage.setTitle(" Guest List");
+                primaryStage.setTitle("Guest List");
             }
             case ROOM_LIST_VIEW -> {
                 root = viewFactory.loadRoomListView(previousView);
-                primaryStage.setTitle(" Room List");
+                primaryStage.setTitle("Room List");
             }
             case BOOKING_LIST_VIEW -> {
                 root = viewFactory.loadBookingListView(previousView);
-                primaryStage.setTitle(" Room Booking List");
+                primaryStage.setTitle("Room Booking List");
             }
             case MANAGE_BOOKING_VIEW -> {
                 root = viewFactory.loadManageBookingView(previousView);
-                primaryStage.setTitle(" Manage Booking");
+                primaryStage.setTitle("Manage Booking");
             }
             case MENU_VIEW -> {
                 root = viewFactory.loadMenuView(previousView);
-                primaryStage.setTitle(" Menu");
+                primaryStage.setTitle("Menu");
             }
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }

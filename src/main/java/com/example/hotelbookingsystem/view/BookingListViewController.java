@@ -69,13 +69,17 @@ public class BookingListViewController implements Controller {
             Booking booking = table.getSelectionModel().getSelectedItem().getBooking();
             viewModel.setCurrentBooking(booking);
             viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
+            table.getItems().removeAll();
         }
     }
 
     @FXML
     void remove(ActionEvent event) {
         try {
-            viewModel.removeBooking(table.getSelectionModel().getSelectedItem().getBooking());
+            BookingTableProperty property = table.getSelectionModel().getSelectedItem();
+            table.getItems().remove(property);
+            viewModel.removeBooking(property.getBooking());
+            table.refresh();
         } catch (SQLException e) {
             e.printStackTrace();
         }

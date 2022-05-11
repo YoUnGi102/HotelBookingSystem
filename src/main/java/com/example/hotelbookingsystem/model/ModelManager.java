@@ -81,20 +81,34 @@ public class ModelManager implements Model{
         ObservableList<Room> searchedRooms = FXCollections.observableArrayList();
         if (to != null) roomList.selectAllSearched(to);
 
-        for (Room room : roomList.getAll()) {
-            // TODO Add searching by date
+        for (Room room : roomsByDate(from, to)) {
             if (room.getFloor() != floor && floor !=0)
                 continue;
             if (room.getRoomSize() != size && size !=0)
                 continue;
             if (room.getQuality() != quality && quality !=0)
                 continue;
-
-
             searchedRooms.add(room);
         }
         roomList.refresh();
         return searchedRooms;
+    }
+
+    private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
+        ObservableList<Room> roomsSelected = roomList.getAll();
+
+        for (Booking booking : bookingList.getAll()) {
+            // start1 <= end2 and start2 <= end1
+            if(booking.getDateFrom().isBefore(to) && from.isBefore(booking.getDateTo())){
+                roomsSelected.forEach((room) -> {
+                    if(room.getRoomNumber() == booking.getRoom().getRoomNumber())
+                        roomsSelected.remove(room);
+                });
+            }
+        }
+
+        return roomsSelected;
+
     }
 
     @Override
