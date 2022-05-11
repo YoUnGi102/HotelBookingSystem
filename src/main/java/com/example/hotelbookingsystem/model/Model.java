@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public interface Model {
 
+<<<<<<< Updated upstream
     ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email);
 
     ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to);
@@ -21,6 +22,11 @@ public interface Model {
     public ObservableList<Room> showALlBookedRooms();
     public ObservableList<Room> showALlAvailableRooms();
     public ObservableList<Room> showALlOutOfOrderRooms();
+=======
+    void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo);
+    void removeBooking(Booking booking) throws SQLException;
+    void editBooking(Booking booking) throws SQLException;
+>>>>>>> Stashed changes
 
     public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo);
 }

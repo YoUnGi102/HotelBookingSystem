@@ -42,7 +42,32 @@ public class ModelManager implements Model{
     }
 
     @Override
+<<<<<<< Updated upstream
     public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) {
+=======
+    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) {
+        Booking booking = new Booking(guests, dateFrom, dateTo, room, receptionist);
+        BookingTable bookingTable = BookingTable.getInstance();
+        try {
+            bookingTable.insert(booking);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeBooking(Booking booking) throws SQLException {
+        bookingList.remove(booking);
+    }
+
+    @Override
+    public void editBooking(Booking booking) throws SQLException {
+        bookingList.update(booking);
+    }
+
+    @Override
+    public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
+>>>>>>> Stashed changes
         ObservableList<Guest> searchedGuests = FXCollections.observableArrayList();
         for (Guest guest : guestList) {
             if(!firstName.equals("") && !guest.getFirstName().contains(firstName))

@@ -13,19 +13,19 @@ import java.time.LocalDateTime;
 
 public class BookingListViewModel {
 
-        private Model model;
+    private Model model;
 
-        private ObjectProperty<ObservableList<BookingTableProperty>> bookings;
+    private Booking currentBooking;
 
-        public BookingListViewModel(Model model){
-            bookings =new SimpleObjectProperty<>();
-            this.model= model;
-        }
+    private ObjectProperty<ObservableList<BookingTableProperty>> bookings;
 
-        public void bindTableItemsProperty(ObjectProperty<ObservableList<BookingTableProperty>> itemsProperty){
-            itemsProperty.bind(bookings);
-        }
+    public BookingListViewModel(Model model){
+        bookings = new SimpleObjectProperty<>();
+        currentBooking = null;
+        this.model= model;
+    }
 
+<<<<<<< Updated upstream
         public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo){
             ObservableList<BookingTableProperty> bookingsFormatted = FXCollections.observableArrayList();
             for (Booking b: model.searchBookings(phoneNumber, email, roomNumber, dateFrom,dateTo)) {
@@ -33,4 +33,28 @@ public class BookingListViewModel {
             }
             bookings.setValue(bookingsFormatted);
         }
+=======
+    public Booking getCurrentBooking() {
+        return currentBooking;
+    }
+
+    public void setCurrentBooking(Booking currentBooking) {
+        this.currentBooking = currentBooking;
+    }
+
+    public void bindTableItemsProperty(ObjectProperty<ObservableList<BookingTableProperty>> itemsProperty){
+            itemsProperty.bind(bookings);
+        }
+
+    public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
+        ObservableList<BookingTableProperty> bookingsFormatted = FXCollections.observableArrayList();
+        for (Booking b: model.searchBookings(phoneNumber, email, roomNumber, dateFrom,dateTo)) {
+            bookingsFormatted.add(new BookingTableProperty(b));
+        }
+        bookings.setValue(bookingsFormatted);
+    }
+    public void removeBooking(Booking booking) throws SQLException {
+        model.removeBooking(booking);
+    }
+>>>>>>> Stashed changes
 }

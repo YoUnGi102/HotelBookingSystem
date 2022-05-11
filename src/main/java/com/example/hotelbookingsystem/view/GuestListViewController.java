@@ -29,6 +29,29 @@ public class GuestListViewController {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+<<<<<<< Updated upstream
+=======
+        
+        this.previousView = lastController;
+
+        if(lastController instanceof ManageBookingViewController controller){
+            ManageBookingViewModel manageViewModel = controller.getViewModel();
+            addBtn.setVisible(false);
+            editBtn.setText("Add");
+            removeBtn.setText("Confirm");
+            ObservableList<GuestTableProperty> guests = FXCollections.observableArrayList();
+            editBtn.setOnAction(e->{
+                Guest g = table.getSelectionModel().getSelectedItem().getGuest();
+                if(g != null)
+                    guests.add(new GuestTableProperty(g));
+            });
+            removeBtn.setOnAction(e -> {
+                manageViewModel.setGuests(guests);
+                guests.clear();
+                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
+            });
+        }
+>>>>>>> Stashed changes
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"){});
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -52,6 +75,7 @@ public class GuestListViewController {
     }
 
     public void edit(ActionEvent actionEvent) {
+
     }
 
     public void remove(ActionEvent actionEvent) {

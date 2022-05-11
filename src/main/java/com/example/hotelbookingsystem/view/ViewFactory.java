@@ -1,6 +1,14 @@
 package com.example.hotelbookingsystem.view;
 
+<<<<<<< Updated upstream
+=======
+import com.example.hotelbookingsystem.model.Booking;
+import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
+import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
+>>>>>>> Stashed changes
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Region;
@@ -76,5 +84,43 @@ public class ViewFactory {
         return roomListViewController.getRoot();
     }
 
+<<<<<<< Updated upstream
+=======
+    public Region loadManageBookingView(Controller lastController){
+
+        if (manageBookingViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource("manage_booking_view.fxml"));
+            try {
+                Region root = loader.load();
+                manageBookingViewController = loader.getController();
+                manageBookingViewController.init(viewHandler, viewModelFactory.getManageBookingViewModel(), root, lastController);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+
+        if(lastController instanceof BookingListViewController controller &&
+                controller.getViewModel().getCurrentBooking() != null){
+            Booking booking = controller.getViewModel().getCurrentBooking();
+
+            ObservableList<GuestTableProperty> guests = FXCollections.observableArrayList();
+            for (Guest g : booking.getGuests()) {
+                guests.add(new GuestTableProperty(g));
+            }
+
+            ManageBookingViewModel manageBookingViewModel = manageBookingViewController.getViewModel();
+            manageBookingViewModel.setGuests(guests);
+            manageBookingViewModel.setRoom(booking.getRoom());
+            manageBookingViewModel.setDateFrom(booking.getDateFrom());
+            manageBookingViewModel.setDateTo(booking.getDateTo());
+            manageBookingViewModel.setCurrentBooking(booking);
+
+        }
+
+        return manageBookingViewController.getRoot();
+    }
+
+>>>>>>> Stashed changes
 }
 
