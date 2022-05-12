@@ -7,6 +7,8 @@ import com.example.hotelbookingsystem.model.list.GuestList;
 import com.example.hotelbookingsystem.model.list.RoomList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -51,6 +53,18 @@ public class ModelManager implements Model{
     @Override
     public void removeGuest(Guest guest) throws SQLException {
             guestList.remove(guest);
+    }
+
+    @Override
+    public void addGuest(Guest guest) throws SQLException
+    {
+        guestList.add(guest);
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Success");
+        alert.setContentText("Guest successfully added");
+        alert.getButtonTypes().add(ButtonType.OK);
+        alert.show();
+
     }
 
     public void editBooking(Booking booking) throws SQLException {
