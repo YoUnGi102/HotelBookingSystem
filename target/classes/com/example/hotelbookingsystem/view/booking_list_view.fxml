@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -11,16 +12,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.BookingListViewController">
+<?import javafx.scene.control.Label?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.BookingListViewController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="1080.0" styleClass="light-blue-background" stylesheets="@../style/style.css">
+      <HBox prefHeight="100.0" prefWidth="1080.0" stylesheets="@../../../../style/style.css">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -30,7 +31,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="roomNumber" prefHeight="50.0" prefWidth="150.0" promptText="Room Number" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="roomNumber" prefHeight="50.0" prefWidth="150.0" promptText="Room Number" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -45,7 +46,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </DatePicker>
-            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Search">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Search">
                <HBox.margin>
                   <Insets bottom="5.0" left="50.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -54,31 +55,46 @@
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
+         <styleClass>
+            <String fx:value="light-blue-background" />
+            <String fx:value="linear-grad-to-right" />
+         </styleClass>
       </HBox>
-      <ScrollPane fitToWidth="true" prefHeight="500.0" prefWidth="1080.0">
+      <ScrollPane fitToWidth="true" prefHeight="500.0" prefWidth="1080.0" style="-fx-background-color: transparent;">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
                <children>
-                  <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="nameCol" prefWidth="175.0" styleClass="table-column-light" text="Name" />
-                      <TableColumn fx:id="phoneNumberCol" prefWidth="175.0" styleClass="table-column-light" text="Phone Number" />
-                        <TableColumn fx:id="emailCol" prefWidth="225.0" styleClass="table-column-light" text="Email" />
-                        <TableColumn fx:id="roomNumberCol" prefWidth="100.0" text="Room">
+                  <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <placeholder>
+                        <Label/>
+                     </placeholder>
+                     <columns>
+                      <TableColumn fx:id="nameCol" prefWidth="180.0" styleClass="table-column-light" text="Name" />
+                        <TableColumn fx:id="emailCol" prefWidth="250.0" styleClass="table-column-light" text="Email" />
+                      <TableColumn fx:id="phoneNumberCol" prefWidth="175.0" text="Phone Number">
                            <styleClass>
                               <String fx:value="table-column-light" />
                               <String fx:value="center-col" />
-                           </styleClass></TableColumn>
-                        <TableColumn fx:id="dateFromCol" prefWidth="175.0" text="Date From">
+                           </styleClass>
+                        </TableColumn>
+                        <TableColumn fx:id="roomNumberCol" prefWidth="105.0" text="Room">
                            <styleClass>
                               <String fx:value="table-column-light" />
                               <String fx:value="center-col" />
-                           </styleClass></TableColumn>
-                        <TableColumn fx:id="dateToCol" prefWidth="175.0" text="Date To">
+                           </styleClass>
+                        </TableColumn>
+                        <TableColumn fx:id="dateFromCol" prefWidth="150.0" text="Date From">
                            <styleClass>
                               <String fx:value="table-column-light" />
                               <String fx:value="center-col" />
-                           </styleClass></TableColumn>
+                           </styleClass>
+                        </TableColumn>
+                        <TableColumn fx:id="dateToCol" prefWidth="150.0" text="Date To">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass>
+                        </TableColumn>
                     </columns>
                   </TableView>
                </children>
@@ -88,30 +104,34 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
-      <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0" />
-      <HBox prefHeight="83.0" prefWidth="1080.0">
+      <HBox prefHeight="80.0" prefWidth="1080.0" styleClass="linear-grad-to-right">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Back">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="550.0" top="10.0" />
+                  <Insets bottom="15.0" left="10.0" right="550.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Add">
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Add">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Edit">
+            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Edit">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Remove">
+            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Remove">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@../../../../style/style.css" />
+      <URL value="@../../../../style/table.css" />
+      <URL value="@../../../../style/controls.css" />
+   </stylesheets>
 </VBox>

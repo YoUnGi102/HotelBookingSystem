@@ -26,13 +26,13 @@ public class MenuViewController implements Controller {
             viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
         });
         manageStaff.setOnAction(e -> {
-            // TODO ADD STAFF_LIST_VIEW
+            // TODO ADD STAFF_LIST_VIEWrec0
         });
         manageGuests.setOnAction(e -> {
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
         });
         logOut.setOnAction(e -> {
-            // TODO ADD LOG_IN_VIEW
+            viewHandler.openView(ViewHandler.LOGIN_VIEW, this);
         });
 
     }

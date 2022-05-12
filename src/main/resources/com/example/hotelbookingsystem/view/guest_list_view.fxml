@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,16 +11,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.GuestListViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.GuestListViewController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="1080.0" styleClass="light-blue-background" stylesheets="@../style/style.css">
+      <HBox prefHeight="100.0" prefWidth="1080.0" styleClass="gradient-background-full" stylesheets="@../../../../style/style.css">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <TextField fx:id="firstName" prefHeight="50.0" prefWidth="150.0" promptText="First Name" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="firstName" prefHeight="50.0" prefWidth="150.0" promptText="First Name" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -28,22 +29,22 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="eMail" prefHeight="50.0" prefWidth="150.0" promptText="E-mail" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="eMail" prefHeight="50.0" prefWidth="150.0" promptText="E-mail" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="passportNumber" prefHeight="50.0" prefWidth="150.0" promptText="Passport Num." styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="passportNumber" prefHeight="50.0" prefWidth="150.0" promptText="Passport Num." styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Search">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Search">
                <HBox.margin>
                   <Insets bottom="5.0" left="50.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -53,12 +54,15 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <ScrollPane fitToWidth="true" prefHeight="500.0" prefWidth="1080.0">
+      <ScrollPane fx:id="guestScroll" fitToWidth="true" prefHeight="300.0" prefWidth="1080.0" stylesheets="@../../../../style/table.css">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
                <children>
-                  <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
+                  <TableView fx:id="table" prefHeight="400.0" prefWidth="1040.0" stylesheets="@../../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <placeholder>
+                        <Label />
+                     </placeholder>
+                     <columns>
                       <TableColumn fx:id="firstNameCol" prefWidth="150.0" styleClass="table-column-light" text="Name" />
                       <TableColumn fx:id="lastNameCol" prefWidth="150.0" styleClass="table-column-light" text="Surname" />
                         <TableColumn fx:id="phoneNumberCol" prefWidth="150.0" styleClass="table-column-light" text="Phone Num." />
@@ -74,11 +78,14 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
-      <ScrollPane fx:id="showAddGuest" fitToWidth="true" prefHeight="300.0" prefWidth="1080.0">
+      <ScrollPane fx:id="showAddGuest" fitToWidth="true" prefHeight="200.0" prefWidth="1080.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1080.0">
                <children>
-                  <TableView fx:id="agTable" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="agTable" prefHeight="600.0" prefWidth="1040.0" stylesheets="@../../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <placeholder>
+                        <Label />
+                     </placeholder>
                      <columns>
                         <TableColumn fx:id="agFirstNameCol" prefWidth="150.0" styleClass="table-column-light" text="Name" />
                         <TableColumn fx:id="agLastNameCol" prefWidth="150.0" styleClass="table-column-light" text="Surname" />
@@ -95,29 +102,24 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
-      <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0">
-         <VBox.margin>
-            <Insets bottom="20.0" />
-         </VBox.margin>
-      </Rectangle>
-      <HBox prefHeight="83.0" prefWidth="1080.0">
+      <HBox prefHeight="80.0" prefWidth="1080.0" styleClass="gradient-background-full">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Back">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="550.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Add">
+            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Add">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="editBtn" mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Edit">
+            <Button fx:id="editBtn" mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Edit">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Remove">
+            <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Remove">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -125,4 +127,9 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@../../../../style/style.css" />
+      <URL value="@../../../../style/controls.css" />
+      <URL value="@../../../../style/table.css" />
+   </stylesheets>
 </VBox>

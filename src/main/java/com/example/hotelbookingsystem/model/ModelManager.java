@@ -20,44 +20,19 @@ public class ModelManager implements Model{
     RoomList roomList;
     BookingList bookingList;
     GuestList guestList;
+    ReceptionistTable receptionistTable;
 
     private Receptionist receptionist;
 
     public ModelManager() throws SQLException {
-
         roomList = RoomList.getInstance();
         bookingList = BookingList.getInstance();
         guestList = GuestList.getInstance();
-
-        ReceptionistTable receptionistTable = ReceptionistTable.getInstance();
-        receptionist = receptionistTable.select("rec001");
-
-    }
-
-    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) {
-        Booking booking = new Booking(guests, dateFrom, dateTo, room, receptionist);
-        BookingTable bookingTable = BookingTable.getInstance();
-        try {
-            bookingTable.insert(booking);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        receptionistTable = ReceptionistTable.getInstance();
     }
 
     @Override
-    public void removeBooking(Booking booking) throws SQLException {
-        bookingList.remove(booking);
-    }
-
-
-    @Override
-    public void removeGuest(Guest guest) throws SQLException {
-            guestList.remove(guest);
-    }
-
-    @Override
-    public void addGuest(Guest guest) throws SQLException
-    {
+    public void addGuest(Guest guest) throws SQLException {
         guestList.add(guest);
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Success");
@@ -65,10 +40,6 @@ public class ModelManager implements Model{
         alert.getButtonTypes().add(ButtonType.OK);
         alert.show();
 
-    }
-
-    public void editBooking(Booking booking) throws SQLException {
-        bookingList.update(booking);
     }
 
     @Override
@@ -90,12 +61,14 @@ public class ModelManager implements Model{
         }
         return searchedGuests;
     }
+    @Override
+    public void removeGuest(Guest guest) throws SQLException {
+        guestList.remove(guest);
+    }
 
     @Override
     public ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> searchedRooms = FXCollections.observableArrayList();
-        if (to != null) roomList.selectAllSearched(to);
-
         for (Room room : roomsByDate(from, to)) {
             if (room.getFloor() != floor && floor !=0)
                 continue;
@@ -105,10 +78,8 @@ public class ModelManager implements Model{
                 continue;
             searchedRooms.add(room);
         }
-        roomList.refresh();
         return searchedRooms;
     }
-
     private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> roomsSelected = roomList.getAll();
 
@@ -127,7 +98,6 @@ public class ModelManager implements Model{
         return roomsSelected;
 
     }
-
     @Override
     public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
         ObservableList<Booking> searchedBookings = FXCollections.observableArrayList();
@@ -145,5 +115,32 @@ public class ModelManager implements Model{
             searchedBookings.add(booking);
         }
         return searchedBookings;
+    }
+
+    @Override
+    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
+        Booking booking = new Booking(guests, dateFrom, dateTo, room, receptionist);
+        bookingList.add(booking);
+    }
+    @Override
+    public void removeBooking(Booking booking) throws SQLException {
+        bookingList.remove(booking);
+    }
+    @Override
+    public void editBooking(Booking booking) throws SQLException {
+        bookingList.update(booking);
+    }
+
+    @Override
+    public void login(String username, String password) throws SQLException, IllegalAccessException {
+        Receptionist receptionist = receptionistTable.logIn(username, password);
+        if(receptionist == null)
+            throw new IllegalAccessException("Invalid username or password!");
+        else
+            this.receptionist = receptionist;
+    }
+    @Override
+    public void logOff() {
+        receptionist = null;
     }
 }

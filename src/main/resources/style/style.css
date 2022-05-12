@@ -1,0 +1,87 @@
+.center-col {
+    -fx-alignment: CENTER;
+}
+
+.light-blue-background {
+    -fx-background-color: #4A67B3;
+}
+
+.light_background {
+    -fx-background-color: #E2E2E2;
+}
+
+.dark-button {
+    -fx-background-color: #262d96;
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 20px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
+.light-label {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-text-fill: #0D318F;
+}
+.light-label-big {
+    -fx-font-size: 72px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-text-fill: #0D318F;
+}
+
+.dark-label {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 24px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+.dark-label-medium {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 36px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+.dark-label-big {
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 72px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
+.gradient-background {
+    -fx-background-color: linear-gradient(to right, #ff7f5088, #6a5acd88)
+}
+
+.gradient-background-full{
+    -fx-background-color: linear-gradient(to right, #ff7f50, #6a5acd);
+}
+
+
+.linear-grad-to-bottom{
+    -fx-background-color: linear-gradient(to bottom, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-top{
+    -fx-background-color: linear-gradient(to top, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-left{
+    -fx-background-color: linear-gradient(to left, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-right{
+    -fx-background-color: linear-gradient(to right, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-bottom-left{
+    -fx-background-color: linear-gradient(to bottom left, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-bottom-right{
+    -fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-top-left{
+    -fx-background-color: linear-gradient(to top left, #ff7f50, #6a5acd);
+}
+
+.linear-grad-to-top-right{
+    -fx-background-color: linear-gradient(to top right, #ff7f50, #6a5acd);
+}

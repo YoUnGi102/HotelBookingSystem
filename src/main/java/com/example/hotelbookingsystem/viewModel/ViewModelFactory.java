@@ -13,6 +13,7 @@ public class ViewModelFactory {
     private final ManageBookingViewModel manageBookingViewModel;
     private final ManageGuestViewModel manageGuestViewModel;
     private final MenuViewModel menuViewModel;
+    private final LoginViewModel loginViewModel;
 
     public ViewModelFactory(Model model) {
         this.guestListViewModel = new GuestListViewModel(model);
@@ -20,7 +21,8 @@ public class ViewModelFactory {
         this.bookingListViewModel = new BookingListViewModel(model);
         this.manageBookingViewModel = new ManageBookingViewModel(model);
         this.manageGuestViewModel = new ManageGuestViewModel(model);
-        this.menuViewModel = new MenuViewModel();
+        this.menuViewModel = new MenuViewModel(model);
+        this.loginViewModel = new LoginViewModel(model);
     }
 
     public GuestListViewModel getGuestListViewModel(){
@@ -38,5 +40,8 @@ public class ViewModelFactory {
     }
     public MenuViewModel getMenuViewModel() {
         return menuViewModel;
+    }
+    public LoginViewModel getLoginViewModel() {
+        return loginViewModel;
     }
 }

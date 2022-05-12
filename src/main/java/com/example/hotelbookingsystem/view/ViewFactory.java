@@ -26,6 +26,7 @@ public class ViewFactory {
     private ManageBookingViewController manageBookingViewController;
     private ManageGuestViewController manageGuestViewController;
     private MenuViewController menuViewController;
+    private LoginViewController loginViewController;
 
     public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
         this.viewHandler = viewHandler;
@@ -54,7 +55,6 @@ public class ViewFactory {
         }
         return guestListViewController.getRoot();
     }
-
     public Region loadBookingListView(Controller previousView){
         if (bookingListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -69,7 +69,6 @@ public class ViewFactory {
         }
         return bookingListViewController.getRoot();
     }
-
     public Region loadRoomListView(Controller previousView){
 
         if (roomListViewController == null) {
@@ -85,7 +84,6 @@ public class ViewFactory {
         }
         return roomListViewController.getRoot();
     }
-
     public Region loadManageBookingView(Controller previousView){
 
         if (manageBookingViewController == null) {
@@ -153,5 +151,19 @@ public class ViewFactory {
         return menuViewController.getRoot();
     }
 
+    public Region loadLoginView(Controller previousView) {
+        if (loginViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.LOGIN_VIEW));
+            try {
+                Region root = loader.load();
+                loginViewController = loader.getController();
+                loginViewController.init(viewHandler, viewModelFactory.getLoginViewModel(), root, previousView);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+        return loginViewController.getRoot();
+    }
 }
 

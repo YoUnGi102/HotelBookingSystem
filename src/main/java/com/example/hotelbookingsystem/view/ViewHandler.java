@@ -6,9 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-import java.io.File;
-
 public class ViewHandler {
+
+    public static final Image ICON = new Image("file:src\\main\\resources\\img\\icon_gradient.png");
 
     // TODO ADD NAME OF YOUR FXML HERE
     // EXAMPLE
@@ -18,6 +18,7 @@ public class ViewHandler {
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
     public static final String MANAGE_GUEST_VIEW = "manage_guest_view.fxml";
     public static final String MENU_VIEW = "menu_view.fxml";
+    public static final String LOGIN_VIEW = "login_view.fxml";
 
     private Scene currentScene;
     private Stage primaryStage;
@@ -31,7 +32,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(MENU_VIEW, null);
+        openView(LOGIN_VIEW, null);
     }
 
     public void openView(String id, Controller previousView) {
@@ -61,11 +62,14 @@ public class ViewHandler {
             case MANAGE_GUEST_VIEW -> {
                 root = viewFactory.loadManageGuestView(previousView);
                 primaryStage.setTitle("Manage Guest");
+            }case LOGIN_VIEW -> {
+                root = viewFactory.loadLoginView(previousView);
+                primaryStage.setTitle("Log In");
             }
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }
         currentScene.setRoot(root);
-        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\img\\icon_full_white.png"));
+        primaryStage.getIcons().add(ICON);
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
         primaryStage.show();
