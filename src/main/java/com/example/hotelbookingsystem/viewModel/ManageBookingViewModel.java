@@ -83,7 +83,7 @@ public class ManageBookingViewModel {
         this.currentBooking = currentBooking;
     }
 
-    public void addBooking(){
+    public void addBooking() throws SQLException {
         ArrayList<Guest> guests = new ArrayList<>();
         this.guests.getValue().forEach((guest) -> {
             guests.add(guest.getGuest());

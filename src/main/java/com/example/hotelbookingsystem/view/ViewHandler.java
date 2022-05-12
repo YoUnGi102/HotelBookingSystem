@@ -6,8 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-import java.io.File;
-
 public class ViewHandler {
 
     public static final Image ICON = new Image("file:src\\main\\resources\\img\\icon_gradient.png");
@@ -19,6 +17,7 @@ public class ViewHandler {
     public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
     public static final String MENU_VIEW = "menu_view.fxml";
+    public static final String LOGIN_VIEW = "login_view.fxml";
 
     private Scene currentScene;
     private Stage primaryStage;
@@ -32,7 +31,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(MENU_VIEW, null);
+        openView(LOGIN_VIEW, null);
     }
 
     public void openView(String id, Controller previousView) {
@@ -57,6 +56,10 @@ public class ViewHandler {
             case MENU_VIEW -> {
                 root = viewFactory.loadMenuView(previousView);
                 primaryStage.setTitle("Menu");
+            }
+            case LOGIN_VIEW -> {
+                root = viewFactory.loadLoginView(previousView);
+                primaryStage.setTitle("Log In");
             }
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }
