@@ -9,6 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -79,14 +80,13 @@ public class ManageGuestViewController implements Controller {
 
     @FXML
     void previousAddress() {
-        if(usePrevious.isSelected()){
+        if(usePrevious.isSelected() && address.getValue() != null){
             street.setText(address.getValue().getStreet());
             city.setText(address.getValue().getCity());
             number.setText(address.getValue().getHouseNumber());
             postCode.setText(address.getValue().getPostalCode());
         }else
             clearAddress();
-
     }
 
     private void clearAll(){
@@ -115,6 +115,20 @@ public class ManageGuestViewController implements Controller {
 
     @FXML
     void confirm() {
+
+        if(lastName.getText().equals("") || firstName.getText().equals("")
+            || passNr.getText().equals("" ) || city.getText().equals("")
+            || street.getText().equals("") || number.getText().equals("")
+            || postCode.getText().equals("")){
+
+            Alert alert = new ErrorAlert();
+            alert.setContentText("Some of the necessary fields are empty");
+            alert.show();
+
+            return;
+        }
+
+
         try {
             if(guest.getValue() != null){
 
