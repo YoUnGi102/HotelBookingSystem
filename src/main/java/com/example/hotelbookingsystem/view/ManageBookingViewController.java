@@ -114,7 +114,8 @@ public class ManageBookingViewController implements Controller {
 
     @FXML
     void addGuest() {
-        // TODO ADD NEW GUEST
+        // TODO ADD NEW GUEST   aici bleadi
+        viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
     }
     @FXML
     void searchGuest() {
@@ -151,10 +152,6 @@ public class ManageBookingViewController implements Controller {
         return root;
     }
 
-    public enum ManageAction{
-        ADD,
-        EDIT,
-        REMOVE,
-    }
+
 
 }

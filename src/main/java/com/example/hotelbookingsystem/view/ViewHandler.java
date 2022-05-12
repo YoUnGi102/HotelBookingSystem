@@ -1,6 +1,6 @@
 package com.example.hotelbookingsystem.view;
 
-import com.example.hotelbookingsystem.view.ManageBookingViewController.ManageAction;
+// import com.example.hotelbookingsystem.view.ManageBookingViewController.ManageAction;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
@@ -14,6 +14,7 @@ public class ViewHandler {
     public static final String ROOM_LIST_VIEW = "room_list_view.fxml";
     public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
+    public static final String MANAGE_GUEST_VIEW = "manage_guest_view.fxml";
 
     private Scene currentScene;
     private Stage primaryStage;
@@ -36,6 +37,7 @@ public class ViewHandler {
             case ROOM_LIST_VIEW -> viewFactory.loadRoomListView(previousView);
             case BOOKING_LIST_VIEW -> viewFactory.loadBookingListView(previousView);
             case MANAGE_BOOKING_VIEW -> viewFactory.loadManageBookingView(previousView);
+            case MANAGE_GUEST_VIEW -> viewFactory.loadManageGuestView(previousView);
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         };
         currentScene.setRoot(root);

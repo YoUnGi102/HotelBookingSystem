@@ -227,7 +227,7 @@ public class GuestTable implements GuestDAO {
             }
         }
 
-        // ADD NEW GUESTS
+        // ADD NEW GUESTS aici bleadi.
 
         ObservableList<Guest> toAdd = FXCollections.observableArrayList();
         for (Guest newGuest : booking.getGuests()) {
