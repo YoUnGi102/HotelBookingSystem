@@ -32,10 +32,10 @@ public class GuestTableTest {
 
     public static void testInsert() throws SQLException {
 
-        Guest g1 = new Guest("John", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700"), "+4599191881", "tomas.gres@gmail.com", "12300933");
-        Guest g2 = new Guest("Jimmy", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700"), "", "", "39283833");
-        Guest g3 = new Guest("Jane", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700"), "", "", "89948594");
-        Guest g4 = new Guest("George", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700"), "", "", "98574895");
+        Guest g1 = new Guest("John", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700", "Denmark"), "+4599191881", "tomas.gres@gmail.com", "12300933");
+        Guest g2 = new Guest("Jimmy", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700","Denmark"), "", "", "39283833");
+        Guest g3 = new Guest("Jane", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700","Denmark"), "", "", "89948594");
+        Guest g4 = new Guest("George", "Doe", new Address("Horsens", "Vejlevej", "18B", "8700","Denmark"), "", "", "98574895");
 
         guestTable.insert(g1);
         guestTable.insert(g2);
@@ -46,10 +46,10 @@ public class GuestTableTest {
     public static void testInsertMany() throws SQLException {
 
         ObservableList<Guest> guests = FXCollections.observableArrayList();
-        Guest g1 = new Guest("Adam", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "+4599191881", "tomas.gres@gmail.com", "98237");
-        Guest g2 = new Guest("Boris", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "", "", "394242");
-        Guest g3 = new Guest("Claire", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "", "", "9384934");
-        Guest g4 = new Guest("David", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700"), "", "", "0293740");
+        Guest g1 = new Guest("Adam", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700","Denmark"), "+4599191881", "tomas.gres@gmail.com", "98237");
+        Guest g2 = new Guest("Boris", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700","Denmark"), "", "", "394242");
+        Guest g3 = new Guest("Claire", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700","Denmark"), "", "", "9384934");
+        Guest g4 = new Guest("David", "Adams", new Address("Aarhus", "Vejlevej", "18B", "8700","Denmark"), "", "", "0293740");
         guests.add(g1);
         guests.add(g2);
         guests.add(g3);
@@ -59,7 +59,7 @@ public class GuestTableTest {
 
 
     public static void testInsertSameAddress() throws SQLException {
-        Guest guest = (new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1"), "+442334962334", "john@watson.uk", "335993" ));
+        Guest guest = (new Guest("John","Watson", new Address("London", "Baker Street", "221B", "NW1","United Kingdom"), "+442334962334", "john@watson.uk", "335993" ));
         guestTable.insert(guest);
     }
 

@@ -16,5 +16,6 @@ public interface AddressDAO {
     void update(Address address) throws SQLException;
 
     void delete(Address address) throws SQLException;
+    boolean isOnlyAddress(Address address) throws SQLException;
 
 }

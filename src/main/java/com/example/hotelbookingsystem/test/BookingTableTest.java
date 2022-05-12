@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class BookingTableTest {
 
-    private static final Receptionist RECEPTIONIST = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
+    //private static final Receptionist RECEPTIONIST = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
 
     private static BookingTable bookingTable;
     private static GuestTable guestTable;
@@ -32,32 +32,32 @@ public class BookingTableTest {
         System.out.println(bookingTable.selectAll());
     }
 
-    public static void testInsert() throws SQLException {
+//    public static void testInsert() throws SQLException {
+//
+//        ObservableList<Guest> guests = guestTable.selectAll();
+//        Room room = new Room(101, 2, 1, 2);
+//        //roomTable.insert(room);
+//        Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
+//        Booking booking1 = (new Booking(guests, LocalDate.of(2022, 6, 10), LocalDate.of(2022, 6, 15), room,receptionist));
+//        //bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
+//        bookingTable.insert(booking1);
+//
+//    }
 
-        ObservableList<Guest> guests = guestTable.selectAll();
-        Room room = new Room(101, 2, 1, 2);
-        //roomTable.insert(room);
-        Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245", new Address("Horsens", "Emil Molesgade", "17A", "8700"));
-        Booking booking1 = (new Booking(guests, LocalDate.of(2022, 6, 10), LocalDate.of(2022, 6, 15), room,receptionist));
-        //bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
-        bookingTable.insert(booking1);
-
-    }
-
-    public static void testInsert2() throws SQLException {
-
-        ArrayList<Guest> guests = new ArrayList<>();
-        guests.add(guestTable.select("12300933"));
-        guests.add(guestTable.select("39283833"));
-        guests.add(guestTable.select("89948594"));
-        guests.add(guestTable.select("98574895"));
-
-        Room room = roomTable.select(101);
-
-        Booking booking = new Booking(guests, LocalDate.of(2022, 7, 10), LocalDate.of(2022, 7, 17), room, RECEPTIONIST);
-        bookingTable.insert(booking);
-
-    }
+//    public static void testInsert2() throws SQLException {
+//
+//        ArrayList<Guest> guests = new ArrayList<>();
+//        guests.add(guestTable.select("12300933"));
+//        guests.add(guestTable.select("39283833"));
+//        guests.add(guestTable.select("89948594"));
+//        guests.add(guestTable.select("98574895"));
+//
+//        Room room = roomTable.select(101);
+//
+//        Booking booking = new Booking(guests, LocalDate.of(2022, 7, 10), LocalDate.of(2022, 7, 17), room, RECEPTIONIST);
+//        bookingTable.insert(booking);
+//
+//    }
 
     public static void testUpdateGuestsInBooking() throws SQLException {
 
@@ -78,15 +78,15 @@ public class BookingTableTest {
 
     }
 
-    public static void testDelete() throws SQLException {
-        ObservableList<Guest> guests = guestTable.selectAll();
-        Room room = new Room(101, 2, 1, 2);
-        //roomTable.insert(room);
-        Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245",
-                new Address("Horsens", "Emil Molesgade", "17A", "8700"));
-        Booking booking1 = (new Booking(1, guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room,receptionist));
-        //bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
-        bookingTable.delete(booking1);
-    }
+//    public static void testDelete() throws SQLException {
+//        ObservableList<Guest> guests = guestTable.selectAll();
+//        Room room = new Room(101, 2, 1, 2);
+//        //roomTable.insert(room);
+//        Receptionist receptionist = new Receptionist("rec001", "Jane", "Dove", "Pa$$w0rd.+", "rec001@hbooking.com", "+4512893245",
+//                new Address("Horsens", "Emil Molesgade", "17A", "8700"));
+//        Booking booking1 = (new Booking(1, guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), room,receptionist));
+//        //bookingList.add(new Booking(guests, LocalDate.of(2022, 5, 10), LocalDate.of(2022, 5, 15), rooms.get(5), receptionist));
+//        bookingTable.delete(booking1);
+//    }
 
 }

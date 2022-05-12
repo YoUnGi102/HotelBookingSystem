@@ -19,9 +19,9 @@ public class Booking {
     private ArrayList<Guest> guests;
     private Room room;
 
-    private Receptionist createdBy;
+    private Staff createdBy;
 
-    public Booking(int bookingId, Guest guest, LocalDate dateFrom, LocalDate dateTo, Room room, Receptionist createdBy){
+    public Booking(int bookingId, Guest guest, LocalDate dateFrom, LocalDate dateTo, Room room, Staff createdBy){
         this.bookingId = bookingId;
         guests = new ArrayList<>();
         guests.add(guest);
@@ -30,7 +30,7 @@ public class Booking {
         this.dateTo = dateTo;
         this.createdBy = createdBy;
     }
-    public Booking(int bookingId, List<Guest> guests, LocalDate dateFrom, LocalDate dateTo, Room room, Receptionist createdBy){
+    public Booking(int bookingId, List<Guest> guests, LocalDate dateFrom, LocalDate dateTo, Room room, Staff createdBy){
         this.bookingId = bookingId;
         this.guests = new ArrayList<>();
         this.guests.addAll(guests);
@@ -39,10 +39,10 @@ public class Booking {
         this.room = room;
         this.createdBy = createdBy;
     }
-    public Booking(Guest guest, LocalDate dateFrom, LocalDate dateTo, Room room, Receptionist createdBy){
+    public Booking(Guest guest, LocalDate dateFrom, LocalDate dateTo, Room room, Staff createdBy){
         this(-1, guest, dateFrom, dateTo, room, createdBy);
     }
-    public Booking(List<Guest> guests, LocalDate dateFrom, LocalDate dateTo, Room room, Receptionist createdBy){
+    public Booking(List<Guest> guests, LocalDate dateFrom, LocalDate dateTo, Room room, Staff createdBy){
         this(-1, guests, dateFrom, dateTo, room, createdBy);
     }
 
@@ -58,7 +58,7 @@ public class Booking {
     public void setRoom(Room room) {
         this.room = room;
     }
-    public void setCreatedBy(Receptionist createdBy) {
+    public void setCreatedBy(Staff createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -95,7 +95,7 @@ public class Booking {
     public ArrayList<Guest> getGuests() {
         return guests;
     }
-    public Receptionist getCreatedBy() {
+    public Staff getCreatedBy() {
         return createdBy;
     }
 

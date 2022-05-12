@@ -1,18 +1,14 @@
 package com.example.hotelbookingsystem.model;
 
-import com.example.hotelbookingsystem.dao.BookingTable;
-import com.example.hotelbookingsystem.dao.ReceptionistTable;
+import com.example.hotelbookingsystem.dao.StaffTable;
 import com.example.hotelbookingsystem.model.list.BookingList;
 import com.example.hotelbookingsystem.model.list.GuestList;
 import com.example.hotelbookingsystem.model.list.RoomList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 
 public class ModelManager implements Model{
@@ -20,15 +16,15 @@ public class ModelManager implements Model{
     RoomList roomList;
     BookingList bookingList;
     GuestList guestList;
-    ReceptionistTable receptionistTable;
+    StaffTable staffTable;
 
-    private Receptionist receptionist;
+    private Staff staff;
 
     public ModelManager() throws SQLException {
         roomList = RoomList.getInstance();
         bookingList = BookingList.getInstance();
         guestList = GuestList.getInstance();
-        receptionistTable = ReceptionistTable.getInstance();
+        staffTable = StaffTable.getInstance();
     }
 
     @Override
@@ -118,7 +114,7 @@ public class ModelManager implements Model{
 
     @Override
     public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
-        Booking booking = new Booking(guests, dateFrom, dateTo, room, receptionist);
+        Booking booking = new Booking(guests, dateFrom, dateTo, room, staff);
         bookingList.add(booking);
     }
     @Override
@@ -132,14 +128,14 @@ public class ModelManager implements Model{
 
     @Override
     public void login(String username, String password) throws SQLException, IllegalAccessException {
-        Receptionist receptionist = receptionistTable.logIn(username, password);
-        if(receptionist == null)
+        Staff staff = staffTable.logIn(username, password);
+        if(staff == null)
             throw new IllegalAccessException("Invalid username or password!");
         else
-            this.receptionist = receptionist;
+            this.staff = staff;
     }
     @Override
     public void logOff() {
-        receptionist = null;
+        staff = null;
     }
 }

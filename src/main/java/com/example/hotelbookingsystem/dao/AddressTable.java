@@ -22,6 +22,7 @@ public class AddressTable implements AddressDAO{
     private static final String STREET = "street";
     private static final String HOUSE_NUMBER = "house_number";
     private static final String POSTAL_CODE = "postal_code";
+    private static final String COUNTRY = "country";
 
     private static AddressTable instance;
     private final DatabaseConnection databaseConnection;
@@ -43,11 +44,12 @@ public class AddressTable implements AddressDAO{
             return;
 
         try(Connection connection = databaseConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO " + SCHEMA + "." + TABLE_NAME + "( "+CITY+", "+STREET+", "+HOUSE_NUMBER+", " + POSTAL_CODE + ") VALUES (?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO " + SCHEMA + "." + TABLE_NAME + "( "+CITY+", "+STREET+", "+HOUSE_NUMBER+", " + POSTAL_CODE + ", " + COUNTRY+") VALUES (?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, address.getCity());
             statement.setString(2, address.getStreet());
             statement.setString(3, address.getHouseNumber());
             statement.setString(4, address.getPostalCode());
+            statement.setString(5, address.getCountry());
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
             if (keys.next()) {
@@ -70,7 +72,8 @@ public class AddressTable implements AddressDAO{
                 String street = resultSet.getString(STREET);
                 String houseNumber = resultSet.getString(HOUSE_NUMBER);
                 String postalCode = resultSet.getString(POSTAL_CODE);
-                return new Address(id, city, street, houseNumber, postalCode);
+                String country = resultSet.getString(COUNTRY);
+                return new Address(id, city, street, houseNumber, postalCode, country);
             } else {
                 return null;
             }
@@ -82,11 +85,12 @@ public class AddressTable implements AddressDAO{
         try(Connection connection = databaseConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM "  + SCHEMA + "." + TABLE_NAME +
-                            " WHERE " + CITY + " = ? AND " + STREET + " = ? AND " + HOUSE_NUMBER + " = ? AND " + POSTAL_CODE + " = ?");
+                            " WHERE " + CITY + " = ? AND " + STREET + " = ? AND " + HOUSE_NUMBER + " = ? AND " + POSTAL_CODE + " = ? AND " + COUNTRY + " = ?");
             statement.setString(1, address.getCity());
             statement.setString(2, address.getStreet());
             statement.setString(3, address.getHouseNumber());
             statement.setString(4, address.getPostalCode());
+            statement.setString(5, address.getCountry());
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()) {
                 int id = resultSet.getInt(ADDRESS_ID);
@@ -94,7 +98,8 @@ public class AddressTable implements AddressDAO{
                 String resultStreet = resultSet.getString(STREET);
                 String resultHouseNumber = resultSet.getString(HOUSE_NUMBER);
                 String resultPostalCode = resultSet.getString(POSTAL_CODE);
-                return new Address(id, resultCity, resultStreet, resultHouseNumber, resultPostalCode);
+                String resultCountry = resultSet.getString(COUNTRY);
+                return new Address(id, resultCity, resultStreet, resultHouseNumber, resultPostalCode, resultCountry);
             } else {
                 return null;
             }
@@ -104,14 +109,31 @@ public class AddressTable implements AddressDAO{
     @Override
     public void update(Address address) throws SQLException {
         try(Connection connection = databaseConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE "+SCHEMA+"."+TABLE_NAME+" SET "+CITY+" = ?, "+STREET+" = ?, "+HOUSE_NUMBER+" = ?, "+POSTAL_CODE+" = ? WHERE "+ADDRESS_ID+" = ?");
+            String sql = "UPDATE "+SCHEMA+"."+TABLE_NAME+" SET "+CITY+" = ?, "+STREET+" = ?, "+HOUSE_NUMBER+" = ?, "+POSTAL_CODE+" = ?, " + COUNTRY + " = ? WHERE "+ADDRESS_ID+" = ?";
+            System.out.println(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, address.getCity());
             statement.setString(2, address.getStreet());
             statement.setString(3, address.getHouseNumber());
             statement.setString(4, address.getPostalCode());
-            statement.setInt(5, address.getAddressId());
+            statement.setString(5, address.getCountry());
+            statement.setInt(6, address.getAddressId());
             statement.executeUpdate();
         }
+    }
+
+    public boolean isOnlyAddress(Address address) throws SQLException {
+        try(Connection connection = databaseConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM "+SCHEMA+".guest WHERE "+ADDRESS_ID+" = ?");
+            statement.setInt(1, address.getAddressId());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                int count = resultSet.getInt("count");
+                System.out.println(count);
+                return count == 1;
+            }
+        }
+        return false;
     }
 
     @Override

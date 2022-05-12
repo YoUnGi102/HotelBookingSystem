@@ -18,16 +18,16 @@ public class AddressTableTest {
     public static void testSelect(int addressNumber) throws SQLException {
         System.out.println(addressTable.select(addressNumber));
     }
-    public static void testSelect() throws SQLException {
-        Address address = new Address("Horsens", "Vimmelskaftet", "8A", "8700");
-        System.out.println(addressTable.select(address));
-    }
-
-    public static void testInsert() throws SQLException {
-        Address address = new Address("Horsens", "Vimmelskaftet", "8A", "8700");
-        addressTable.insert(address);
-        System.out.println("INSERT ADDRESS - " + address.getAddressId());
-    }
+//    public static void testSelect() throws SQLException {
+//        Address address = new Address("Horsens", "Vimmelskaftet", "8A", "8700");
+//        System.out.println(addressTable.select(address));
+//    }
+//
+//    public static void testInsert() throws SQLException {
+//        Address address = new Address("Horsens", "Vimmelskaftet", "8A", "8700");
+//        addressTable.insert(address);
+//        System.out.println("INSERT ADDRESS - " + address.getAddressId());
+//    }
 
     public static void testUpdate() throws SQLException {
         System.out.println("TEST UPDATE");

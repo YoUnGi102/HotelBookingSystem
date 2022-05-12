@@ -65,6 +65,7 @@ public class ManageGuestViewController implements Controller {
             street.setText(a.getStreet());
             city.setText(a.getCity());
             postCode.setText(a.getPostalCode());
+            country.setText(a.getCountry());
         });
         viewModel.bindGuestProperty(guest);
 
@@ -85,6 +86,7 @@ public class ManageGuestViewController implements Controller {
             city.setText(address.getValue().getCity());
             number.setText(address.getValue().getHouseNumber());
             postCode.setText(address.getValue().getPostalCode());
+            country.setText(address.getValue().getCountry());
         }else
             clearAddress();
     }
@@ -119,7 +121,7 @@ public class ManageGuestViewController implements Controller {
         if(lastName.getText().equals("") || firstName.getText().equals("")
             || passNr.getText().equals("" ) || city.getText().equals("")
             || street.getText().equals("") || number.getText().equals("")
-            || postCode.getText().equals("")){
+            || postCode.getText().equals("") || country.getText().equals("")){
 
             Alert alert = new ErrorAlert();
             alert.setContentText("Some of the necessary fields are empty");
@@ -143,13 +145,14 @@ public class ManageGuestViewController implements Controller {
                 address.setStreet(street.getText());
                 address.setHouseNumber(number.getText());
                 address.setPostalCode(postCode.getText());
+                address.setCountry(country.getText());
                 g.setAddress(address);
 
                 viewModel.edit(guest.getValue());
                 viewModel.setGuest(null);
                 ((GuestListViewController)previousView).getViewModel().setCurrentGuest(null);
             }else{
-                Address address = new Address(city.getText(), street.getText(), number.getText(), postCode.getText());
+                Address address = new Address(city.getText(), street.getText(), number.getText(), postCode.getText(), country.getText());
                 this.address.setValue(address);
                 Guest guest = new Guest(
                         firstName.getText(), lastName.getText(), address, phoneNumber.getText(), eMail.getText(), passNr.getText());

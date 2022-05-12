@@ -170,7 +170,17 @@ public class GuestTable implements GuestDAO {
 
     @Override
     public void update(Guest guest) throws SQLException {
-        setAddress(guest);
+
+        Address address = addressTable.select(guest.getAddress());
+        if(address == null){
+            if(addressTable.isOnlyAddress(guest.getAddress()))
+                addressTable.update(guest.getAddress());
+            else
+                addressTable.insert(guest.getAddress());
+            address = addressTable.select(guest.getAddress());
+        }
+        guest.setAddress(address);
+
         try(Connection connection = databaseConnection.getConnection()) {
             String sql = "UPDATE "+SCHEMA+"."+TABLE_NAME+" SET " +
                     FIRST_NAME+" = ?, "+LAST_NAME+" = ?, "+EMAIL+" = ?, "+PHONE_NUMBER+" = ?, "+ADDRESS+" = ? WHERE "+PASSPORT_NUMBER+" = ?";
