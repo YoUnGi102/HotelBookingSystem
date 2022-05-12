@@ -73,7 +73,7 @@ public class ViewFactory {
 
         if (roomListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewHandler.class.getResource("room_list_view.fxml"));
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.ROOM_LIST_VIEW));
             try {
                 Region root = loader.load();
                 roomListViewController = loader.getController();
@@ -88,7 +88,7 @@ public class ViewFactory {
 
         if (manageBookingViewController == null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewHandler.class.getResource("manage_booking_view.fxml"));
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.MANAGE_BOOKING_VIEW));
             try {
                 Region root = loader.load();
                 manageBookingViewController = loader.getController();
@@ -123,7 +123,7 @@ public class ViewFactory {
 
         if (manageGuestViewController == null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewHandler.class.getResource("manage_guest_view.fxml"));
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.MANAGE_GUEST_VIEW));
             try {
                 Region root = loader.load();
                 manageGuestViewController = loader.getController();
@@ -132,7 +132,6 @@ public class ViewFactory {
                 e.printStackTrace();
             }
         }
-
         return manageGuestViewController.getRoot();
     }
 

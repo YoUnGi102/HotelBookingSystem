@@ -138,7 +138,7 @@ public class GuestListViewController implements Controller{
     }
 
     public void add(ActionEvent actionEvent) {
-
+        viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
     }
 
     public void edit(ActionEvent actionEvent) {
