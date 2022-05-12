@@ -63,13 +63,25 @@ public class Booking {
     }
 
     public String getName(){
-        return guests.get(0).getFirstName() + " " + guests.get(0).getLastName();
+        for (Guest g : guests) {
+            if(g.getPhoneNumber() != null && g.getEmail() != null)
+                return g.getFirstName() + " " + g.getLastName();
+        }
+        return null;
     }
     public String getPhoneNumber(){
-        return guests.get(0).getPhoneNumber();
+        for (Guest g : guests) {
+            if(g.getPhoneNumber() != null && g.getEmail() != null)
+                return g.getPhoneNumber();
+        }
+        return null;
     }
     public String getEmail(){
-        return guests.get(0).getEmail();
+        for (Guest g : guests) {
+            if(g.getPhoneNumber() != null && g.getEmail() != null)
+                return g.getEmail();
+        }
+        return null;
     }
     public LocalDate getDateFrom(){
         return dateFrom;

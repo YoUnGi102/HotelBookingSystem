@@ -30,7 +30,7 @@ public class BookingTableProperty {
         email = new SimpleStringProperty(booking.getEmail());
         roomNumber = new SimpleIntegerProperty(booking.getRoom().getRoomNumber());
         dateFrom = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateFrom()));
-        dateTo = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateFrom()));
+        dateTo = new SimpleStringProperty(Booking.DATE_FORMATTER.format(booking.getDateTo()));
     }
 
     public Booking getBooking() {

@@ -32,4 +32,10 @@ public class GuestListViewModel {
         guests.setValue(guestsFormatted);
     }
 
+    public void removeGuest(Guest guest) throws SQLException {
+            model.removeGuest(guest);
+
+    }
+
+
 }

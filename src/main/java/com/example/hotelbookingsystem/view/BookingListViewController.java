@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.viewModel.BookingListViewModel;
 import com.example.hotelbookingsystem.viewModel.BookingTableProperty;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
@@ -48,6 +49,10 @@ public class BookingListViewController implements Controller {
         viewModel.bindTableItemsProperty(table.itemsProperty());
     }
 
+    public BookingListViewModel getViewModel() {
+        return viewModel;
+    }
+
     @FXML
     void add(ActionEvent event) {
         viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
@@ -55,17 +60,26 @@ public class BookingListViewController implements Controller {
 
     @FXML
     void back(ActionEvent event) {
+        viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
     @FXML
     void edit(ActionEvent event) {
-
+        if (table.getSelectionModel().getSelectedItem() != null){
+            Booking booking = table.getSelectionModel().getSelectedItem().getBooking();
+            viewModel.setCurrentBooking(booking);
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
+            table.getItems().removeAll();
+        }
     }
 
     @FXML
-    void remove(ActionEvent event) {
+    void remove() {
         try {
-            viewModel.removeBooking(table.getSelectionModel().getSelectedItem().getBooking());
+            BookingTableProperty property = table.getSelectionModel().getSelectedItem();
+            table.getItems().remove(property);
+            viewModel.removeBooking(property.getBooking());
+            table.refresh();
         } catch (SQLException e) {
             e.printStackTrace();
         }

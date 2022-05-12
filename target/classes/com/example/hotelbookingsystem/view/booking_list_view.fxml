@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -62,10 +63,22 @@
                     <columns>
                       <TableColumn fx:id="nameCol" prefWidth="175.0" styleClass="table-column-light" text="Name" />
                       <TableColumn fx:id="phoneNumberCol" prefWidth="175.0" styleClass="table-column-light" text="Phone Number" />
-                        <TableColumn fx:id="emailCol" prefWidth="175.0" styleClass="table-column-light" text="Email" />
-                        <TableColumn fx:id="roomNumberCol" prefWidth="150.0" styleClass="table-column-light" text="Room Number" />
-                        <TableColumn fx:id="dateFromCol" prefWidth="175.0" styleClass="table-column-light" text="Date From" />
-                        <TableColumn fx:id="dateToCol" prefWidth="175.0" styleClass="table-column-light" text="Date To" />
+                        <TableColumn fx:id="emailCol" prefWidth="225.0" styleClass="table-column-light" text="Email" />
+                        <TableColumn fx:id="roomNumberCol" prefWidth="100.0" text="Room">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="dateFromCol" prefWidth="175.0" text="Date From">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="dateToCol" prefWidth="175.0" text="Date To">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
                     </columns>
                   </TableView>
                </children>
@@ -75,11 +88,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </ScrollPane>
-      <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0">
-         <VBox.margin>
-            <Insets bottom="20.0" />
-         </VBox.margin>
-      </Rectangle>
+      <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0d318f" height="5.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-background-color: #0D318F;" width="1080.0" />
       <HBox prefHeight="83.0" prefWidth="1080.0">
          <children>
             <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">

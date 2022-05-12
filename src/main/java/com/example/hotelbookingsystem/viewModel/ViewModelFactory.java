@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.viewModel;
 
 import com.example.hotelbookingsystem.model.Model;
+import javafx.scene.control.Menu;
 
 public class ViewModelFactory {
 
@@ -11,6 +12,7 @@ public class ViewModelFactory {
     private final BookingListViewModel bookingListViewModel;
     private final ManageBookingViewModel manageBookingViewModel;
     private final ManageGuestViewModel manageGuestViewModel;
+    private final MenuViewModel menuViewModel;
 
     public ViewModelFactory(Model model) {
         this.guestListViewModel = new GuestListViewModel(model);
@@ -18,6 +20,7 @@ public class ViewModelFactory {
         this.bookingListViewModel = new BookingListViewModel(model);
         this.manageBookingViewModel = new ManageBookingViewModel(model);
         this.manageGuestViewModel = new ManageGuestViewModel(model);
+        this.menuViewModel = new MenuViewModel();
     }
 
     public GuestListViewModel getGuestListViewModel(){
@@ -32,5 +35,8 @@ public class ViewModelFactory {
     public ManageBookingViewModel getManageBookingViewModel() { return manageBookingViewModel; }
     public ManageGuestViewModel getManageGuestViewModel() {
         return manageGuestViewModel;
+    }
+    public MenuViewModel getMenuViewModel() {
+        return menuViewModel;
     }
 }

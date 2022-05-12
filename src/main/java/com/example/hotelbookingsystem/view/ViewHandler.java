@@ -1,10 +1,12 @@
 package com.example.hotelbookingsystem.view;
 
-// import com.example.hotelbookingsystem.view.ManageBookingViewController.ManageAction;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class ViewHandler {
 
@@ -15,6 +17,7 @@ public class ViewHandler {
     public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
     public static final String MANAGE_GUEST_VIEW = "manage_guest_view.fxml";
+    public static final String MENU_VIEW = "menu_view.fxml";
 
     private Scene currentScene;
     private Stage primaryStage;
@@ -28,19 +31,41 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         primaryStage.setResizable(false);
-        openView(BOOKING_LIST_VIEW, null);
+        openView(MENU_VIEW, null);
     }
 
     public void openView(String id, Controller previousView) {
-        Region root = switch(id) {
-            case GUEST_LIST_VIEW -> viewFactory.loadGuestListView(previousView);
-            case ROOM_LIST_VIEW -> viewFactory.loadRoomListView(previousView);
-            case BOOKING_LIST_VIEW -> viewFactory.loadBookingListView(previousView);
-            case MANAGE_BOOKING_VIEW -> viewFactory.loadManageBookingView(previousView);
-            case MANAGE_GUEST_VIEW -> viewFactory.loadManageGuestView(previousView);
+        Region root;
+
+        switch(id) {
+            case GUEST_LIST_VIEW -> {
+                root = viewFactory.loadGuestListView(previousView);
+                primaryStage.setTitle("Guest List");
+            }
+            case ROOM_LIST_VIEW -> {
+                root = viewFactory.loadRoomListView(previousView);
+                primaryStage.setTitle("Room List");
+            }
+            case BOOKING_LIST_VIEW -> {
+                root = viewFactory.loadBookingListView(previousView);
+                primaryStage.setTitle("Room Booking List");
+            }
+            case MANAGE_BOOKING_VIEW -> {
+                root = viewFactory.loadManageBookingView(previousView);
+                primaryStage.setTitle("Manage Booking");
+            }
+            case MENU_VIEW -> {
+                root = viewFactory.loadMenuView(previousView);
+                primaryStage.setTitle("Menu");
+            }
+            case MANAGE_GUEST_VIEW -> {
+                root = viewFactory.loadManageGuestView(previousView);
+                primaryStage.setTitle("Manage Guest");
+            }
             default -> throw new IllegalArgumentException("Unknown view: " + id);
-        };
+        }
         currentScene.setRoot(root);
+        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\img\\icon_full_white.png"));
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
         primaryStage.show();

@@ -25,7 +25,7 @@ public class RoomList {
         return instance;
     }
 
-    private void refresh() throws SQLException {
+    public void refresh() throws SQLException {
         rooms = roomTable.selectAll();
     }
 
@@ -53,6 +53,11 @@ public class RoomList {
     }
     public void getAvailableRooms(LocalDate from, LocalDate to){
 
+    }
+
+    public void selectAllSearched(LocalDate to) throws SQLException
+    {
+        rooms = roomTable.selectAllSearched(to);
     }
 
 }
