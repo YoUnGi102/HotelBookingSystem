@@ -42,6 +42,10 @@
 
 /* SCROLLBAR */
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 .scroll-pane .scroll-bar:vertical {
     -fx-background-color: transparent;
 }

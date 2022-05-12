@@ -13,14 +13,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.BookingListViewController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="1080.0" stylesheets="@../style/style.css">
+      <HBox prefHeight="100.0" prefWidth="1080.0" stylesheets="@../../../../style/style.css">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="phoneNumber" prefHeight="50.0" prefWidth="150.0" promptText="Phone Number" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -30,7 +31,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="roomNumber" prefHeight="50.0" prefWidth="150.0" promptText="Room Number" styleClass="text-input" stylesheets="@../style/style.css">
+            <TextField fx:id="roomNumber" prefHeight="50.0" prefWidth="150.0" promptText="Room Number" styleClass="text-input" stylesheets="@../../../../style/style.css">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -45,7 +46,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </HBox.margin>
             </DatePicker>
-            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Search">
+            <Button mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Search">
                <HBox.margin>
                   <Insets bottom="5.0" left="50.0" right="10.0" top="5.0" />
                </HBox.margin>
@@ -63,9 +64,9 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
                <children>
-                  <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="table" prefHeight="450.0" prefWidth="1040.0" stylesheets="@../../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <placeholder>
-                        <Label text="" />
+                        <Label/>
                      </placeholder>
                      <columns>
                       <TableColumn fx:id="nameCol" prefWidth="180.0" styleClass="table-column-light" text="Name" />
@@ -105,22 +106,22 @@
       </ScrollPane>
       <HBox prefHeight="80.0" prefWidth="1080.0" styleClass="linear-grad-to-right">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Back">
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Back">
                <HBox.margin>
                   <Insets bottom="15.0" left="10.0" right="550.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Add">
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Add">
                <HBox.margin>
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Edit">
+            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Edit">
                <HBox.margin>
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../style/style.css" text="Remove">
+            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Remove">
                <HBox.margin>
                   <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                </HBox.margin>
@@ -129,8 +130,8 @@
       </HBox>
    </children>
    <stylesheets>
-      <URL value="@../style/style.css" />
-      <URL value="@../style/table.css" />
-      <URL value="@../style/controls.css" />
+      <URL value="@../../../../style/style.css" />
+      <URL value="@../../../../style/table.css" />
+      <URL value="@../../../../style/controls.css" />
    </stylesheets>
 </VBox>

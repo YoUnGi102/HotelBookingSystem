@@ -27,7 +27,7 @@ public class GuestListViewController implements Controller{
     private Region root;
 
     @FXML
-    private ScrollPane showAddGuest;
+    private ScrollPane showAddGuest, guestScroll;
 
     @FXML
     private TextField firstName, lastName, eMail, phoneNumber, passportNumber;
@@ -71,8 +71,11 @@ public class GuestListViewController implements Controller{
         showAddGuest.setVisible(false);
         showAddGuest.setManaged(false);
 
+        guestScroll.setPrefHeight(500);
+
         if(lastController instanceof ManageBookingViewController controller){
 
+            guestScroll.setPrefHeight(300);
             showAddGuest.setVisible(true);
             showAddGuest.setManaged(true);
 

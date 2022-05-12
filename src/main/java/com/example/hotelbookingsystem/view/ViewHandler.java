@@ -10,6 +10,8 @@ import java.io.File;
 
 public class ViewHandler {
 
+    public static final Image ICON = new Image("file:src\\main\\resources\\img\\icon_gradient.png");
+
     // TODO ADD NAME OF YOUR FXML HERE
     // EXAMPLE
     public static final String GUEST_LIST_VIEW = "guest_list_view.fxml";
@@ -59,7 +61,7 @@ public class ViewHandler {
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }
         currentScene.setRoot(root);
-        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\img\\icon_gradient.png"));
+        primaryStage.getIcons().add(ICON);
         primaryStage.setScene(currentScene);
         primaryStage.sizeToScene();
         primaryStage.show();

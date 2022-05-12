@@ -21,11 +21,11 @@
 }
 
 .date-picker .arrow-button {
-	-fx-background-color: -fx-primary-color;
+    -fx-background-color: transparent;
 	-fx-background-radius: 0;
 }
 .date-picker .arrow-button:hover {
-	-fx-background-color: -fx-secondary-color;
+	-fx-background-color: transparent;
 }
 .date-picker .arrow-button .arrow {
 	-fx-background-color: white;

@@ -23,6 +23,11 @@
     -fx-font-family: 'Arial Rounded MT Bold';
     -fx-text-fill: #0D318F;
 }
+.light-label-big {
+    -fx-font-size: 72px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-text-fill: #0D318F;
+}
 
 .dark-label {
     -fx-text-fill: #F2F2F2;
@@ -43,6 +48,11 @@
 .gradient-background {
     -fx-background-color: linear-gradient(to right, #ff7f5088, #6a5acd88)
 }
+
+.gradient-background-full{
+    -fx-background-color: linear-gradient(to right, #ff7f50, #6a5acd);
+}
+
 
 .linear-grad-to-bottom{
     -fx-background-color: linear-gradient(to bottom, #ff7f50, #6a5acd);

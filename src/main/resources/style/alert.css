@@ -1,0 +1,30 @@
+.dialog-pane {
+    -fx-background-color: linear-gradient(to right, #ff7f5088, #6a5acd88);
+}
+
+.dialog-pane .label {
+    -fx-text-fill: #262d96;
+    -fx-font-size: 15px;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: #262d96;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: linear-gradient(to right, #ff7f50, #6a5acd);
+}
+
+.dialog-pane:header .header-panel .label {
+    -fx-font-style: italic;
+    -fx-font-size: 2em;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #262d96;
+    -fx-text-fill: #F2F2F2;
+    -fx-font-size: 20px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
