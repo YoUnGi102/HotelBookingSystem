@@ -4,6 +4,7 @@ import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
+import com.example.hotelbookingsystem.viewModel.ManageGuestViewModel;
 import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,7 +120,7 @@ public class ViewFactory {
         return manageBookingViewController.getRoot();
     }
 
-    public Region loadManageGuestView(Controller lastController) {
+    public Region loadManageGuestView(Controller previousView) {
 
         if (manageGuestViewController == null) {
             FXMLLoader loader = new FXMLLoader();
@@ -127,11 +128,21 @@ public class ViewFactory {
             try {
                 Region root = loader.load();
                 manageGuestViewController = loader.getController();
-                manageGuestViewController.init(viewHandler, viewModelFactory.getManageGuestViewModel(), root, lastController);
+                manageGuestViewController.init(viewHandler, viewModelFactory.getManageGuestViewModel(), root, previousView);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        if(previousView instanceof GuestListViewController controller &&
+                controller.getViewModel().getCurrentGuest() != null){
+            Guest guest = controller.getViewModel().getCurrentGuest();
+
+            ManageGuestViewModel manageGuestViewModel = manageGuestViewController.getViewModel();
+            manageGuestViewModel.setGuest(guest);
+
+        }
+
         return manageGuestViewController.getRoot();
     }
 
@@ -149,7 +160,6 @@ public class ViewFactory {
         }
         return menuViewController.getRoot();
     }
-
     public Region loadLoginView(Controller previousView) {
         if (loginViewController == null) {
             FXMLLoader loader = new FXMLLoader();

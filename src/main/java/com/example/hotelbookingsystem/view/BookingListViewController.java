@@ -55,11 +55,15 @@ public class BookingListViewController implements Controller {
 
     @FXML
     void add(ActionEvent event) {
+        if(table.getItems() != null)
+            table.getItems().clear();
         viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
     }
 
     @FXML
     void back(ActionEvent event) {
+        if(table.getItems() != null)
+            table.getItems().clear();
         viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
@@ -68,8 +72,8 @@ public class BookingListViewController implements Controller {
         if (table.getSelectionModel().getSelectedItem() != null){
             Booking booking = table.getSelectionModel().getSelectedItem().getBooking();
             viewModel.setCurrentBooking(booking);
-            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
             table.getItems().clear();
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
         }
     }
 

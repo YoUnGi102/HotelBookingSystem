@@ -29,7 +29,6 @@ public class BookingListViewModel {
     public Booking getCurrentBooking() {
         return currentBooking;
     }
-
     public void setCurrentBooking(Booking currentBooking) {
         this.currentBooking = currentBooking;
     }

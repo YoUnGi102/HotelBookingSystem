@@ -34,12 +34,11 @@ public class ModelManager implements Model{
     @Override
     public void addGuest(Guest guest) throws SQLException {
         guestList.add(guest);
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Success");
-        alert.setContentText("Guest successfully added");
-        alert.getButtonTypes().add(ButtonType.OK);
-        alert.show();
+    }
 
+    @Override
+    public void editGuest(Guest guest) throws SQLException {
+        guestList.update(guest);
     }
 
     @Override

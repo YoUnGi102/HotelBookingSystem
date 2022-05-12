@@ -12,12 +12,20 @@ import java.sql.SQLException;
 public class GuestListViewModel {
 
     private Model model;
-
     private ObjectProperty<ObservableList<GuestTableProperty>> guests;
+    private Guest currentGuest;
 
     public GuestListViewModel(Model model){
         guests = new SimpleObjectProperty<>();
         this.model = model;
+        this.currentGuest = null;
+    }
+
+    public Guest getCurrentGuest() {
+        return currentGuest;
+    }
+    public void setCurrentGuest(Guest currentGuest) {
+        this.currentGuest = currentGuest;
     }
 
     public void bindTableItemsProperty(ObjectProperty<ObservableList<GuestTableProperty>> itemsProperty){

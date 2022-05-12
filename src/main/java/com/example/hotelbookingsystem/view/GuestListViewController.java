@@ -127,8 +127,12 @@ public class GuestListViewController implements Controller{
         }
     }
 
+    public GuestListViewModel getViewModel() {
+        return viewModel;
+    }
+
     @FXML
-    void search(ActionEvent event) {
+    void search() {
         // TODO CHECK USER INPUT
         try {
             viewModel.searchGuests(firstName.getText(), lastName.getText(), phoneNumber.getText(), passportNumber.getText(), eMail.getText());
@@ -137,15 +141,23 @@ public class GuestListViewController implements Controller{
         }
     }
 
-    public void add(ActionEvent actionEvent) {
+    public void add() {
         viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
     }
 
-    public void edit(ActionEvent actionEvent) {
-
+    public void edit() {
+        GuestTableProperty p = table.getSelectionModel().getSelectedItem();
+        if(p != null){
+            viewModel.setCurrentGuest(p.getGuest());
+            viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
+        }else {
+            Alert alert = new ErrorAlert();
+            alert.setContentText("No Guest Selected");
+            alert.show();
+        }
     }
 
-    public void remove(ActionEvent actionEvent) throws SQLException {
+    public void remove() throws SQLException {
         ObservableList<GuestTableProperty> allGuests, singleGuest;
         allGuests = table.getItems();
         singleGuest = table.getSelectionModel().getSelectedItems();
@@ -155,7 +167,7 @@ public class GuestListViewController implements Controller{
 
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void back() {
         if(previousView instanceof ManageBookingViewController)
             viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
         else

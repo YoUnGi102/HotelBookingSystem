@@ -88,7 +88,9 @@ public class ManageBookingViewController implements Controller {
     public ManageBookingViewModel getViewModel() {
         return viewModel;
     }
-
+    public Region getRoot() {
+        return root;
+    }
 
     private void setGuestAdded(boolean guestAdded) {
         if (guestAdded) {
@@ -103,36 +105,6 @@ public class ManageBookingViewController implements Controller {
             guestNotSelected.setManaged(true);
         }
     }
-
-    @FXML
-    void addGuest() {
-        // TODO ADD NEW GUEST   aici bleadi
-        viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
-    }
-
-    @FXML
-    void searchGuest() {
-        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
-    }
-
-    @FXML
-    void removeGuest() {
-        guestTable.itemsProperty().getValue().remove(guestTable.getSelectionModel().getSelectedItem());
-        if (guestTable.itemsProperty().getValue().size() == 0)
-            setGuestAdded(false);
-    }
-
-    @FXML
-    void searchRoom() {
-        viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
-    }
-
-    @FXML
-    void removeRoom() {
-        room = null;
-        setRoomAdded(false);
-    }
-
     private void setRoomAdded(boolean roomAdded) {
         if (roomAdded) {
             roomSelected.setVisible(true);
@@ -149,11 +121,36 @@ public class ManageBookingViewController implements Controller {
     }
 
     @FXML
+    void addGuest() {
+        // TODO ADD NEW GUEST   aici bleadi
+        viewHandler.openView(ViewHandler.MANAGE_GUEST_VIEW, this);
+    }
+    @FXML
+    void searchGuest() {
+        viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
+    }
+    @FXML
+    void removeGuest() {
+        guestTable.itemsProperty().getValue().remove(guestTable.getSelectionModel().getSelectedItem());
+        if (guestTable.itemsProperty().getValue().size() == 0)
+            setGuestAdded(false);
+    }
+
+    @FXML
+    void searchRoom() {
+        viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
+    }
+    @FXML
+    void removeRoom() {
+        room = null;
+        setRoomAdded(false);
+    }
+
+    @FXML
     void cancel(ActionEvent event) {
         viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
         viewModel.clear();
     }
-
     @FXML
     void confirm(ActionEvent event) {
 
@@ -213,9 +210,5 @@ public class ManageBookingViewController implements Controller {
         } catch (SQLException e) {
             (new DatabaseErrorAlert()).show();
         }
-    }
-
-    public Region getRoot() {
-        return root;
     }
 }

@@ -172,8 +172,9 @@ public class GuestTable implements GuestDAO {
     public void update(Guest guest) throws SQLException {
         setAddress(guest);
         try(Connection connection = databaseConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE "+SCHEMA+"."+TABLE_NAME+" SET " +
-                    FIRST_NAME+" = ?, "+LAST_NAME+" = ?, "+EMAIL+" = ?, "+PHONE_NUMBER+" = ?, "+ADDRESS+" = ? WHERE "+PASSPORT_NUMBER+" = ?");
+            String sql = "UPDATE "+SCHEMA+"."+TABLE_NAME+" SET " +
+                    FIRST_NAME+" = ?, "+LAST_NAME+" = ?, "+EMAIL+" = ?, "+PHONE_NUMBER+" = ?, "+ADDRESS+" = ? WHERE "+PASSPORT_NUMBER+" = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, guest.getFirstName());
             statement.setString(2, guest.getLastName());
             statement.setString(3, guest.getEmail());
