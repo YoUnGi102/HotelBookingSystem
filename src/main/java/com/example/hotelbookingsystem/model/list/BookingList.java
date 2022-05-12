@@ -12,46 +12,34 @@ import java.time.LocalDate;
 
 public class BookingList {
 
-    private ObservableList<Booking> bookings;
     BookingDAO bookingTable;
 
     private static BookingList instance;
 
-    private BookingList() throws SQLException {
+    private BookingList() {
         bookingTable = BookingTable.getInstance();
-        refresh();
     }
+
     public static synchronized BookingList getInstance() throws SQLException {
         if(instance == null)
             instance = new BookingList();
         return instance;
     }
 
-    private void refresh() throws SQLException {
-        bookings = bookingTable.selectAll();
-    }
-
     public void add(Booking booking) throws SQLException {
         bookingTable.insert(booking);
-        refresh();
     }
     public void remove(Booking booking) throws SQLException {
         bookingTable.delete(booking);
-        refresh();
     }
     public Booking get(int bookingId) throws SQLException {
-        for (Booking booking : bookings) {
-            if(booking.getBookingId() == bookingId)
-                return booking;
-        }
-        return null;
+        return bookingTable.select(bookingId);
     }
     public ObservableList<Booking> getAll() throws SQLException {
-        return bookings;
+        return bookingTable.selectAll();
     }
     public void update(Booking booking) throws SQLException {
         bookingTable.update(booking);
-        refresh();
     }
 
 }
