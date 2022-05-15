@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Receptionist;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
@@ -65,7 +66,12 @@ public class RoomListViewController implements Controller {
                 }
             });
         }else {
-            bookBtn.setOnAction(actionEvent -> RoomListViewController.this.book(null));
+            if(viewModel.getStaff() instanceof Receptionist){
+                addBtn.setVisible(false);
+                removeBtn.setVisible(false);
+                editBtn.setVisible(false);
+            }
+            bookBtn.setOnAction(actionEvent -> book(null));
         }
 
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number") {
@@ -114,12 +120,21 @@ public class RoomListViewController implements Controller {
     }
 
     public void add(ActionEvent actionEvent) {
+        viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
     }
 
     public void edit(ActionEvent actionEvent) {
+        if(table.getSelectionModel().getSelectedItem() != null)
+            viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
+        else{
+            Alert alert = new ErrorAlert();
+            alert.setContentText("No Room Selected");
+            alert.show();
+        }
     }
 
     public void remove(ActionEvent actionEvent) {
+
     }
 
     public void book(ActionEvent actionEvent) {

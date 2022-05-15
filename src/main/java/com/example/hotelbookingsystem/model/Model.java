@@ -18,7 +18,12 @@ public interface Model {
     void editGuest(Guest guest) throws SQLException;
     ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException;
 
+    void addRoom(Room room) throws SQLException;
+    void removeRoom(Room room) throws SQLException;
+    void editRoom(Room room) throws SQLException;
     ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException;
+
+    Staff getStaff();
 
     void login(String username, String password) throws SQLException, IllegalAccessException;
     void logOff();

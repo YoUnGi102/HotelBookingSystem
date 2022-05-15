@@ -1,5 +1,6 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.model.Receptionist;
 import com.example.hotelbookingsystem.viewModel.MenuViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,6 +20,10 @@ public class MenuViewController implements Controller {
         this.viewModel = viewModel;
         this.root = root;
 
+        if(viewModel.getStaff() instanceof Receptionist){
+            manageStaff.setVisible(false);
+        }
+
         manageBooking.setOnAction(e -> {
             viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, this);
         });
@@ -26,7 +31,7 @@ public class MenuViewController implements Controller {
             viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
         });
         manageStaff.setOnAction(e -> {
-            // TODO ADD STAFF_LIST_VIEWrec0
+            // TODO ADD STAFF_LIST_VIEW
         });
         manageGuests.setOnAction(e -> {
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);

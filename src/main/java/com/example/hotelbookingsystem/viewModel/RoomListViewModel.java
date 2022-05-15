@@ -2,6 +2,7 @@ package com.example.hotelbookingsystem.viewModel;
 
 import com.example.hotelbookingsystem.model.Model;
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.model.Staff;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -9,7 +10,6 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class RoomListViewModel {
     private Model model;
@@ -34,6 +34,8 @@ public class RoomListViewModel {
         rooms.setValue(roomsFormatted);
     }
 
-
+    public Staff getStaff(){
+        return model.getStaff();
+    }
 
 }

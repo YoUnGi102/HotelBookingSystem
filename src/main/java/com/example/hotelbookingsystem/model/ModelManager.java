@@ -37,6 +37,7 @@ public class ModelManager implements Model{
         guestList.update(guest);
     }
 
+
     @Override
     public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
 
@@ -56,6 +57,22 @@ public class ModelManager implements Model{
         }
         return searchedGuests;
     }
+
+    @Override
+    public void addRoom(Room room) throws SQLException {
+
+    }
+
+    @Override
+    public void removeRoom(Room room) throws SQLException {
+
+    }
+
+    @Override
+    public void editRoom(Room room) throws SQLException {
+
+    }
+
     @Override
     public void removeGuest(Guest guest) throws SQLException {
         guestList.remove(guest);
@@ -75,6 +92,12 @@ public class ModelManager implements Model{
         }
         return searchedRooms;
     }
+
+    @Override
+    public Staff getStaff() {
+        return staff;
+    }
+
     private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> roomsSelected = roomList.getAll();
 

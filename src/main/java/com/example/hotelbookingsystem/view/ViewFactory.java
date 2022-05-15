@@ -26,6 +26,7 @@ public class ViewFactory {
     private BookingListViewController bookingListViewController;
     private ManageBookingViewController manageBookingViewController;
     private ManageGuestViewController manageGuestViewController;
+    private ManageRoomViewController manageRoomViewController;
     private MenuViewController menuViewController;
     private LoginViewController loginViewController;
 
@@ -85,6 +86,7 @@ public class ViewFactory {
         }
         return roomListViewController.getRoot();
     }
+
     public Region loadManageBookingView(Controller previousView){
 
         if (manageBookingViewController == null) {
@@ -119,7 +121,6 @@ public class ViewFactory {
 
         return manageBookingViewController.getRoot();
     }
-
     public Region loadManageGuestView(Controller previousView) {
 
         if (manageGuestViewController == null) {
@@ -144,6 +145,30 @@ public class ViewFactory {
         }
 
         return manageGuestViewController.getRoot();
+    }
+    public Region loadManageRoomView(Controller previousView) {
+        if (manageRoomViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.MANAGE_ROOM_VIEW));
+            try {
+                Region root = loader.load();
+                manageRoomViewController = loader.getController();
+                manageRoomViewController.init(viewHandler, viewModelFactory.getManageRoomViewModel(), root, previousView);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        if(previousView instanceof GuestListViewController controller &&
+//                controller.getViewModel().getCurrentGuest() != null){
+//            Guest guest = controller.getViewModel().getCurrentGuest();
+//
+//            ManageGuestViewModel manageGuestViewModel = manageGuestViewController.getViewModel();
+//            manageGuestViewModel.setGuest(guest);
+//
+//        }
+
+        return manageRoomViewController.getRoot();
     }
 
     public Region loadMenuView(Controller previousView) {

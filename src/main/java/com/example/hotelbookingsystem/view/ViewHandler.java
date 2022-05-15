@@ -17,6 +17,7 @@ public class ViewHandler {
     public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
     public static final String MANAGE_GUEST_VIEW = "manage_guest_view.fxml";
+    public static final String MANAGE_ROOM_VIEW = "manage_room_view.fxml";
     public static final String MENU_VIEW = "menu_view.fxml";
     public static final String LOGIN_VIEW = "login_view.fxml";
 
@@ -65,6 +66,9 @@ public class ViewHandler {
             }case LOGIN_VIEW -> {
                 root = viewFactory.loadLoginView(previousView);
                 primaryStage.setTitle("Log In");
+            }case MANAGE_ROOM_VIEW -> {
+                root = viewFactory.loadManageRoomView(previousView);
+                primaryStage.setTitle("Manage Room");
             }
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }

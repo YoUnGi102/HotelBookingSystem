@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.viewModel;
 
 import com.example.hotelbookingsystem.model.Model;
+import com.example.hotelbookingsystem.model.Staff;
 
 public class MenuViewModel {
 
@@ -12,6 +13,10 @@ public class MenuViewModel {
 
     public void logOff(){
         model.logOff();
+    }
+
+    public Staff getStaff(){
+        return model.getStaff();
     }
 
 }
