@@ -31,13 +31,14 @@ public class ModelManager implements Model{
     public void addGuest(Guest guest) throws SQLException {
         guestList.add(guest);
     }
-
     @Override
     public void editGuest(Guest guest) throws SQLException {
         guestList.update(guest);
     }
-
-
+    @Override
+    public void removeGuest(Guest guest) throws SQLException {
+        guestList.remove(guest);
+    }
     @Override
     public ObservableList<Guest> searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
 
@@ -60,24 +61,16 @@ public class ModelManager implements Model{
 
     @Override
     public void addRoom(Room room) throws SQLException {
-
+        roomList.add(room);
     }
-
     @Override
     public void removeRoom(Room room) throws SQLException {
-
+        roomList.remove(room);
     }
-
     @Override
     public void editRoom(Room room) throws SQLException {
-
+        roomList.update(room);
     }
-
-    @Override
-    public void removeGuest(Guest guest) throws SQLException {
-        guestList.remove(guest);
-    }
-
     @Override
     public ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> searchedRooms = FXCollections.observableArrayList();
@@ -91,11 +84,6 @@ public class ModelManager implements Model{
             searchedRooms.add(room);
         }
         return searchedRooms;
-    }
-
-    @Override
-    public Staff getStaff() {
-        return staff;
     }
 
     private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
@@ -160,5 +148,9 @@ public class ModelManager implements Model{
     @Override
     public void logOff() {
         staff = null;
+    }
+    @Override
+    public Staff getStaff() {
+        return staff;
     }
 }

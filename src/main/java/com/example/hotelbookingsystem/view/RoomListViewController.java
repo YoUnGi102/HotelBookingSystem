@@ -85,6 +85,10 @@ public class RoomListViewController implements Controller {
         viewModel.bindTableItemsProperty(table.itemsProperty());
     }
 
+    public RoomListViewModel getViewModel() {
+        return viewModel;
+    }
+
     public void reset(){
         if(table.getItems() != null)
             table.getItems().clear();
@@ -119,14 +123,16 @@ public class RoomListViewController implements Controller {
 
     }
 
+
     public void add(ActionEvent actionEvent) {
         viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
     }
 
     public void edit(ActionEvent actionEvent) {
-        if(table.getSelectionModel().getSelectedItem() != null)
+        if(table.getSelectionModel().getSelectedItem() != null) {
+            viewModel.setCurrentRoom(table.getSelectionModel().getSelectedItem().getRoom());
             viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
-        else{
+        }else{
             Alert alert = new ErrorAlert();
             alert.setContentText("No Room Selected");
             alert.show();
