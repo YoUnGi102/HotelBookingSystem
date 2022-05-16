@@ -2,6 +2,7 @@ package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Receptionist;
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
 import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
@@ -134,17 +135,30 @@ public class RoomListViewController implements Controller {
             viewModel.setCurrentRoom(table.getSelectionModel().getSelectedItem().getRoom());
             viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
         }else{
-            Alert alert = new ErrorAlert();
-            alert.setContentText("No Room Selected");
-            alert.show();
+            new ErrorAlert("No Room Selected").show();
         }
     }
 
     public void remove(ActionEvent actionEvent) {
+        if(table.getSelectionModel().getSelectedItem() != null){
+            try {
+                viewModel.removeRoom(table.getSelectionModel().getSelectedItem().getRoom());
+            } catch (SQLException e) {
+                Alert alert = new DatabaseErrorAlert();
+                alert.show();
+            }
+        }
 
     }
 
     public void book(ActionEvent actionEvent) {
+        if(table.getSelectionModel().getSelectedItem() != null){
+            viewModel.setCurrentRoom(table.getSelectionModel().getSelectedItem().getRoom());
+            viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
+        }else {
+            new ErrorAlert("No Room Selected").show();
+        }
+
     }
 
     public void back() {

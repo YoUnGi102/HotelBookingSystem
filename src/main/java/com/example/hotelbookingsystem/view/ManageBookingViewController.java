@@ -34,11 +34,13 @@ public class ManageBookingViewController implements Controller {
     private DatePicker dateFrom, dateTo;
 
     private ObjectProperty<Room> room;
+    private Controller previousView;
 
-    public void init(ViewHandler viewHandler, ManageBookingViewModel viewModel, Region root, Controller lastController) {
+    public void init(ViewHandler viewHandler, ManageBookingViewModel viewModel, Region root, Controller previousView) {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
+        this.previousView = previousView;
 
         setRoomAdded(false);
         setGuestAdded(false);
@@ -150,8 +152,13 @@ public class ManageBookingViewController implements Controller {
 
     @FXML
     void cancel(ActionEvent event) {
-        viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
-        viewModel.clear();
+        if(previousView instanceof BookingListViewController){
+            viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
+            viewModel.clear();
+        }else {
+            viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, null);
+            viewModel.clear();
+        }
     }
     @FXML
     void confirm(ActionEvent event) {

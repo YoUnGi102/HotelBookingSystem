@@ -43,6 +43,10 @@ public class RoomListViewModel {
         rooms.setValue(roomsFormatted);
     }
 
+    public void removeRoom(Room room) throws SQLException {
+        model.removeRoom(room);
+    }
+
     public Staff getStaff(){
         return model.getStaff();
     }

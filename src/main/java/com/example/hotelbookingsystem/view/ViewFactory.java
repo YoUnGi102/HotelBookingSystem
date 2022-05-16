@@ -114,7 +114,9 @@ public class ViewFactory {
             manageBookingViewModel.setDateTo(booking.getDateTo());
             manageBookingViewModel.setRoom(booking.getRoom());
             manageBookingViewModel.setCurrentBooking(booking);
-
+        }else if(previousView instanceof RoomListViewController controller){
+            ManageBookingViewModel manageBookingViewModel = manageBookingViewController.getViewModel();
+            manageBookingViewModel.setRoom(controller.getViewModel().getCurrentRoom());
         }
 
         return manageBookingViewController.getRoot();
