@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class ViewHandler {
 
+    public static final int UNIQUE_SQL_ERROR_CODE = 23505;
+
     public static final Image ICON = new Image("file:src\\main\\resources\\img\\icon_gradient.png");
 
     // TODO ADD NAME OF YOUR FXML HERE

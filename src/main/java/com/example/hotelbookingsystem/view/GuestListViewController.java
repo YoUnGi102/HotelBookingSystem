@@ -1,24 +1,17 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Guest;
-import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.GuestListViewModel;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.io.IOError;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class GuestListViewController implements Controller{
 

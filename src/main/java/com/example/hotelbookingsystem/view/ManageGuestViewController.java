@@ -2,15 +2,12 @@ package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Address;
 import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.ManageGuestViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -129,7 +126,6 @@ public class ManageGuestViewController implements Controller {
 
             return;
         }
-
 
         try {
             if(guest.getValue() != null){

@@ -1,4 +1,4 @@
-package com.example.hotelbookingsystem.view;
+package com.example.hotelbookingsystem.view.alert;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -6,11 +6,12 @@ import javafx.stage.Stage;
 
 import static com.example.hotelbookingsystem.view.ViewHandler.ICON;
 
-public class ErrorAlert extends Alert {
+public class DatabaseErrorAlert extends Alert {
 
-    public ErrorAlert(){
+    public DatabaseErrorAlert(){
         super(AlertType.NONE);
-        setTitle("Error");
+        setTitle("Database Connection Error");
+        setContentText("There is a problem with connecting to the database\nPlease try again later.");
         getButtonTypes().add(ButtonType.OK);
         getDialogPane().getStylesheets().add("file:src/main/resources/style/alert.css");
         Stage stage = (Stage)(getDialogPane().getScene().getWindow());

@@ -1,11 +1,12 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
+import com.example.hotelbookingsystem.view.alert.SuccessAlert;
 import com.example.hotelbookingsystem.viewModel.ManageRoomViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -36,6 +37,7 @@ public class ManageRoomViewController implements Controller {
         viewModel.bindRoomProperty(room);
 
         room.addListener((observableValue, oldVal, newVal) -> {
+            System.out.println(newVal);
             if(newVal != null){
                 roomNumber.setText(String.valueOf(room.getValue().getRoomNumber()));
                 floor.setText(String.valueOf(room.getValue().getFloor()));
@@ -58,6 +60,14 @@ public class ManageRoomViewController implements Controller {
     }
 
     public void confirm() {
+
+        if(roomNumber.getText().equals("") || size.getText().equals("")
+            || quality.getText().equals("") || floor.getText().equals("")){
+            Alert alert = new ErrorAlert("Some of the necessary fields are empty");
+            alert.show();
+        }
+
+
         if(viewModel.getRoom() == null){
             Room room = new Room(
                     Integer.parseInt(roomNumber.getText()),
@@ -67,7 +77,21 @@ public class ManageRoomViewController implements Controller {
             );
             try {
                 viewModel.addRoom(room);
+
+                Alert alert = new SuccessAlert("Room " + room.getRoomNumber() + " successfully added.");
+                alert.show();
+
             } catch (SQLException e) {
+
+                if(Integer.parseInt(e.getSQLState()) == ViewHandler.UNIQUE_SQL_ERROR_CODE){
+                    Alert alert = new ErrorAlert("Room with this number already exists");
+                    alert.show();
+                    return;
+                }
+
+                System.out.println(e.getMessage());
+                System.out.println(e.getSQLState());
+                System.out.println(e.getErrorCode());
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
             }
@@ -79,11 +103,23 @@ public class ManageRoomViewController implements Controller {
             room.setFloor(Integer.parseInt(quality.getText()));
 
             try {
+
                 viewModel.editRoom(room);
+                viewModel.setRoom(null);
+                roomNumber.setDisable(false);
+                roomNumber.setText("");
+                floor.setText("");
+                size.setText("");
+                quality.setText("");
+
+                Alert alert = new SuccessAlert("Room " + room.getRoomNumber() + " successfully updated.");
+                alert.show();
+
             } catch (SQLException e) {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
             }
+
         }
 
         viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
@@ -92,6 +128,11 @@ public class ManageRoomViewController implements Controller {
 
     public void back(ActionEvent actionEvent) {
         viewModel.setRoom(null);
+        roomNumber.setDisable(false);
+        roomNumber.setText("");
+        floor.setText("");
+        size.setText("");
+        quality.setText("");
         viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
     }
 

@@ -2,11 +2,11 @@ package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Receptionist;
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomTableProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -125,6 +125,7 @@ public class RoomListViewController implements Controller {
 
 
     public void add(ActionEvent actionEvent) {
+        viewModel.setCurrentRoom(null);
         viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
     }
 

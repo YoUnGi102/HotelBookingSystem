@@ -1,9 +1,10 @@
 package com.example.hotelbookingsystem.view;
 
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.LoginViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;

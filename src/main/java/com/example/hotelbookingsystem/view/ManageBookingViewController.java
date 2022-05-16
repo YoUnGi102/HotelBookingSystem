@@ -1,6 +1,8 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
+import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import javafx.beans.property.ObjectProperty;
