@@ -3,6 +3,8 @@ module com.example.hotelbookingsystem {
     requires javafx.graphics;
     requires java.sql;
     requires javafx.controls;
+    requires java.rmi;
+    requires java.desktop;
 
     opens com.example.hotelbookingsystem.model to javafx.fxml;
     exports com.example.hotelbookingsystem.model;

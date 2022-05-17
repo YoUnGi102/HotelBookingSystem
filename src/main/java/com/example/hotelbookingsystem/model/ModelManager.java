@@ -7,16 +7,23 @@ import com.example.hotelbookingsystem.model.list.RoomList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.rmi.Remote;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ModelManager implements Model{
+public class ModelManager implements Model, Remote {
 
-    RoomList roomList;
-    BookingList bookingList;
-    GuestList guestList;
-    StaffTable staffTable;
+    public static final String UPDATE = "update";
+
+    private PropertyChangeSupport support;
+
+    private RoomList roomList;
+    private BookingList bookingList;
+    private GuestList guestList;
+    private StaffTable staffTable;
 
     private Staff staff;
 
@@ -25,6 +32,7 @@ public class ModelManager implements Model{
         bookingList = BookingList.getInstance();
         guestList = GuestList.getInstance();
         staffTable = StaffTable.getInstance();
+        support = new PropertyChangeSupport(this);
     }
 
     @Override
@@ -138,6 +146,11 @@ public class ModelManager implements Model{
     }
 
     @Override
+    public Staff getStaff() {
+        return staff;
+    }
+
+    @Override
     public void login(String username, String password) throws SQLException, IllegalAccessException {
         Staff staff = staffTable.logIn(username, password);
         if(staff == null)
@@ -149,8 +162,15 @@ public class ModelManager implements Model{
     public void logOff() {
         staff = null;
     }
+
     @Override
-    public Staff getStaff() {
-        return staff;
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(propertyName, listener);
     }
+    @Override
+    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        support.removePropertyChangeListener(propertyName, listener);
+    }
+
+
 }

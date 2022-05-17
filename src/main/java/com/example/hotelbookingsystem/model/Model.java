@@ -2,6 +2,7 @@ package com.example.hotelbookingsystem.model;
 
 import javafx.collections.ObservableList;
 
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,9 +25,11 @@ public interface Model {
     ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException;
 
     Staff getStaff();
-
     void login(String username, String password) throws SQLException, IllegalAccessException;
     void logOff();
+
+    void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
+    void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
 }
 
