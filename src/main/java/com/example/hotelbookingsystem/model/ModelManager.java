@@ -4,19 +4,23 @@ import com.example.hotelbookingsystem.dao.StaffTable;
 import com.example.hotelbookingsystem.model.list.BookingList;
 import com.example.hotelbookingsystem.model.list.GuestList;
 import com.example.hotelbookingsystem.model.list.RoomList;
+import com.example.hotelbookingsystem.server.Client;
+import com.example.hotelbookingsystem.server.ClientDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.NotBoundException;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ModelManager implements Model, Remote {
 
-    public static final String UPDATE = "update";
+    public static final String REFRESH = "refresh";
 
     private PropertyChangeSupport support;
 
@@ -27,12 +31,15 @@ public class ModelManager implements Model, Remote {
 
     private Staff staff;
 
-    public ModelManager() throws SQLException {
+    private ClientDriver client;
+
+    public ModelManager() throws SQLException, NotBoundException, RemoteException {
         roomList = RoomList.getInstance();
         bookingList = BookingList.getInstance();
         guestList = GuestList.getInstance();
         staffTable = StaffTable.getInstance();
         support = new PropertyChangeSupport(this);
+        client = new ClientDriver(support);
     }
 
     @Override
@@ -68,16 +75,19 @@ public class ModelManager implements Model, Remote {
     }
 
     @Override
-    public void addRoom(Room room) throws SQLException {
+    public void addRoom(Room room) throws SQLException, RemoteException {
         roomList.add(room);
+        client.sendRefresh();
     }
     @Override
-    public void removeRoom(Room room) throws SQLException {
+    public void removeRoom(Room room) throws SQLException, RemoteException {
         roomList.remove(room);
+        client.sendRefresh();
     }
     @Override
-    public void editRoom(Room room) throws SQLException {
+    public void editRoom(Room room) throws SQLException, RemoteException {
         roomList.update(room);
+        client.sendRefresh();
     }
     @Override
     public ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
@@ -132,17 +142,20 @@ public class ModelManager implements Model, Remote {
     }
 
     @Override
-    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
+    public void addBooking(ArrayList<Guest> guests, Room room, LocalDate dateFrom, LocalDate dateTo) throws SQLException, RemoteException {
         Booking booking = new Booking(guests, dateFrom, dateTo, room, staff);
         bookingList.add(booking);
+        client.sendRefresh();
     }
     @Override
-    public void removeBooking(Booking booking) throws SQLException {
+    public void removeBooking(Booking booking) throws SQLException, RemoteException {
         bookingList.remove(booking);
+        client.sendRefresh();
     }
     @Override
-    public void editBooking(Booking booking) throws SQLException {
+    public void editBooking(Booking booking) throws SQLException, RemoteException {
         bookingList.update(booking);
+        client.sendRefresh();
     }
 
     @Override
@@ -171,6 +184,5 @@ public class ModelManager implements Model, Remote {
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(propertyName, listener);
     }
-
 
 }

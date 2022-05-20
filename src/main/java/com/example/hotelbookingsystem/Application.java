@@ -7,13 +7,22 @@ import com.example.hotelbookingsystem.viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws SQLException {
-        Model model = new ModelManager();
+        Model model = null;
+        try {
+            model = new ModelManager();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler viewHandler = new ViewHandler(viewModelFactory);
         viewHandler.start(primaryStage);

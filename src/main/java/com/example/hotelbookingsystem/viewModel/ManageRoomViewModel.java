@@ -5,6 +5,7 @@ import com.example.hotelbookingsystem.model.Room;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class ManageRoomViewModel {
@@ -34,11 +35,11 @@ public class ManageRoomViewModel {
         this.room.set(room);
     }
 
-    public void addRoom(Room room) throws SQLException {
+    public void addRoom(Room room) throws SQLException, RemoteException {
         model.addRoom(room);
     }
 
-    public void editRoom(Room room) throws SQLException {
+    public void editRoom(Room room) throws SQLException, RemoteException {
         model.editRoom(room);
     }
 

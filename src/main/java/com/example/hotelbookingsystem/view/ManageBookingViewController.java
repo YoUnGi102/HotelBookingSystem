@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class ManageBookingViewController implements Controller {
@@ -218,6 +219,8 @@ public class ManageBookingViewController implements Controller {
 
         } catch (SQLException e) {
             (new DatabaseErrorAlert()).show();
+        } catch (RemoteException e) {
+            // TODO ADD ACTION
         }
     }
 }

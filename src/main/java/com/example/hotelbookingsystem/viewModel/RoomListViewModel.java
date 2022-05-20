@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.viewModel;
 
 import com.example.hotelbookingsystem.model.Model;
+import com.example.hotelbookingsystem.model.ModelManager;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.model.Staff;
 import javafx.beans.property.ObjectProperty;
@@ -8,10 +9,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class RoomListViewModel {
+public class RoomListViewModel implements PropertyChangeListener {
     private Model model;
 
     private ObjectProperty<ObservableList<RoomTableProperty>> rooms;
@@ -21,6 +25,7 @@ public class RoomListViewModel {
         rooms = new SimpleObjectProperty<>();
         this.model = model;
         this.currentRoom = null;
+        model.addPropertyChangeListener(ModelManager.REFRESH, this);
     }
 
     public void bindTableItemsProperty(ObjectProperty<ObservableList<RoomTableProperty>> itemsProperty){
@@ -43,7 +48,7 @@ public class RoomListViewModel {
         rooms.setValue(roomsFormatted);
     }
 
-    public void removeRoom(Room room) throws SQLException {
+    public void removeRoom(Room room) throws SQLException, RemoteException {
         model.removeRoom(room);
     }
 
@@ -51,4 +56,8 @@ public class RoomListViewModel {
         return model.getStaff();
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
 }

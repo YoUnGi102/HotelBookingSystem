@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class BookingListViewController implements Controller {
@@ -86,6 +87,8 @@ public class BookingListViewController implements Controller {
             table.refresh();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (RemoteException e) {
+            // TODO ADD ACTION
         }
     }
 

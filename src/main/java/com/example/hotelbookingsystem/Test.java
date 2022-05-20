@@ -14,10 +14,10 @@ public class Test
 {
     public static void main(String[] args) throws SQLException
     {
-        RoomDAO room = RoomTable.getInstance();
-        LocalDate date = LocalDate.of(2022,06,16);
-        System.out.println(date.toString());
-        Model model = new ModelManager();
+//        RoomDAO room = RoomTable.getInstance();
+//        LocalDate date = LocalDate.of(2022,06,16);
+//        System.out.println(date.toString());
+//        Model model = new ModelManager();
 
        // System.out.println(room.selectAllSearched(date));
     }

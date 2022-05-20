@@ -16,8 +16,6 @@ public class ServerDriver
         Registry registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
         //Remote exported = UnicastRemoteObject.exportObject(server, 8888);
         registry.bind("RMIChatServer", server);
-
-
         //Naming.rebind("RMIChatServer", new ChatServer(1));
     }
 }

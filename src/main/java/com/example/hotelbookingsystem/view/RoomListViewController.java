@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class RoomListViewController implements Controller {
@@ -146,6 +147,8 @@ public class RoomListViewController implements Controller {
             } catch (SQLException e) {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
+            } catch (RemoteException e) {
+                // TODO ADD ACTION
             }
         }
 
