@@ -9,22 +9,21 @@ public class ServerImpl extends UnicastRemoteObject implements ServerIF
 {
 
     private ArrayList<ClientIF> clients;
-    protected ServerImpl() throws RemoteException
-    {
+    protected ServerImpl() throws RemoteException {
         clients = new ArrayList<ClientIF>();
     }
-        public synchronized void registerChatclient(ClientIF chatclient) throws RemoteException {
-            this.clients.add(chatclient);
-        }
-        public synchronized void refresh() throws RemoteException {
+    public synchronized void registerChatclient(ClientIF chatclient) throws RemoteException {
+        this.clients.add(chatclient);
+    }
+    public synchronized void refresh() throws RemoteException {
 //            int i =0;
 //            while (i < chatclients.size()) {
 //            chatclients.get(i++).retrieveMessage (message);
 
-            for (ClientIF client: clients)
-            {
-                client.receive();
-            }
+        for (ClientIF client: clients)
+        {
+            client.receive();
         }
     }
+}
 
