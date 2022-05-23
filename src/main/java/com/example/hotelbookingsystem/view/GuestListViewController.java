@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
 import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.GuestTableProperty;
 import com.example.hotelbookingsystem.viewModel.GuestListViewModel;
@@ -150,15 +151,30 @@ public class GuestListViewController implements Controller{
         }
     }
 
-    public void remove() throws SQLException {
-        ObservableList<GuestTableProperty> allGuests, singleGuest;
-        allGuests = table.getItems();
-        singleGuest = table.getSelectionModel().getSelectedItems();
-        GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
+//    public void remove() throws SQLException {
+//        ObservableList<GuestTableProperty> allGuests, singleGuest;
+//        allGuests = table.getItems();
+//        singleGuest = table.getSelectionModel().getSelectedItems();
+//        GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
+//        viewModel.removeGuest(guestTableProperty.getGuest());
+//        singleGuest.forEach(allGuests :: remove);
+//
+//    }
+public void remove() {
+    ObservableList<GuestTableProperty> allGuests, singleGuest;
+    allGuests = table.getItems();
+    singleGuest = table.getSelectionModel().getSelectedItems();
+    GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
+    try {
         viewModel.removeGuest(guestTableProperty.getGuest());
-        singleGuest.forEach(allGuests :: remove);
-
+    } catch (SQLException e) {
+        Alert alert = new DatabaseErrorAlert();
+        alert.show();
     }
+
+    singleGuest.forEach(allGuests :: remove);
+
+}
 
     public void back() {
         if(previousView instanceof ManageBookingViewController)
@@ -173,5 +189,72 @@ public class GuestListViewController implements Controller{
 
     public void setPreviousView(Controller previousView) {
         this.previousView = previousView;
+
+        if(previousView instanceof ManageBookingViewController controller){
+
+            guestScroll.setPrefHeight(300);
+            showAddGuest.setVisible(true);
+            showAddGuest.setManaged(true);
+
+            ManageBookingViewModel manageViewModel = controller.getViewModel();
+            addBtn.setOnAction(e->{
+
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Error");
+                alert.setContentText("Cannot add one guest twice");
+                alert.getButtonTypes().add(ButtonType.OK);
+
+                if(table.getSelectionModel().getSelectedItem() != null) {
+
+                    Guest g = table.getSelectionModel().getSelectedItem().getGuest();
+
+                    for (GuestTableProperty guest : manageViewModel.getGuests()) {
+                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())) {
+                            alert.show();
+                            return;
+                        }
+                    }
+
+                    for (GuestTableProperty guest : agTable.getItems()) {
+                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())){
+                            alert.show();
+                            return;
+                        }
+                    }
+
+                    agTable.getItems().add(new GuestTableProperty(g));
+                }
+            });
+
+            editBtn.setText("Remove");
+            editBtn.setOnAction(e->{
+                GuestTableProperty g = agTable.getSelectionModel().getSelectedItem();
+                if(g != null){
+                    agTable.getItems().remove(g);
+                    agTable.refresh();
+                }
+            });
+
+            removeBtn.setText("Confirm");
+            removeBtn.setOnAction(e -> {
+                manageViewModel.setGuests(agTable.getItems());
+                agTable.getItems().clear();
+                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
+            });
+        }else{
+            guestScroll.setPrefHeight(650);
+            showAddGuest.setVisible(false);
+            showAddGuest.setManaged(false);
+
+            addBtn.setOnAction(e-> add());
+
+            editBtn.setText("Edit");
+            editBtn.setOnAction(e->edit());
+
+            removeBtn.setText("Remove");
+            removeBtn.setOnAction(e -> remove());
+        }
+
     }
+
 }
