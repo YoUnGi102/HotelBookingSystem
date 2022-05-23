@@ -151,7 +151,7 @@ public class ManageBookingViewController implements Controller {
     }
 
     @FXML
-    void cancel(ActionEvent event) {
+    void cancel() {
         if(previousView instanceof BookingListViewController){
             viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, null);
             viewModel.clear();
@@ -161,7 +161,7 @@ public class ManageBookingViewController implements Controller {
         }
     }
     @FXML
-    void confirm(ActionEvent event) {
+    void confirm() {
 
         Alert alert = new ErrorAlert();
 
