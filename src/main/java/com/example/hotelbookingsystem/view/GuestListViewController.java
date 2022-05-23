@@ -184,7 +184,7 @@ public void remove() {
     }
 
     public void reset(){
-        if(table.getItems().size() != 0)
+        if(table.getItems() != null)
             table.getItems().clear();
         previousView = null;
     }
