@@ -183,6 +183,12 @@ public void remove() {
             viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
+    public void reset(){
+        if(table.getItems().size() != 0)
+            table.getItems().clear();
+        previousView = null;
+    }
+
     public Region getRoot() {
         return root;
     }

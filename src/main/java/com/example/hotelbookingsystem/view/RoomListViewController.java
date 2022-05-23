@@ -7,7 +7,6 @@ import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomTableProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -72,7 +71,7 @@ public class RoomListViewController implements Controller {
                 removeBtn.setVisible(false);
                 editBtn.setVisible(false);
             }
-            bookBtn.setOnAction(actionEvent -> book(null));
+            bookBtn.setOnAction(actionEvent -> book());
         }
 
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number") {
@@ -90,13 +89,15 @@ public class RoomListViewController implements Controller {
         return viewModel;
     }
 
+
+
     public void reset(){
-        if(table.getItems() != null)
+        if(table.getItems().size() != 0)
             table.getItems().clear();
         previousView = null;
     }
 
-    public void search(ActionEvent actionEvent) {
+    public void search() {
 
         try {
             int floor1, size1,quality1;
@@ -124,13 +125,12 @@ public class RoomListViewController implements Controller {
 
     }
 
-
-    public void add(ActionEvent actionEvent) {
+    public void add() {
         viewModel.setCurrentRoom(null);
         viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
     }
 
-    public void edit(ActionEvent actionEvent) {
+    public void edit() {
         if(table.getSelectionModel().getSelectedItem() != null) {
             viewModel.setCurrentRoom(table.getSelectionModel().getSelectedItem().getRoom());
             viewHandler.openView(ViewHandler.MANAGE_ROOM_VIEW, this);
@@ -139,7 +139,7 @@ public class RoomListViewController implements Controller {
         }
     }
 
-    public void remove(ActionEvent actionEvent) {
+    public void remove() {
         if(table.getSelectionModel().getSelectedItem() != null){
             try {
                 viewModel.removeRoom(table.getSelectionModel().getSelectedItem().getRoom());
@@ -147,11 +147,14 @@ public class RoomListViewController implements Controller {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
             }
+        }else{
+            Alert alert = new ErrorAlert("No room selected!");
+            alert.show();
         }
 
     }
 
-    public void book(ActionEvent actionEvent) {
+    public void book() {
         if(table.getSelectionModel().getSelectedItem() != null){
             viewModel.setCurrentRoom(table.getSelectionModel().getSelectedItem().getRoom());
             viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);

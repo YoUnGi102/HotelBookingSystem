@@ -54,6 +54,12 @@ public class ViewFactory {
             }
         }
         guestListViewController.setPreviousView(previousView);
+
+        if(previousView instanceof MenuViewController){
+            guestListViewController.reset();
+        }else{
+            guestListViewController.search();
+        }
         return guestListViewController.getRoot();
     }
     public Region loadBookingListView(Controller previousView){
@@ -68,6 +74,7 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+        bookingListViewController.reset();
         return bookingListViewController.getRoot();
     }
     public Region loadRoomListView(Controller previousView){
@@ -83,13 +90,15 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
-        if (previousView instanceof ManageBookingViewController manageBookingViewController)
-        {
+        if (previousView instanceof ManageBookingViewController manageBookingViewController) {
+            roomListViewController.reset();
             roomListViewController.hideButtons();
         }
-        else if(previousView instanceof MenuViewController menuViewController )
-        {roomListViewController.showButtons();
+        else if(previousView instanceof MenuViewController menuViewController ) {
+            roomListViewController.search();
+            roomListViewController.showButtons();
         }
+
         return roomListViewController.getRoot();
     }
 

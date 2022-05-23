@@ -2,6 +2,7 @@ package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Address;
 import com.example.hotelbookingsystem.model.Guest;
+import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
 import com.example.hotelbookingsystem.view.alert.ErrorAlert;
 import com.example.hotelbookingsystem.viewModel.ManageGuestViewModel;
 import javafx.beans.property.ObjectProperty;
@@ -157,8 +158,18 @@ public class ManageGuestViewController implements Controller {
             clearAll();
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
         } catch (SQLException e) {
+
+            if(Integer.parseInt(e.getSQLState()) == ViewHandler.UNIQUE_SQL_ERROR_CODE){
+                Alert alert = new ErrorAlert("Guest with this passport number already exists");
+                alert.show();
+                return;
+            }
+
+            Alert alert = new DatabaseErrorAlert();
+            alert.show();
             e.printStackTrace();
         }
+
     }
 
 }

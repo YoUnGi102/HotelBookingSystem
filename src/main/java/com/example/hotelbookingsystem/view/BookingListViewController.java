@@ -102,6 +102,12 @@ public class BookingListViewController implements Controller {
         }
     }
 
+    public void reset(){
+        if(table.getItems().size() != 0)
+            table.getItems().clear();
+        previousView = null;
+    }
+
     public Region getRoot() {
         return root;
     }
