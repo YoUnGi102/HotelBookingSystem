@@ -7,6 +7,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 
 import java.beans.PropertyChangeEvent;
@@ -50,6 +52,7 @@ public class BookingListViewModel implements PropertyChangeListener {
         }
 
     public void searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
+
         lastPhoneNumber = phoneNumber;
         lastEmail = email;
         lastRoomNumber = roomNumber;

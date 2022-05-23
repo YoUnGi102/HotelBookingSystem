@@ -1,3 +1,6 @@
+/**
+ *
+ */
 module com.example.hotelbookingsystem {
     requires javafx.fxml;
     requires javafx.graphics;

@@ -8,6 +8,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -41,6 +43,23 @@ public class RoomListViewModel implements PropertyChangeListener {
     }
 
     public void searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
+        if (from != null && from.isBefore(LocalDate.now()))
+        {
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("From Date is Wrong");
+            alert.setContentText("Start Date is before today");
+            alert.getButtonTypes().add(ButtonType.OK);
+            alert.show();
+        }
+        if (from != null && to != null && to.isBefore(from))
+        {
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Finish Date is Wrong");
+            alert.setContentText("Finish Date is before strat Date");
+            alert.getButtonTypes().add(ButtonType.OK);
+            alert.show();
+            to = null;
+        }
         ObservableList<RoomTableProperty> roomsFormatted = FXCollections.observableArrayList();
         for (Room g : model.searchRooms(floor, size, quality, from, to)) {
             roomsFormatted.add(new RoomTableProperty(g));

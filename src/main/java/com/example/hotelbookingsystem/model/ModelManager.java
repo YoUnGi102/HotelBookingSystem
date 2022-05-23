@@ -6,11 +6,13 @@ import com.example.hotelbookingsystem.model.list.GuestList;
 import com.example.hotelbookingsystem.model.list.RoomList;
 import com.example.hotelbookingsystem.server.Client;
 import com.example.hotelbookingsystem.server.ClientDriver;
+import com.example.hotelbookingsystem.server.ServerDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -39,7 +41,14 @@ public class ModelManager implements Model, Remote {
         guestList = GuestList.getInstance();
         staffTable = StaffTable.getInstance();
         support = new PropertyChangeSupport(this);
-        client = new ClientDriver(support);
+        try
+        {
+            client = new ClientDriver(support);
+        } catch (ConnectException e)
+        {
+            new Thread(ServerDriver.getInstance()).start();
+        }
+
     }
 
     @Override
