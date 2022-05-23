@@ -3,7 +3,6 @@ package com.example.hotelbookingsystem.view;
 import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.viewModel.BookingListViewModel;
 import com.example.hotelbookingsystem.viewModel.BookingTableProperty;
-import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
