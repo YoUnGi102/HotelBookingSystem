@@ -67,7 +67,7 @@ public class RoomListViewController implements Controller {
                     viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
                 }
             });
-        }else {
+        }else{
             if(viewModel.getStaff() instanceof Receptionist){
                 addBtn.setVisible(false);
                 removeBtn.setVisible(false);

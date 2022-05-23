@@ -106,6 +106,7 @@ public class ManageGuestViewController implements Controller {
 
     @FXML
     void back() {
+        clearAll();
         if (previousView instanceof GuestListViewController)
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);
         else
