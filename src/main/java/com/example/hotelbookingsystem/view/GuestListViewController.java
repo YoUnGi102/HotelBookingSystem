@@ -67,58 +67,6 @@ public class GuestListViewController implements Controller{
 
         guestScroll.setPrefHeight(500);
 
-        if(lastController instanceof ManageBookingViewController controller){
-
-            guestScroll.setPrefHeight(300);
-            showAddGuest.setVisible(true);
-            showAddGuest.setManaged(true);
-
-            ManageBookingViewModel manageViewModel = controller.getViewModel();
-            addBtn.setOnAction(e->{
-
-                Alert alert = new Alert(Alert.AlertType.NONE);
-                alert.setTitle("Error");
-                alert.setContentText("Cannot add one guest twice");
-                alert.getButtonTypes().add(ButtonType.OK);
-
-                if(table.getSelectionModel().getSelectedItem() != null) {
-
-                    Guest g = table.getSelectionModel().getSelectedItem().getGuest();
-
-                    for (GuestTableProperty guest : manageViewModel.getGuests()) {
-                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())) {
-                            alert.show();
-                            return;
-                        }
-                    }
-
-                    for (GuestTableProperty guest : agTable.getItems()) {
-                        if (guest.getGuest().getPassportNumber().equals(g.getPassportNumber())){
-                            alert.show();
-                            return;
-                        }
-                    }
-
-                    agTable.getItems().add(new GuestTableProperty(g));
-                }
-            });
-
-            editBtn.setText("Remove");
-            editBtn.setOnAction(e->{
-                GuestTableProperty g = agTable.getSelectionModel().getSelectedItem();
-                if(g != null){
-                    agTable.getItems().remove(g);
-                    agTable.refresh();
-                }
-            });
-
-            removeBtn.setText("Confirm");
-            removeBtn.setOnAction(e -> {
-                manageViewModel.setGuests(agTable.getItems());
-                agTable.getItems().clear();
-                viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
-            });
-        }
     }
 
     public GuestListViewModel getViewModel() {
@@ -151,30 +99,20 @@ public class GuestListViewController implements Controller{
         }
     }
 
-//    public void remove() throws SQLException {
-//        ObservableList<GuestTableProperty> allGuests, singleGuest;
-//        allGuests = table.getItems();
-//        singleGuest = table.getSelectionModel().getSelectedItems();
-//        GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
-//        viewModel.removeGuest(guestTableProperty.getGuest());
-//        singleGuest.forEach(allGuests :: remove);
-//
-//    }
-public void remove() {
-    ObservableList<GuestTableProperty> allGuests, singleGuest;
-    allGuests = table.getItems();
-    singleGuest = table.getSelectionModel().getSelectedItems();
-    GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
-    try {
-        viewModel.removeGuest(guestTableProperty.getGuest());
-    } catch (SQLException e) {
-        Alert alert = new DatabaseErrorAlert();
-        alert.show();
+    public void remove() {
+        ObservableList<GuestTableProperty> allGuests, singleGuest;
+        allGuests = table.getItems();
+        singleGuest = table.getSelectionModel().getSelectedItems();
+        GuestTableProperty guestTableProperty = table.getSelectionModel().getSelectedItem();
+        try {
+            viewModel.removeGuest(guestTableProperty.getGuest());
+        } catch (SQLException e) {
+            Alert alert = new DatabaseErrorAlert();
+            alert.show();
+        }
+
+        singleGuest.forEach(allGuests :: remove);
     }
-
-    singleGuest.forEach(allGuests :: remove);
-
-}
 
     public void back() {
         if(previousView instanceof ManageBookingViewController)

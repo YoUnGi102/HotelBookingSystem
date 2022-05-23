@@ -89,8 +89,6 @@ public class RoomListViewController implements Controller {
         return viewModel;
     }
 
-
-
     public void reset(){
         if(table.getItems() != null)
             table.getItems().clear();

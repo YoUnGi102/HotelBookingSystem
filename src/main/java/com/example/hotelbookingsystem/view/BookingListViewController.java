@@ -53,21 +53,21 @@ public class BookingListViewController implements Controller {
     }
 
     @FXML
-    void add(ActionEvent event) {
+    void add() {
         if(table.getItems() != null)
             table.getItems().clear();
         viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, this);
     }
 
     @FXML
-    void back(ActionEvent event) {
+    void back() {
         if(table.getItems() != null)
             table.getItems().clear();
         viewHandler.openView(ViewHandler.MENU_VIEW, this);
     }
 
     @FXML
-    void edit(ActionEvent event) {
+    void edit() {
         if (table.getSelectionModel().getSelectedItem() != null){
             Booking booking = table.getSelectionModel().getSelectedItem().getBooking();
             viewModel.setCurrentBooking(booking);
@@ -89,7 +89,7 @@ public class BookingListViewController implements Controller {
     }
 
     @FXML
-    void search(ActionEvent event) {
+    void search() {
         try {
             if(roomNumber.getText().equals("")){
                 viewModel.searchBookings(phoneNumber.getText(), email.getText(), -1, dateFrom.getValue(), dateTo.getValue());

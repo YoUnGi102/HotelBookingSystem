@@ -60,6 +60,7 @@ public class ViewFactory {
         }else{
             guestListViewController.search();
         }
+
         return guestListViewController.getRoot();
     }
     public Region loadBookingListView(Controller previousView){
@@ -74,7 +75,11 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
-        bookingListViewController.reset();
+        guestListViewController.setPreviousView(previousView);
+        if(previousView instanceof MenuViewController)
+            bookingListViewController.reset();
+        else
+            bookingListViewController.search();
         return bookingListViewController.getRoot();
     }
     public Region loadRoomListView(Controller previousView){
@@ -90,6 +95,7 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+        
         if (previousView instanceof ManageBookingViewController manageBookingViewController) {
             roomListViewController.reset();
             roomListViewController.hideButtons();
