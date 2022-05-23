@@ -85,6 +85,8 @@ public class RoomListViewController implements Controller {
         availabilityCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
+
+
     }
 
     public RoomListViewModel getViewModel() {

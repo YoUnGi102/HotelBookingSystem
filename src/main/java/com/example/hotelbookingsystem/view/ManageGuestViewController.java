@@ -152,7 +152,17 @@ public class ManageGuestViewController implements Controller {
                 this.address.setValue(address);
                 Guest guest = new Guest(
                         firstName.getText(), lastName.getText(), address, phoneNumber.getText(), eMail.getText(), passNr.getText());
-                viewModel.add(guest);
+                try
+                {
+                    viewModel.add(guest);
+                } catch (SQLException e)
+                {
+                    Alert alert = new ErrorAlert();
+                    alert.setContentText("Passport number too long");
+                    alert.show();
+                    return;
+                }
+
             }
             clearAll();
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);

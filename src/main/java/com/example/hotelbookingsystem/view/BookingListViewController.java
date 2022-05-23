@@ -48,6 +48,8 @@ public class BookingListViewController implements Controller {
         dateToCol.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
+
+
     }
 
     public BookingListViewModel getViewModel() {

@@ -46,6 +46,7 @@ public class ModelManager implements Model, Remote {
             client = new ClientDriver(support);
         } catch (ConnectException e)
         {
+            System.out.println("Server is created");
             new Thread(ServerDriver.getInstance()).start();
         }
 
@@ -193,5 +194,7 @@ public class ModelManager implements Model, Remote {
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(propertyName, listener);
     }
+
+
 
 }

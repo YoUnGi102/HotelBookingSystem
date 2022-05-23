@@ -6,6 +6,7 @@ import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Region;
 
@@ -53,6 +54,11 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+        if (previousView.equals(manageGuestViewController))
+        {
+            guestListViewController.search();
+        }
+
         return guestListViewController.getRoot();
     }
     public Region loadBookingListView(Controller previousView){
@@ -67,6 +73,11 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+        if (previousView!= null && previousView.equals(manageBookingViewController))
+        {
+            bookingListViewController.search(new ActionEvent());
+        }
+
         return bookingListViewController.getRoot();
     }
     public Region loadRoomListView(Controller previousView){
@@ -81,6 +92,11 @@ public class ViewFactory {
             } catch (IOException e) {
                 throw new IOError(e);
             }
+        }
+
+        if (previousView.equals(manageRoomViewController))
+        {
+            roomListViewController.search(new ActionEvent());
         }
         return roomListViewController.getRoot();
     }
