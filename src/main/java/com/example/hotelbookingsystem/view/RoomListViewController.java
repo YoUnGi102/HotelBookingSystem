@@ -175,4 +175,17 @@ public class RoomListViewController implements Controller {
         return root;
     }
 
+    public void hideButtons()
+    {
+        addBtn.setVisible(false);
+        removeBtn.setVisible(false);
+        editBtn.setVisible(false);
+    }
+public void showButtons()
+{
+    addBtn.setVisible(true);
+    removeBtn.setVisible(true);
+    editBtn.setVisible(true);
+}
+
 }

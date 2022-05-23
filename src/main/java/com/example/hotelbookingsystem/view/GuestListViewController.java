@@ -170,4 +170,8 @@ public class GuestListViewController implements Controller{
     public Region getRoot() {
         return root;
     }
+
+    public void setPreviousView(Controller previousView) {
+        this.previousView = previousView;
+    }
 }
