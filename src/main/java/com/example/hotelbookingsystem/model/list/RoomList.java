@@ -24,10 +24,38 @@ public class RoomList {
     }
 
     public void add(Room room) throws SQLException {
-        roomTable.insert(room);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    roomTable.insert(room);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public void remove(Room room) throws SQLException {
-        roomTable.delete(room);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    roomTable.delete(room);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public Room get(int roomNumber) throws SQLException {
         return roomTable.select(roomNumber);
@@ -36,9 +64,21 @@ public class RoomList {
         return roomTable.selectAll();
     }
     public void update(Room room) throws SQLException {
-        roomTable.update(room);
-    }
-    public void getAvailableRooms(LocalDate from, LocalDate to){
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    roomTable.update(room);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
     public ObservableList<Room> selectAllSearched(LocalDate to) throws SQLException {

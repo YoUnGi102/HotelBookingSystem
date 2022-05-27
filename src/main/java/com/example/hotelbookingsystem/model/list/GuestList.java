@@ -25,10 +25,38 @@ public class GuestList {
     }
 
     public void add(Guest guest) throws SQLException {
-        guestTable.insert(guest);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    guestTable.insert(guest);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public void remove(Guest guest) throws SQLException {
-        guestTable.delete(guest);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    guestTable.delete(guest);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public Guest get(String passportNumber) throws SQLException {
         return guestTable.select(passportNumber);
@@ -37,7 +65,21 @@ public class GuestList {
         return guestTable.selectAll();
     }
     public void update(Guest guest) throws SQLException {
-        guestTable.update(guest);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    guestTable.update(guest);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
 }

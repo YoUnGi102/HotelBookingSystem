@@ -16,14 +16,26 @@ public class ServerImpl extends UnicastRemoteObject implements ServerIF
         this.clients.add(chatclient);
     }
     public synchronized void refresh() throws RemoteException {
-//            int i =0;
-//            while (i < chatclients.size()) {
-//            chatclients.get(i++).retrieveMessage (message);
 
-        for (ClientIF client: clients)
+        new Thread(new Runnable()
         {
-            client.receive();
-        }
+            @Override
+            public void run()
+            {
+                for (ClientIF client: clients)
+                {
+                    try
+                    {
+                        client.receive();
+                    } catch (RemoteException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
     }
 }
 

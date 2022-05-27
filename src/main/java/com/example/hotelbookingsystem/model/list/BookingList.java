@@ -27,10 +27,38 @@ public class BookingList {
     }
 
     public void add(Booking booking) throws SQLException {
-        bookingTable.insert(booking);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    bookingTable.insert(booking);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public void remove(Booking booking) throws SQLException {
-        bookingTable.delete(booking);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    bookingTable.delete(booking);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public Booking get(int bookingId) throws SQLException {
         return bookingTable.select(bookingId);
@@ -39,7 +67,21 @@ public class BookingList {
         return bookingTable.selectAll();
     }
     public void update(Booking booking) throws SQLException {
-        bookingTable.update(booking);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    bookingTable.update(booking);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
 }
