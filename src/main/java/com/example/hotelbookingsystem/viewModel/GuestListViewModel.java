@@ -18,6 +18,12 @@ public class GuestListViewModel implements PropertyChangeListener {
     private ObjectProperty<ObservableList<GuestTableProperty>> guests;
     private Guest currentGuest;
 
+    private String lastFirstName;
+    private String lastLastName;
+    private String lastPhoneNumber;
+    private String lastPassportNumber;
+    private String lastEmail;
+
     public GuestListViewModel(Model model){
         guests = new SimpleObjectProperty<>();
         this.model = model;
@@ -37,6 +43,13 @@ public class GuestListViewModel implements PropertyChangeListener {
     }
 
     public void searchGuests(String firstName, String lastName, String phoneNumber, String passportNumber, String email) throws SQLException {
+
+        lastFirstName = firstName;
+        lastLastName = lastName;
+        lastPhoneNumber = phoneNumber;
+        lastPassportNumber = passportNumber;
+        lastEmail = email;
+
         ObservableList<GuestTableProperty> guestsFormatted = FXCollections.observableArrayList();
         for (Guest g : model.searchGuests(firstName, lastName, phoneNumber, passportNumber, email)) {
             guestsFormatted.add(new GuestTableProperty(g));
@@ -50,6 +63,11 @@ public class GuestListViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        try
+        {
+            searchGuests(lastFirstName,lastLastName,lastPhoneNumber,lastPassportNumber,lastEmail);
+        } catch (SQLException e) {
+            System.err.println("Database error occurred, while trying to refresh the table");
+        }
     }
 }

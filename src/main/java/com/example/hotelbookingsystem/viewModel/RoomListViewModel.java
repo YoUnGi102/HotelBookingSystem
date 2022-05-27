@@ -23,6 +23,12 @@ public class RoomListViewModel implements PropertyChangeListener {
     private ObjectProperty<ObservableList<RoomTableProperty>> rooms;
     private Room currentRoom;
 
+    private int lastFloor;
+    private int lastSize;
+    private int lastQuality;
+    private LocalDate lastFrom;
+    private LocalDate lastTo;
+
     RoomListViewModel(Model model){
         rooms = new SimpleObjectProperty<>();
         this.model = model;
@@ -43,6 +49,15 @@ public class RoomListViewModel implements PropertyChangeListener {
     }
 
     public void searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException {
+
+        lastFloor = floor;
+        lastSize = size;
+        lastQuality = quality;
+        lastFrom = from;
+        lastTo = to;
+
+
+
         if (from != null && from.isBefore(LocalDate.now()))
         {
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -77,6 +92,12 @@ public class RoomListViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        try
+        {
+            searchRooms(lastFloor, lastSize,lastQuality, lastFrom, lastTo);
+        } catch (SQLException e)
+        {
+            System.err.println("Database error occurred, while trying to refresh the table");
+        }
     }
 }

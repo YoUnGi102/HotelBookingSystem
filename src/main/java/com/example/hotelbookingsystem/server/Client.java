@@ -21,12 +21,14 @@ public class Client extends UnicastRemoteObject implements ClientIF {
     }
 
     public void sendRefresh() throws RemoteException {
+        System.out.println(" send refresh");
         server.refresh();
     }
 
     @Override
     public void receive() throws RemoteException {
         support.firePropertyChange(ModelManager.REFRESH, null, null);
+        System.out.println("refresh");
     }
 
 

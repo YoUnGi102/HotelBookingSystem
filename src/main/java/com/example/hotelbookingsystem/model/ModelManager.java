@@ -12,10 +12,7 @@ import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.ConnectException;
-import java.rmi.NotBoundException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.rmi.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,19 +32,24 @@ public class ModelManager implements Model, Remote {
 
     private ClientDriver client;
 
-    public ModelManager() throws SQLException, NotBoundException, RemoteException {
+    public ModelManager() throws SQLException, NotBoundException, RemoteException, AlreadyBoundException
+    {
         roomList = RoomList.getInstance();
         bookingList = BookingList.getInstance();
         guestList = GuestList.getInstance();
         staffTable = StaffTable.getInstance();
         support = new PropertyChangeSupport(this);
-        try
-        {
+        client = null;
+        ServerDriver s;
+        try{
             client = new ClientDriver(support);
+            System.out.println(client);
         } catch (ConnectException e)
         {
-            System.out.println("Server is created");
-            new Thread(ServerDriver.getInstance()).start();
+            System.out.println("there is no server, creating one");
+            s = ServerDriver.getInstance();
+            client = new ClientDriver(support);
+            System.out.println(client);
         }
 
     }
@@ -69,15 +71,15 @@ public class ModelManager implements Model, Remote {
 
         ObservableList<Guest> searchedGuests = FXCollections.observableArrayList();
         for (Guest guest : guestList.getAll()) {
-            if(!firstName.equals("") && !guest.getFirstName().contains(firstName))
+            if(firstName!= null && !firstName.equals("") && !guest.getFirstName().contains(firstName))
                 continue;
-            if(!lastName.equals("") && !guest.getLastName().contains(lastName))
+            if(lastName!= null && !lastName.equals("") && !guest.getLastName().contains(lastName))
                 continue;
-            if(!phoneNumber.equals("") && !guest.getPhoneNumber().contains(phoneNumber))
+            if(phoneNumber!= null && !phoneNumber.equals("") && !guest.getPhoneNumber().contains(phoneNumber))
                 continue;
-            if(!passportNumber.equals("") && !guest.getPassportNumber().contains(passportNumber))
+            if(passportNumber!= null && !passportNumber.equals("") && !guest.getPassportNumber().contains(passportNumber))
                 continue;
-            if(!email.equals("") && !guest.getEmail().contains(email))
+            if(email != null && !email.equals("") && !guest.getEmail().contains(email))
                 continue;
             searchedGuests.add(guest);
         }
@@ -136,11 +138,11 @@ public class ModelManager implements Model, Remote {
     public ObservableList<Booking> searchBookings(String phoneNumber, String email, int roomNumber, LocalDate dateFrom, LocalDate dateTo) throws SQLException {
         ObservableList<Booking> searchedBookings = FXCollections.observableArrayList();
         for (Booking booking : bookingList.getAll()) {
-            if(!phoneNumber.equals("") && !booking.getPhoneNumber().contains(phoneNumber))
+            if(phoneNumber != null && !phoneNumber.equals("") && !booking.getPhoneNumber().contains(phoneNumber))
                 continue;
-            if(!email.equals("") && !booking.getEmail().contains(email))
+            if( email != null && !email.equals("") && !booking.getEmail().contains(email))
                 continue;
-            if(roomNumber != -1 && booking.getRoom().getRoomNumber() != roomNumber)
+            if( roomNumber != -1 && booking.getRoom().getRoomNumber() != roomNumber)
                 continue;
             if(dateFrom != null && booking.getDateFrom().isAfter(dateFrom))
                 continue;
