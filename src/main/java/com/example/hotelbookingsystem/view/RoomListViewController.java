@@ -85,7 +85,6 @@ public class RoomListViewController implements Controller {
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
 
-
     }
 
     public RoomListViewModel getViewModel() {

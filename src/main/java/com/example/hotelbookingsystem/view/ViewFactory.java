@@ -235,6 +235,5 @@ public class ViewFactory {
         return loginViewController.getRoot();
     }
 
-
 }
 
