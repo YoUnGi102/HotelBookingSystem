@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class RoomListViewController implements Controller {
@@ -65,7 +66,7 @@ public class RoomListViewController implements Controller {
                     viewHandler.openView(ViewHandler.MANAGE_BOOKING_VIEW, controller);
                 }
             });
-        }else {
+        }else{
             if(viewModel.getStaff() instanceof Receptionist){
                 addBtn.setVisible(false);
                 removeBtn.setVisible(false);
@@ -83,6 +84,8 @@ public class RoomListViewController implements Controller {
         availabilityCol.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
         viewModel.bindTableItemsProperty(table.itemsProperty());
+
+
     }
 
     public RoomListViewModel getViewModel() {
@@ -144,6 +147,8 @@ public class RoomListViewController implements Controller {
             } catch (SQLException e) {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
+            } catch (RemoteException e) {
+                // TODO ADD ACTION
             }
         }else{
             Alert alert = new ErrorAlert("No room selected!");

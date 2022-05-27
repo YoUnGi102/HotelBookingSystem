@@ -2,14 +2,17 @@ package com.example.hotelbookingsystem.viewModel;
 
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Model;
+import com.example.hotelbookingsystem.model.ModelManager;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 
-public class GuestListViewModel {
+public class GuestListViewModel implements PropertyChangeListener {
 
     private Model model;
     private ObjectProperty<ObservableList<GuestTableProperty>> guests;
@@ -19,6 +22,7 @@ public class GuestListViewModel {
         guests = new SimpleObjectProperty<>();
         this.model = model;
         this.currentGuest = null;
+        model.addPropertyChangeListener(ModelManager.REFRESH, this);
     }
 
     public Guest getCurrentGuest() {
@@ -41,9 +45,11 @@ public class GuestListViewModel {
     }
 
     public void removeGuest(Guest guest) throws SQLException {
-            model.removeGuest(guest);
-
+        model.removeGuest(guest);
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
 
+    }
 }

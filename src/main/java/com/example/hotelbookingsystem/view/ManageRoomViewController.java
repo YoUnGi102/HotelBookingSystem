@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class ManageRoomViewController implements Controller {
@@ -94,6 +95,8 @@ public class ManageRoomViewController implements Controller {
                 System.out.println(e.getErrorCode());
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
+            } catch (RemoteException e) {
+                // TODO ADD ACTION
             }
 
         }else{
@@ -118,6 +121,8 @@ public class ManageRoomViewController implements Controller {
             } catch (SQLException e) {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
+            } catch (RemoteException e) {
+                // TODO ADD ACTION
             }
 
         }

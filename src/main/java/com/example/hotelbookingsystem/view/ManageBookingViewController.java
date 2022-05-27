@@ -14,7 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ManageBookingViewController implements Controller {
 
@@ -205,6 +207,19 @@ public class ManageBookingViewController implements Controller {
             return;
         }
 
+        if (dateFrom.getValue() != null && dateFrom.getValue().isBefore(LocalDate.now()))
+        {
+            alert.setContentText("Date From is before today");
+            alert.show();
+            return;
+        }
+        if (dateFrom.getValue() != null && dateTo.getValue() != null && dateTo.getValue().isBefore(dateFrom.getValue()))
+        {
+            alert.setContentText("Date To is before strat Date");
+            alert.show();
+            return;
+        }
+
         try {
             if (viewModel.getCurrentBooking() == null) {
                 viewModel.addBooking();
@@ -217,6 +232,8 @@ public class ManageBookingViewController implements Controller {
 
         } catch (SQLException e) {
             (new DatabaseErrorAlert()).show();
+        } catch (RemoteException e) {
+            // TODO ADD ACTION
         }
     }
 }

@@ -1,3 +1,6 @@
+/**
+ *
+ */
 module com.example.hotelbookingsystem {
     requires javafx.fxml;
     requires javafx.graphics;
@@ -20,4 +23,6 @@ module com.example.hotelbookingsystem {
     opens com.example.hotelbookingsystem.model.list to javafx.fxml;
     exports com.example.hotelbookingsystem.view.alert;
     opens com.example.hotelbookingsystem.view.alert to javafx.fxml;
+    opens com.example.hotelbookingsystem.server;
+    exports com.example.hotelbookingsystem.server to java.rmi;
 }

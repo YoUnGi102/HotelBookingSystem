@@ -6,6 +6,7 @@ import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.viewModel.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Region;
 
@@ -41,7 +42,7 @@ public class ViewFactory {
 
     // TODO Add load method for each view
 
-    public Region loadGuestListView(Controller previousView){
+    public Region loadGuestListView(Controller previousView) {
         if (guestListViewController == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewHandler.class.getResource(ViewHandler.GUEST_LIST_VIEW));
@@ -55,12 +56,13 @@ public class ViewFactory {
         }
         guestListViewController.setPreviousView(previousView);
 
-        if(previousView instanceof MenuViewController){
+        if (previousView instanceof MenuViewController) {
             guestListViewController.reset();
-        }else{
-            guestListViewController.search();
+        } else {
+            if (previousView.equals(manageGuestViewController)) {
+                guestListViewController.search();
+            }
         }
-
         return guestListViewController.getRoot();
     }
     public Region loadBookingListView(Controller previousView){
@@ -79,6 +81,11 @@ public class ViewFactory {
             bookingListViewController.reset();
         else
             bookingListViewController.search();
+
+        if (previousView!= null && previousView.equals(manageBookingViewController))
+        {
+            bookingListViewController.search();
+        }
         return bookingListViewController.getRoot();
     }
     public Region loadRoomListView(Controller previousView){
@@ -97,16 +104,19 @@ public class ViewFactory {
 
         roomListViewController.setPreviousView(previousView);
 
-        if (previousView instanceof ManageBookingViewController manageBookingViewController) {
+        if (previousView instanceof ManageBookingViewController) {
             roomListViewController.search();
             roomListViewController.hideButtons();
         }
-        else if(previousView instanceof MenuViewController menuViewController ) {
-
+        else if(previousView instanceof MenuViewController) {
             roomListViewController.reset();
             roomListViewController.showButtons();
         }
 
+        if (previousView.equals(manageRoomViewController))
+        {
+            roomListViewController.search();
+        }
         return roomListViewController.getRoot();
     }
 

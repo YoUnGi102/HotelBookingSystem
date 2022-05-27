@@ -8,7 +8,10 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -83,7 +86,7 @@ public class ManageBookingViewModel {
         this.currentBooking = currentBooking;
     }
 
-    public void addBooking() throws SQLException {
+    public void addBooking() throws SQLException, RemoteException {
         ArrayList<Guest> guests = new ArrayList<>();
         this.guests.getValue().forEach((guest) -> {
             guests.add(guest.getGuest());
@@ -99,7 +102,7 @@ public class ManageBookingViewModel {
         currentBooking = null;
     }
 
-    public void editBooking() throws SQLException {
+    public void editBooking() throws SQLException, RemoteException {
         currentBooking.setRoom(room.getValue());
         currentBooking.setDateTo(dateTo.getValue());
         currentBooking.setDateFrom(dateFrom.getValue());
