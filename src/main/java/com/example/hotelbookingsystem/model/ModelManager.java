@@ -116,6 +116,26 @@ public class ModelManager implements Model, Remote {
         return searchedRooms;
     }
 
+    @Override
+    public void addStaff(Staff staff) throws SQLException {
+        staffTable.insert(staff);
+    }
+
+    @Override
+    public void removeStaff(Staff staff) throws SQLException {
+        staffTable.delete(staff);
+    }
+
+    @Override
+    public void editStaff(Staff staff) throws SQLException {
+        staffTable.update(staff);
+    }
+
+    @Override
+    public ObservableList<Staff> getAllStaff() throws SQLException {
+        return staffTable.selectAll();
+    }
+
     private ObservableList<Room> roomsByDate(LocalDate from, LocalDate to) throws SQLException {
         ObservableList<Room> roomsSelected = roomList.getAll();
 

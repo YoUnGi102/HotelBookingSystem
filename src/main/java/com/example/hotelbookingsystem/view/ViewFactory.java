@@ -3,6 +3,7 @@ package com.example.hotelbookingsystem.view;
 import com.example.hotelbookingsystem.model.Booking;
 import com.example.hotelbookingsystem.model.Guest;
 import com.example.hotelbookingsystem.model.Room;
+import com.example.hotelbookingsystem.model.Staff;
 import com.example.hotelbookingsystem.viewModel.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +29,8 @@ public class ViewFactory {
     private ManageRoomViewController manageRoomViewController;
     private MenuViewController menuViewController;
     private LoginViewController loginViewController;
+    private StaffListViewController staffListViewController;
+    private ManageStaffViewController manageStaffViewController;
 
     public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
         this.viewHandler = viewHandler;
@@ -119,6 +122,24 @@ public class ViewFactory {
         }
         return roomListViewController.getRoot();
     }
+    public Region loadStaffListView(Controller previousView){
+
+        if (staffListViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.STAFF_LIST_VIEW));
+            try {
+                Region root = loader.load();
+                staffListViewController = loader.getController();
+                staffListViewController.init(viewHandler, viewModelFactory.getStaffListViewModel(), root, previousView);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
+        }
+
+        staffListViewController.reset();
+
+        return staffListViewController.getRoot();
+    }
 
     public Region loadManageBookingView(Controller previousView){
 
@@ -183,17 +204,6 @@ public class ViewFactory {
         return manageGuestViewController.getRoot();
     }
     public Region loadManageRoomView(Controller previousView) {
-        if (manageRoomViewController == null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewHandler.class.getResource(ViewHandler.MANAGE_ROOM_VIEW));
-            try {
-                Region root = loader.load();
-                manageRoomViewController = loader.getController();
-                manageRoomViewController.init(viewHandler, viewModelFactory.getManageRoomViewModel(), root, previousView);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         if(previousView instanceof RoomListViewController controller &&
                 controller.getViewModel().getCurrentRoom() != null){
@@ -203,6 +213,25 @@ public class ViewFactory {
         }
 
         return manageRoomViewController.getRoot();
+    }
+    public Region loadManageStaffView(Controller previousView) {
+        if (manageStaffViewController == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ViewHandler.class.getResource(ViewHandler.MANAGE_STAFF_VIEW));
+            try {
+                Region root = loader.load();
+                manageStaffViewController = loader.getController();
+                manageStaffViewController.init(viewHandler, viewModelFactory.getManageStaffViewModel(), root, previousView);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(previousView instanceof StaffListViewController controller) {
+            manageStaffViewController.getViewModel().setStaff(controller.getViewModel().getCurrentStaff());
+        }
+        return manageStaffViewController.getRoot();
+
     }
 
     public Region loadMenuView(Controller previousView) {

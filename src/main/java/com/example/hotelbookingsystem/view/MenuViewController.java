@@ -28,7 +28,7 @@ public class MenuViewController implements Controller {
             viewHandler.openView(ViewHandler.ROOM_LIST_VIEW, this);
         });
         manageStaff.setOnAction(e -> {
-            // TODO ADD STAFF_LIST_VIEW
+            viewHandler.openView(ViewHandler.STAFF_LIST_VIEW, this);
         });
         manageGuests.setOnAction(e -> {
             viewHandler.openView(ViewHandler.GUEST_LIST_VIEW, this);

@@ -25,6 +25,11 @@ public interface Model {
     void editRoom(Room room) throws SQLException, RemoteException;
     ObservableList<Room> searchRooms(int floor, int size, int quality, LocalDate from, LocalDate to) throws SQLException;
 
+    void addStaff(Staff staff) throws SQLException;
+    void removeStaff(Staff staff) throws SQLException;
+    void editStaff(Staff staff) throws SQLException;
+    ObservableList<Staff> getAllStaff() throws SQLException;
+
     Staff getStaff();
     void login(String username, String password) throws SQLException, IllegalAccessException;
     void logOff();

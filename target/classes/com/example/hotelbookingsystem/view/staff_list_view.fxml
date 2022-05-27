@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelbookingsystem.view.StaffListViewController">
+   <children>
+      <HBox prefHeight="84.0" prefWidth="1080.0" styleClass="gradient-background-full">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <stylesheets>
+            <URL value="@../../../../style/style.css" />
+            <URL value="@../../../../style/controls.css" />
+         </stylesheets>
+      </HBox>
+      <ScrollPane fitToWidth="true" prefHeight="525.0" prefWidth="1080.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1080.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="500.0" prefWidth="1040.0" stylesheets="@../../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <placeholder>
+                        <Label /></placeholder>
+                     <columns>
+                        <TableColumn fx:id="usernameCol" prefWidth="200.0" text="Username">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="firstNameCol" prefWidth="200.0" text="First Name">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="lastNameCol" prefWidth="200.0" text="Last Name">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="emailCol" prefWidth="200.0" text="E-mail">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                        <TableColumn fx:id="phoneNumberCol" prefWidth="200.0" text="Phone Number">
+                           <styleClass>
+                              <String fx:value="table-column-light" />
+                              <String fx:value="center-col" />
+                           </styleClass></TableColumn>
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </ScrollPane>
+      <HBox prefHeight="83.0" prefWidth="1080.0" styleClass="gradient-background-full" stylesheets="@../../../../style/style.css">
+         <children>
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Back">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="10.0" right="500.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Add">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#edit" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Edit">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#remove" prefHeight="50.0" prefWidth="125.0" styleClass="dark-button" stylesheets="@../../../../style/style.css" text="Remove">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../../../style/controls.css" />
+      <URL value="@../../../../style/table.css" />
+      <URL value="@../../../../style/style.css" />
+   </stylesheets>
+</VBox>
