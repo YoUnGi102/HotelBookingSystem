@@ -15,6 +15,8 @@ public class ViewModelFactory {
     private final ManageRoomViewModel manageRoomViewModel;
     private final MenuViewModel menuViewModel;
     private final LoginViewModel loginViewModel;
+    private final StaffListViewModel staffListViewModel;
+    private final ManageStaffViewModel manageStaffViewModel;
 
     public ViewModelFactory(Model model) {
         this.guestListViewModel = new GuestListViewModel(model);
@@ -25,6 +27,8 @@ public class ViewModelFactory {
         this.manageRoomViewModel = new ManageRoomViewModel(model);
         this.menuViewModel = new MenuViewModel(model);
         this.loginViewModel = new LoginViewModel(model);
+        this.staffListViewModel = new StaffListViewModel(model);
+        this.manageStaffViewModel = new ManageStaffViewModel(model);
     }
 
     public GuestListViewModel getGuestListViewModel(){
@@ -35,6 +39,9 @@ public class ViewModelFactory {
     }
     public BookingListViewModel getBookingListViewModel() {
         return bookingListViewModel;
+    }
+    public StaffListViewModel getStaffListViewModel() {
+        return staffListViewModel;
     }
     public ManageBookingViewModel getManageBookingViewModel() { return manageBookingViewModel; }
     public ManageGuestViewModel getManageGuestViewModel() {
@@ -48,5 +55,8 @@ public class ViewModelFactory {
     }
     public ManageRoomViewModel getManageRoomViewModel() {
         return manageRoomViewModel;
+    }
+    public ManageStaffViewModel getManageStaffViewModel() {
+        return manageStaffViewModel;
     }
 }

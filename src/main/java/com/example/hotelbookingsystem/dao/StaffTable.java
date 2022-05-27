@@ -58,7 +58,7 @@ public class StaffTable implements StaffDAO {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO " + SCHEMA + "." + TABLE_NAME +
                             "("+USERNAME+", "+FIRST_NAME+", "+LAST_NAME+", "+ PASSWORD +", "+ EMAIL+ ", " + PHONE_NUMBER + ", " + ADDRESS + ", " + STAFF_TYPE + ")" +
-                            " VALUES (?, ?, ?, ?, ?, ?, ?)");
+                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, staff.getUsername());
             statement.setString(2, staff.getFirstName());
             statement.setString(3, staff.getLastName());
@@ -124,8 +124,10 @@ public class StaffTable implements StaffDAO {
     public void update(Staff staff) throws SQLException {
         setAddress(staff);
         try(Connection connection = databaseConnection.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE "+SCHEMA+"."+TABLE_NAME+" SET " +
-                    FIRST_NAME+" = ?, "+LAST_NAME+" = ?, " + PASSWORD+" = ?, " +EMAIL+" = ?, "+PHONE_NUMBER+" = ?, "+ADDRESS+" = ? "+ STAFF_TYPE + " = ? WHERE "+USERNAME+" = ?");
+            String sql = "UPDATE "+SCHEMA+"."+TABLE_NAME+" SET " +
+                    FIRST_NAME+" = ?, "+LAST_NAME+" = ?, " + PASSWORD+" = ?, " +EMAIL+" = ?, "+PHONE_NUMBER+" = ?, "+ADDRESS+" = ?, "+ STAFF_TYPE + " = ? WHERE "+USERNAME+" = ?";
+            System.out.println(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, staff.getFirstName());
             statement.setString(2, staff.getLastName());
             statement.setString(3, staff.getPassword());

@@ -78,7 +78,6 @@ public class RoomListViewController implements Controller {
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number") {
         });
         floorCol.setCellValueFactory(new PropertyValueFactory<>("floor"));
-        //emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         qualityCol.setCellValueFactory(new PropertyValueFactory<>("quality"));
         sizeCol.setCellValueFactory(new PropertyValueFactory<>("size"));
         availabilityCol.setCellValueFactory(new PropertyValueFactory<>("availability"));

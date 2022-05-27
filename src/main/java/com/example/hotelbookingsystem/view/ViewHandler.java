@@ -17,9 +17,11 @@ public class ViewHandler {
     public static final String GUEST_LIST_VIEW = "guest_list_view.fxml";
     public static final String ROOM_LIST_VIEW = "room_list_view.fxml";
     public static final String BOOKING_LIST_VIEW = "booking_list_view.fxml";
+    public static final String STAFF_LIST_VIEW = "staff_list_view.fxml";
     public static final String MANAGE_BOOKING_VIEW = "manage_booking_view.fxml";
     public static final String MANAGE_GUEST_VIEW = "manage_guest_view.fxml";
     public static final String MANAGE_ROOM_VIEW = "manage_room_view.fxml";
+    public static final String MANAGE_STAFF_VIEW = "manage_staff_view.fxml";
     public static final String MENU_VIEW = "menu_view.fxml";
     public static final String LOGIN_VIEW = "login_view.fxml";
 
@@ -54,24 +56,35 @@ public class ViewHandler {
                 root = viewFactory.loadBookingListView(previousView);
                 primaryStage.setTitle("Room Booking List");
             }
+            case STAFF_LIST_VIEW -> {
+                root = viewFactory.loadStaffListView(previousView);
+                primaryStage.setTitle("Staff List View");
+            }
             case MANAGE_BOOKING_VIEW -> {
                 root = viewFactory.loadManageBookingView(previousView);
                 primaryStage.setTitle("Manage Booking");
+            }
+            case MANAGE_GUEST_VIEW -> {
+                root = viewFactory.loadManageGuestView(previousView);
+                primaryStage.setTitle("Manage Guest");
+            }
+            case MANAGE_ROOM_VIEW -> {
+                root = viewFactory.loadManageRoomView(previousView);
+                primaryStage.setTitle("Manage Room");
+            }
+            case MANAGE_STAFF_VIEW -> {
+                root = viewFactory.loadManageStaffView(previousView);
+                primaryStage.setTitle("Manage Staff");
             }
             case MENU_VIEW -> {
                 root = viewFactory.loadMenuView(previousView);
                 primaryStage.setTitle("Menu");
             }
-            case MANAGE_GUEST_VIEW -> {
-                root = viewFactory.loadManageGuestView(previousView);
-                primaryStage.setTitle("Manage Guest");
-            }case LOGIN_VIEW -> {
+            case LOGIN_VIEW -> {
                 root = viewFactory.loadLoginView(previousView);
                 primaryStage.setTitle("Log In");
-            }case MANAGE_ROOM_VIEW -> {
-                root = viewFactory.loadManageRoomView(previousView);
-                primaryStage.setTitle("Manage Room");
             }
+
             default -> throw new IllegalArgumentException("Unknown view: " + id);
         }
         currentScene.setRoot(root);
