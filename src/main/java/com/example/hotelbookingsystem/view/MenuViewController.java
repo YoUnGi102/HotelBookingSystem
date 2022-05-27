@@ -1,6 +1,7 @@
 package com.example.hotelbookingsystem.view;
 
 import com.example.hotelbookingsystem.model.Receptionist;
+import com.example.hotelbookingsystem.model.Staff;
 import com.example.hotelbookingsystem.viewModel.MenuViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,10 +21,6 @@ public class MenuViewController implements Controller {
         this.viewModel = viewModel;
         this.root = root;
 
-        if(viewModel.getStaff() instanceof Receptionist){
-            manageStaff.setVisible(false);
-        }
-
         manageBooking.setOnAction(e -> {
             viewHandler.openView(ViewHandler.BOOKING_LIST_VIEW, this);
         });
@@ -40,6 +37,10 @@ public class MenuViewController implements Controller {
             viewHandler.openView(ViewHandler.LOGIN_VIEW, this);
         });
 
+    }
+
+    public void setStaff(Staff staff){
+        manageStaff.setVisible(!(viewModel.getStaff() instanceof Receptionist));
     }
 
     public Region getRoot() {

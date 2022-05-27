@@ -120,7 +120,6 @@ public class ManageBookingViewController implements Controller {
             roomSelected.setManaged(false);
             roomNotSelected.setVisible(true);
             roomNotSelected.setManaged(true);
-
         }
     }
 

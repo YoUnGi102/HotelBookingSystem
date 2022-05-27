@@ -75,7 +75,6 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
-        guestListViewController.setPreviousView(previousView);
         if(previousView instanceof MenuViewController)
             bookingListViewController.reset();
         else
@@ -95,13 +94,16 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
-        
+
+        roomListViewController.setPreviousView(previousView);
+
         if (previousView instanceof ManageBookingViewController manageBookingViewController) {
-            roomListViewController.reset();
+            roomListViewController.search();
             roomListViewController.hideButtons();
         }
         else if(previousView instanceof MenuViewController menuViewController ) {
-            roomListViewController.search();
+
+            roomListViewController.reset();
             roomListViewController.showButtons();
         }
 
@@ -158,13 +160,14 @@ public class ViewFactory {
             }
         }
 
+        manageGuestViewController.setPreviousView(previousView);
+
         if(previousView instanceof GuestListViewController controller &&
                 controller.getViewModel().getCurrentGuest() != null){
             Guest guest = controller.getViewModel().getCurrentGuest();
 
             ManageGuestViewModel manageGuestViewModel = manageGuestViewController.getViewModel();
             manageGuestViewModel.setGuest(guest);
-
         }
 
         return manageGuestViewController.getRoot();
@@ -204,6 +207,7 @@ public class ViewFactory {
                 throw new IOError(e);
             }
         }
+        menuViewController.setStaff(viewModelFactory.getMenuViewModel().getStaff());
         return menuViewController.getRoot();
     }
     public Region loadLoginView(Controller previousView) {

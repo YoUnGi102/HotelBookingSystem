@@ -172,4 +172,8 @@ public class ManageGuestViewController implements Controller {
 
     }
 
+    public void setPreviousView(Controller previousView){
+        this.previousView = previousView;
+    }
+
 }

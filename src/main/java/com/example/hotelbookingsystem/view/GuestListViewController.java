@@ -73,8 +73,10 @@ public class GuestListViewController implements Controller{
         return viewModel;
     }
 
+
+
     @FXML
-    void search() {
+    public void search() {
         // TODO CHECK USER INPUT
         try {
             viewModel.searchGuests(firstName.getText(), lastName.getText(), phoneNumber.getText(), passportNumber.getText(), eMail.getText());
