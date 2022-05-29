@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DataBaseTesting
+public class RoomDataBaseTesting
 {
     RoomTable room;
     Room testRoom;
@@ -20,7 +20,6 @@ public class DataBaseTesting
     {
         room = RoomTable.getInstance();
         testRoom = new Room(999, 2, 1, 1);
-
         try
         {
             room.delete(testRoom);
@@ -45,26 +44,20 @@ public class DataBaseTesting
     @Test
     public void insert() throws SQLException
     {
-        //Run Only Once
         assertDoesNotThrow(() -> room.insert(testRoom));
-
     }
 
     @Test
     public void delete() throws SQLException
     {
-        //Run only after inserting
         assertDoesNotThrow(()-> room.delete(testRoom));
-
     }
 
     @Test
     public void insert_same_room() throws SQLException
     {
-        //Run only after inserting
         assertDoesNotThrow(() -> room.insert(testRoom));
         assertThrows(SQLException.class, ()-> room.insert(testRoom));
-
     }
 
     @Test
