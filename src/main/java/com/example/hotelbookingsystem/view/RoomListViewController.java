@@ -4,6 +4,7 @@ import com.example.hotelbookingsystem.model.Receptionist;
 import com.example.hotelbookingsystem.model.Room;
 import com.example.hotelbookingsystem.view.alert.DatabaseErrorAlert;
 import com.example.hotelbookingsystem.view.alert.ErrorAlert;
+import com.example.hotelbookingsystem.view.alert.SuccessAlert;
 import com.example.hotelbookingsystem.viewModel.ManageBookingViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomListViewModel;
 import com.example.hotelbookingsystem.viewModel.RoomTableProperty;
@@ -142,6 +143,7 @@ public class RoomListViewController implements Controller {
         if(table.getSelectionModel().getSelectedItem() != null){
             try {
                 viewModel.removeRoom(table.getSelectionModel().getSelectedItem().getRoom());
+                (new SuccessAlert("Room successfully removed.")).show();
             } catch (SQLException e) {
                 Alert alert = new DatabaseErrorAlert();
                 alert.show();
